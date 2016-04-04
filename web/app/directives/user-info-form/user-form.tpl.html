@@ -63,6 +63,7 @@
                         <label>Location</label>
                         <select name="location" class="form-control" ng-model="userDetailObj.applicantCity"
                                 err-msg-required="Please select your location"
+                                set-model-value="locationsList"
                                 ng-options="item as item.name for item in locationsList">
                             <option value="">Select Location</option>
                         </select>
@@ -95,8 +96,8 @@
                     <div class="label-select-box">
                         <label>HR &amp; Training</label>
                         <select name="training" class="form-control" ng-model="userDetailObj.training">
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
+                            <option value="1">Java Certification</option>
+                            <option value="2">Marketing </option>
                         </select>
                     </div>
                 </div>

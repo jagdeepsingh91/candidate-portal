@@ -32,6 +32,10 @@
                 positionFields : basePath+"/position/fields",
                 getPositionDetails : function (id) {
                     return basePath+"/position/"+id
+                },
+                // Master
+                getMastersId : function (type, value) {
+                    return basePath+"/masters/id/"+type+"/"+value;
                 }
                 
             }
