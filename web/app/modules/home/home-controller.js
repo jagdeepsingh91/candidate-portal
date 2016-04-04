@@ -38,6 +38,7 @@
                     localStorageService.doLogOut();
                     navigationService.goToOpenPositionsList();
                 }, function (response) {
+                    localStorageService.doLogOut();
                     commonService.onApiResponseError(response);
                 });
             };

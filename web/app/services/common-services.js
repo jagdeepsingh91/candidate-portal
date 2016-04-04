@@ -1,47 +1,83 @@
 (function () {
     angular.module("candidatePortal.application").factory('candidatePortal.services.commonService',[
-        function () {
-            var showSuccessMsg = function(msg){
+        '$rootScope',
+        function ($rootScope) {
+            var showSuccessMsg = function(msg, time){
+                //jQuery.noConflict();
+                //jQuery(document).ready(function($){
+                //    window.scrollTo(0, 0);
+                //    var alertHtml = '<div class="col-sm-offset-6 col-sm-12" style="top:35px;z-index: 999;"><div class="alert alert-success fade in text-center">'+
+                //        '<a  class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success! </strong> '+ msg +
+                //        '</div></div>';
+                //    $("body").prepend(alertHtml);
+                //});
+                if(time == "" || time == null || time == undefined)
+                    time = 2000;
                 jQuery.noConflict();
                 jQuery(document).ready(function($){
                     window.scrollTo(0, 0);
-                    var alertHtml = '<div class="col-sm-offset-6 col-sm-12" style="top:35px;z-index: 999;"><div class="alert alert-success fade in text-center">'+
-                        '<a  class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success! </strong> '+ msg +
-                        '</div></div>';
-                    $("body").prepend(alertHtml);
+                    $("#appSuccessMsgDiv").show().delay(time).fadeOut();
+                    $rootScope.appSuccessMsg = msg;
                 });
             };
 
-            var showInfoMsg = function(msg){
+            var showInfoMsg = function(msg, time){
+                //jQuery.noConflict();
+                //jQuery(document).ready(function($){
+                //    window.scrollTo(0, 0);
+                //    var alertHtml = '<div class="col-sm-offset-6 col-sm-12" style="top:35px;z-index: 999;"><div class="alert alert-info fade in text-center">'+
+                //        '<a class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Info!</strong> '+ msg +
+                //        '</div></div>';
+                //    $("body").prepend(alertHtml);
+                //});
+                if(time == "" || time == null || time == undefined)
+                    time = 2000;
+
                 jQuery.noConflict();
                 jQuery(document).ready(function($){
                     window.scrollTo(0, 0);
-                    var alertHtml = '<div class="col-sm-offset-6 col-sm-12" style="top:35px;z-index: 999;"><div class="alert alert-info fade in text-center">'+
-                        '<a class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Info!</strong> '+ msg +
-                        '</div></div>';
-                    $("body").prepend(alertHtml);
+                    $("#appErrorMsgDiv").show().delay(time).fadeOut();
+                    $rootScope.appErrorMsg = msg;
                 });
             };
 
-            var showWarningMsg = function(msg){
+            var showWarningMsg = function(msg, time){
+                //jQuery.noConflict();
+                //jQuery(document).ready(function($){
+                //    window.scrollTo(0, 0);
+                //    var alertHtml = '<div class="col-sm-offset-6 col-sm-12" style="top:35px;z-index: 999;"><div class="alert alert-warning fade in text-center">'+
+                //        '<a class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Warning! </strong> '+ msg +
+                //        '</div></div>';
+                //    $("body").prepend(alertHtml);
+                //});
+                if(time == "" || time == null || time == undefined)
+                    time = 2000;
+
                 jQuery.noConflict();
                 jQuery(document).ready(function($){
                     window.scrollTo(0, 0);
-                    var alertHtml = '<div class="col-sm-offset-6 col-sm-12" style="top:35px;z-index: 999;"><div class="alert alert-warning fade in text-center">'+
-                        '<a class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Warning! </strong> '+ msg +
-                        '</div></div>';
-                    $("body").prepend(alertHtml);
+                    $("#appErrorMsgDiv").show().delay(time).fadeOut();
+                    $rootScope.appErrorMsg = msg;
                 });
             };
 
-            var showErrorMsg = function(msg){
+            var showErrorMsg = function(msg, time){
+                //jQuery.noConflict();
+                //jQuery(document).ready(function($){
+                //    window.scrollTo(0, 0);
+                //    var alertHtml = '<div class="col-sm-offset-6 col-sm-12" style="top:35px;z-index: 999;"><div class="alert alert-danger fade in text-center">'+
+                //        '<a class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error! </strong> '+ msg +
+                //        '</div></div>';
+                //    $("body").prepend(alertHtml);
+                //});
+                if(time == "" || time == null || time == undefined)
+                    time = 2000;
+
                 jQuery.noConflict();
                 jQuery(document).ready(function($){
                     window.scrollTo(0, 0);
-                    var alertHtml = '<div class="col-sm-offset-6 col-sm-12" style="top:35px;z-index: 999;"><div class="alert alert-danger fade in text-center">'+
-                        '<a class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error! </strong> '+ msg +
-                        '</div></div>';
-                    $("body").prepend(alertHtml);
+                    $("#appErrorMsgDiv").show().delay(time).fadeOut();
+                    $rootScope.appErrorMsg = msg;
                 });
             };
 

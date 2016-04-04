@@ -182,7 +182,7 @@
                         </div>
                     </div>
                     <div class="col-xs-24">
-                        <input type="button" ng-if="$index < userDetailObj.employmentHistoryDetails.length-1"
+                        <input type="button" ng-if="$index > 0"
                                ng-click="removeCompany(item)"
                                class="form-control"
                                value="+Remove Company" />
@@ -230,7 +230,7 @@
                         </div>
                     </div>
                     <div class="col-xs-24">
-                        <input type="button" ng-if="$index < userDetailObj.educationDetails.length-1"
+                        <input type="button" ng-if="$index > 0"
                                ng-click="removeEducation(item)"
                                class="form-control"
                                value="+Remove Education" />
