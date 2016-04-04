@@ -1,0 +1,12 @@
+{
+  "name": "candidatePortal",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6",
+    "angular": "~1.5.0",
+    "angular-ui-router": "~0.2.15",
+    "oclazyload": "~1.0.2",
+    "moment": "^2.12.0"
+  }
+}

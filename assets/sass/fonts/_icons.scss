@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'icomoon'; 
+    src:    url('../fonts/icomoon.eot?bwmb6a');
+    src:    url('../fonts/icomoon.eot?bwmb6a#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?bwmb6a') format('truetype'),
+        url('../fonts/icomoon.woff?bwmb6a') format('woff'),
+        url('../fonts/icomoon.svg?bwmb6a#icomoon') format('svg'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-pencil:before {
+    content: "\e032";
+}
+.icon-car:before {
+    content: "\e907";
+}
+.icon-trash-can:before {
+    content: "\e909";
+}
+.icon-document-text:before {
+    content: "\e900";
+}
+.icon-inbox-upload:before {
+    content: "\e901";
+}
+.icon-document-certificate:before {
+    content: "\e90a";
+}
+.icon-award:before {
+    content: "\e90b";
+}
+.icon-document-file-pdf:before {
+    content: "\e90c";
+}
+.icon-calendar:before {
+    content: "\e902";
+}
+.icon-linkedin:before {
+    content: "\f0e1";
+}
+.icon-circle-check:before {
+    content: "\e042";
+}
+.icon-user:before {
+    content: "\e903";
+}
+.icon-chevron-thin-down:before {
+    content: "\e904";
+}
+.icon-chevron-thin-up:before {
+    content: "\e908";
+}
+.icon-facebook:before {
+    content: "\e906";
+}
+.icon-search:before {
+    content: "\e905";
+}

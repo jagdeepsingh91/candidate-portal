@@ -1,0 +1,88 @@
+﻿<div class="col-md-24">
+    <div class="row pad-t-b-100" ng-if="!loggedInStatus">
+        <form class="login-form text-center">
+            <p class="color-a large-font">You need to Sign in to access further details</p>
+            <button type="submit" ng-click="onSignInClick()" class="btn btn-lg btn-primary btn-15 pad-l-r-40 center mar-t-20">Sign in</button>
+            <span class="pad-t-b-10 block text-center xs-font ">Don't have an account?
+                <a class="link cursor-pointer" ng-click="onSignUpClick()">Signup</a></span>
+        </form>
+    </div>
+    <div class="row border-container bg-f8" ng-if="loggedInStatus && applicationsList.length == 0">
+        <form class="text-center pad-t-b-100">
+            <p class="color-9 m-font-size">You have not applied for any position yet.</p>
+            <button type="submit" class="btn btn-lg pad-l-r-40 center mar-t-20" ng-click="goToPositionList()">Apply</button>
+        </form>
+    </div>
+    <div class="border-container clearfix" ng-if="loggedInStatus && applicationsList.length > 0">
+        <div class="result" ng-repeat="item in applicationsList">
+            <div class="col-md-20">
+                <span class="heading-text">{{item.positionTitle}}</span>
+                <span class="color-8 pad-l-15">{{item.positionCode}}</span>
+                <span class="btn-green mar-l-10" ng-if="item.positionStatus==1">Open</span>
+                <span class="btn-pink mar-l-10" ng-if="item.positionStatus==2">Close</span>
+            </div>
+            <div class="col-md-4 text-right">
+                <span class="color-b xs-font">Posted on  {{item.positionPublishedDate}}</span>
+            </div>
+            <div class="col-md-24">
+                <p class="pad-t-b-10">{{item.commaSeparatedFieldList}}</p>
+            </div>
+            <div class="col-md-24">
+                <span class="label label-default" ng-repeat="skill in item.primarySkills.split(',')">{{skill}}</span>
+                <span class="label label-default" ng-repeat="skill in item.secondarySkills.split(',')">{{skill}}</span>
+            </div>
+            <div class="col-md-24">
+                <p class="pad-t-b-20">
+                    <span ng-bind-html="item.responsibilities"></span>
+                    <!--<a class="link">Read More</a>-->
+                </p>
+            </div>
+            <div class="col-md-19">
+                <div class="row">
+                    <!--<div class="col-md-3">-->
+                        <!--<input class="btn btn-white" type="button" value="Withdraw" />-->
+                    <!--</div>-->
+                    <div class="col-md-5 applied">
+                        <span class="icon-circle-check"></span>
+                        <span>Applied</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 text-right">
+                <div class="s-font l-h-28"><span class="color-9">Application Status</span> - {{item.applicantStatus}}</div>
+            </div>
+        </div>
+        <!--<div class="result">-->
+            <!--<div class="col-md-12">-->
+                <!--<span class="heading-text">Usability/UX Analyst</span>-->
+                <!--<span class="color-8 pad-l-15">ID - 86593</span>-->
+                <!--<span class="btn-pink mar-l-10">Close</span>-->
+            <!--</div>-->
+            <!--<div class="col-md-12 text-right">-->
+                <!--<span class="color-b xs-font">Posted on  01/03/2016</span>-->
+            <!--</div>-->
+            <!--<div class="col-md-24">-->
+                <!--<p class="pad-t-b-10">3-5 yrs  |  Pune, Mumbai , India</p>-->
+            <!--</div>-->
+            <!--<div class="col-md-24">-->
+                <!--<span class="label label-default">Research techniques </span>-->
+                <!--<span class="label label-default">User modeling</span>-->
+                <!--<span class="label label-default">Persona and Scenario creation</span>-->
+            <!--</div>-->
+            <!--<div class="col-md-24">-->
+                <!--<p class="pad-t-b-20">Pellentesque elementum lectus eros, nec condimentum turpis scelerisque interdum. Nam eget ante faucibus, iaculis velit nec, pulvinar libero lestibulum  Fusce leo ligula, finibus vel finibus sit amet, auctor vel mi. scelerisque interdum. Nam eget ante faucibus,Curabitu ibus.. <a href="job-details.html" class="link">Read More</a></p>-->
+            <!--</div>-->
+            <!--<div class="col-md-19">-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-5 applied">-->
+                        <!--<span class="icon-circle-check"></span>-->
+                        <!--<span>Applied on 5 March</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-5 text-right">-->
+                <!--<div class="s-font l-h-28"><span class="color-9">Application Status</span> - Rejected</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>

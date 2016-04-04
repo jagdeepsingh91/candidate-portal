@@ -1,0 +1,288 @@
+@mixin btn-social($bg, $hover-color) {
+	background: $bg;
+	font-size: $sm-font-size;
+	font-weight: 100;
+	color: #FFF;
+	display: block;
+	margin: 10px 0 0;
+	border-radius: $base-border-radius;	
+	line-height: $btn-social-height;
+	text-align: center;
+	&:hover {
+		background: $hover-color;
+		color: #fff;
+	}
+	span {
+		color: #FFF;
+		font-size: $med-font-size;
+		font-weight: 400;
+		&:first-child {
+			padding-right: 8px;
+		}
+	}
+}
+
+
+/****************** Elements Styling **************/
+input[type="text"], input[type="email"], input[type="password"], select.form-control, .btn {
+	font-size: $xs-font-size;
+	height: $base-height;
+	border-radius: 2px;	
+	color: $base-color;
+	line-height: normal;
+	&:focus {box-shadow: none;}
+}
+/************** Textbox Placeholder Styling ***************/
+::-webkit-input-placeholder, input:-moz-placeholder, input:-ms-placeholder, ::-ms-input-placeholder, :-ms-input-placeholder {
+    color: $grey-5;
+}
+/************ Input File *************/
+[type="file"] {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+/*************** Button Styling ******************/
+[type=button] {
+	background: none;
+	border: none;
+	outline: 0;
+}
+.btn, .btn:focus {
+	font-size: $s-font-size;
+	padding: 0 15px;
+	background: $base-active-color;
+	color: #FFF;
+	border: none;
+	transition: all 0.3s ease 0s;
+	border-radius: $base-border-radius;
+	&:hover {
+		background: $base-hover-color;
+		color: #FFF;
+	}
+	&.btn-white {
+		background: #FFF;
+		border: 1px solid $grey-9;
+		color: $grey-8;
+		&:hover {
+			background: $base-active-color;
+			color: #FFF;
+			border: 1px solid $base-active-color;
+		}
+	}
+}
+.btn-green {
+	background: $green;
+	color: #FFF;
+	font-size: $xs-font-size;
+	padding: 5px;
+	border-radius: $base-border-radius;
+}
+.btn-pink {
+	@extend .btn-green;
+	background: $pink;
+}
+.link-btn {
+	text-align: center;
+	background: $base-active-color;
+	color: #FFF;
+	line-height: $base-height;
+	border-radius: $base-border-radius;
+	&:hover {
+		background: $base-hover-color;
+		color: #FFF;
+	}
+}
+.btn-linkedin {	
+	@include btn-social($linkedin-bg, $linkedin-bg-hover);	
+}
+.btn-fb {	
+	@include btn-social($fb-bg, $fb-bg-hover);	
+}
+.btn-15 {
+	@include btn-social($base-active-color, $base-hover-color);
+	height: $btn-social-height;
+	font-weight: 400;
+}
+.btn-15-grey {
+	@include btn-social($grey-1, $grey-8);
+	height: $btn-social-height;
+	font-weight: 400;
+	border: 1px solid $grey-7;
+	color: $grey-8;
+	&:hover {
+		background: $grey-2;
+		color: $grey-8;
+	} 
+}
+.btn-15-darkgrey {
+	@include btn-social($grey-1, $grey-8);
+	background: $grey-11;
+	color: #FFF;
+	border-radius: 0 0 2px 2px;
+}
+.red-btn {
+	color: $red-light;
+	border: 1px solid $grey-5;
+	background: none;
+	font-size: $xs-font-size;
+	padding: 3px 6px;
+	border-radius: $base-border-radius;
+	&:hover {
+		background: $red-light;
+		color: #FFF;
+		border: 1px solid #FFF;
+	}
+}
+
+/**************** Dropdown Styling ******************/
+select.form-control { 
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	background: #fff url("../../dist/img/down-arrow.png") no-repeat scroll 95% center;
+    padding: 0 20px 0 10px;
+}
+.label-select-box {
+	display: table;
+	border: 1px solid $grey-13;
+	width: 100%; 
+	height: $btn-social-height;
+	padding: 0 15px;
+	margin-bottom: 20px;
+	label {
+		display: table-cell;
+		width: 1px;
+		white-space: nowrap;
+	}
+	select {
+		display: table-cell;
+		height: inherit;
+		border: none;
+		vertical-align: middle;
+		box-shadow: none;
+		width: 100%;
+		padding: 0 0 0 15px;
+		background-position: center right;
+		font-size: $med-font-size;
+		color: $grey-14;
+		font-weight: 100;
+	}
+}
+
+/*************** Custom Radio **************/
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+	+ label {
+		position: relative;
+		padding-left: 38px;
+		cursor: pointer;
+		line-height: 30px;
+		display: inline-block;
+		font-size: $med-font-size;
+		color: $grey-14;
+		&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 30px;
+			height: 30px;
+			border: 1px solid $grey-13;
+			border-radius: 100%;
+			background: #fff;			
+		}
+		&:after {
+			content: '';
+			width: 12px;
+			height: 12px;
+			background: $base-active-color;
+			position: absolute;
+			top: 9px;
+			left: 9px;
+			border-radius: 100%;
+			-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+		}
+	}
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+
+/************** Search box ****************/
+.search {
+	position: relative;
+	.icon-search {
+		color: #ccc;
+		left: 16px;
+		position: absolute;
+		top: 7px;
+	}
+	input {
+		text-indent: 15px;
+	}
+}
+
+/**************** Elements with Label ****************/
+.label-input-text {
+	border: 1px solid $grey-13;
+	display: table;
+	width: 100%; 
+	height: $btn-social-height;
+	padding: 0 15px;
+	margin-bottom: 20px;
+	background: #FFF;
+	input {
+		border: none;
+		box-shadow: none;
+		color: $grey-14;
+		display: table-cell;		
+		width: 100%; 
+		vertical-align: middle;
+		padding: 0 10px;
+		height: inherit;
+		font-size: $med-font-size;
+		font-weight: 100;
+	}
+	label {		
+		font-size: $xs-font-size;
+		font-weight: 100;
+		color: $grey-11;
+		margin-left: 15px;
+		display: table-cell;
+		width: 1px;
+		white-space: nowrap;
+		vertical-align: middle;
+	}
+}
+
+/******************* Input File *********************/
+.label-input-file {
+	border: 1px solid $grey-13;
+	display: inline-block;
+	height: $btn-social-height;
+	padding: 0 0 0 15px;
+	margin-bottom: 20px;
+	background: #FFF;
+	position: relative;
+	margin-top: 10px;
+	input {
+		
+	}
+	a {
+		margin: 0;  
+	}
+}	
