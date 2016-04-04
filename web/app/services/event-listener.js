@@ -5,6 +5,9 @@
         '$location',
         'candidatePortal.services.commonService',
         function ($rootScope, $state, $location, commonService) {
+
+            var accessibleStates = ["login", "forgotPassword", "signUp", "resetPassword"];
+
             $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
                     console.log("from state", fromState.name);
@@ -34,6 +37,12 @@
                                 break;
                         }
                     }
+                    //else{
+                    //    if(accessibleStates.indexOf(toState.name) == -1){
+                    //        event.preventDefault();
+                    //        commonService.showInfoMsg("Unauthorized access");
+                    //    }
+                    //}
                 }
             );
             $rootScope.$on('$stateChangeError',

@@ -12,6 +12,11 @@
 
             var positionId = $stateParams.id;
             $scope.onApplicationFormSubmit = function () {
+                if(!$scope.formObj()){
+                    commonService.showInfoMsg("Form is incomplete");
+                    return;
+                }
+
                 var url = apiUrlConfig.createApplicantProfile;
                 $scope.applyToPositionObj.userDetailObj.applicantPositionId = positionId;
                 var req = applicantModel.convertUIObj2ApiObj($scope.applyToPositionObj.userDetailObj);

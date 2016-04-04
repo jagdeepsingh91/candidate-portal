@@ -5,7 +5,7 @@
             return {
                 restrict: 'AE',
                 scope: {
-                    formName : '=',
+                    isFormValid : '=',
                     userDetailObj : '=?',
                     onSubmitCallback : '=?',
                     locationsList : '=?',
@@ -24,9 +24,28 @@
                     var currentYear = new Date().getFullYear();
                     console.log(currentYear);
                     for(var i= 1960; i <= currentYear; i++){
-                        scope.yearsList.push(i);
+                        scope.yearsList.push(i.toString());
                     }
-                    
+
+                    scope.isFormValid = function () {
+                        var isValid = true;
+                        if(scope.applicantForm.$invalid){
+                            console.log(scope.applicantForm.$error);
+                            if(scope.applicantForm.$error.required != null){
+                                scope.applicantForm.$error.required.forEach(function(element){
+                                    element.$setDirty();
+                                });
+                            }
+                            if(scope.applicantForm.$error.dateGreaterThan != null){
+                                scope.applicantForm.$error.dateGreaterThan.forEach(function(element){
+                                    element.$setDirty();
+                                });
+                            }
+                            isValid = false;
+                        }
+                        return isValid;
+                    };
+
                     scope.addEducation = function () {
                         scope.userDetailObj.educationDetails.push({});
                     };

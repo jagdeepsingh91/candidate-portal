@@ -12,6 +12,8 @@
         'candidatePortal.models.applicantModel',
         function ($scope, $rootScope, $state, apiUrlConfig, apiMethods, commonService, navigationService, localStorageService, applicantModel) {
 
+            //$scope.formObj = {};
+
             var getProfileObj = function () {
                 var url = apiUrlConfig.getApplicantProfile;
                 apiMethods.apiGETReq(url).then(function (response) {
@@ -28,6 +30,10 @@
             };
 
             $scope.onUpdateApplicantClick = function () {
+                if(!$scope.formObj()){
+                    commonService.showInfoMsg("Form is incomplete");
+                    return;
+                }
                 var url = apiUrlConfig.createApplicantProfile;
                 var req = applicantModel.convertUIObj2ApiObj($scope.updateProfileObj);
                 apiMethods.apiPOSTReq(url, req).then(function (response) {
