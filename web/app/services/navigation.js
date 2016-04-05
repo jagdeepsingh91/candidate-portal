@@ -40,7 +40,7 @@
             };
 
             var goToOpenPositionsList = function () {
-                $state.go("home.openPositions.positionsList");
+                $state.go("home.openPositions.positionsList",{}, {reload: true});
             };
 
             var goToOpenPositionDetails = function (id) {

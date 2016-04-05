@@ -27,10 +27,18 @@
 
             $scope.onApplyPositionClick = function (item, view) {
                 if(!$rootScope.loggedInStatus){
-                    var callback = function () {
-                        navigationService.goToOpenPositionsList();
-                    };
-                    navigationService.goToLoginView(callback);
+                    var callbackFn;
+                    if(view == 'listView') {
+                        callbackFn = function () {
+                            navigationService.goToOpenPositionsList();
+                        };
+                    }
+                    else{
+                        callbackFn = function () {
+                            navigationService.goToOpenPositionDetails(item.positionId);
+                        };
+                    }
+                    navigationService.goToLoginView(callbackFn);
                     return;
                 }
                 var isApplicantExistUrl = apiUrlConfig.isApplicantCreated;
