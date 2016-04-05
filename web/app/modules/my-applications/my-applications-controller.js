@@ -21,6 +21,10 @@
                 navigationService.goToSignUpView(callback);
             };
 
+            $scope.goToPositionDetails = function (item) {
+                navigationService.goToOpenPositionDetails(item.positionId);
+            };
+
             $scope.onSignInClick = function () {
                 var callback = function () {
                     navigationService.goToMyApplications();

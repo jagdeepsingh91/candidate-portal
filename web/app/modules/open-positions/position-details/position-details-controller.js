@@ -11,7 +11,8 @@
 
             var positionId = $stateParams.id;
             $scope.onBackToPositionsClick = function () {
-                navigationService.goToOpenPositionsList();
+                //navigationService.goToOpenPositionsList();
+                window.history.back();
             };
 
             var getPositionDetails = function () {

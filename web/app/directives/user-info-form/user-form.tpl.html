@@ -42,17 +42,23 @@
                         <div class="col-xs-12">
                             <div class="label-input-text">
                                 <label>Phone</label>
-                                <input name="userPhone" string-to-number type="number" ng-model="userDetailObj.applicantCellPhone"
+                                <input name="userPhone" type="text"
+                                       pattern="^[0-9]*$"
+                                       ng-model="userDetailObj.applicantCellPhone"
                                        err-msg-required="Please enter your mobile no"
-                                       placeholder="" class="form-control" required/>
+                                       err-msg-pattern="Only digits are allowed"
+                                       err-msg-number="Only digits are allowed"
+                                       placeholder="Mobile Number" class="form-control" required/>
                             </div>
                         </div>
                         <div class="col-xs-12">
                             <div class="label-input-text">
                                 <label>Date of Birth</label>
                                 <input name="dob" type="text" ng-model="userDetailObj.dateOfBirth"
+                                       pattern="^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$"
                                        err-msg-required="Please select your date of birth"
-                                       class="form-control datepicker-dob" placeholder=""  required/>
+                                       err-msg-pattern="Invalid Format. Should be (DD-MM-YYYY)"
+                                       class="form-control datepicker-dob" placeholder="DD-MM-YYYY"  required/>
                                 <span class="icon-calendar"></span>
                             </div>
                         </div>
@@ -69,38 +75,38 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-xs-2 l-h-38">
-                    <label>Gender</label>
-                </div>
-                <div class="col-xs-3 l-h-40">
-                    <input type="radio" id="test1" name="gender-radio-group" value="Male" ng-model="userDetailObj.gender" checked>
-                    <label for="test1">Male</label>
-                </div>
-                <div class="col-xs-7 l-h-40">
-                    <input type="radio" id="test2" name="gender-radio-group" value="Female" ng-model="userDetailObj.gender" checked>
-                    <label for="test2">Female</label>
-                </div>
-                <div class="col-xs-12">
-                    <div class="label-input-text">
-                        <label>Work ID</label>
-                        <input name="workId" type="text"
-                               ng-model="userDetailObj.workId"
-                               err-msg-required="Please enter your work Id"
-                               class="form-control" placeholder="" />
-                    </div>
-                </div>
+                <!--<div class="col-xs-2 l-h-38">-->
+                    <!--<label>Gender</label>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 l-h-40">-->
+                    <!--<input type="radio" id="test1" name="gender-radio-group" value="Male" ng-model="userDetailObj.gender" checked>-->
+                    <!--<label for="test1">Male</label>-->
+                <!--</div>-->
+                <!--<div class="col-xs-7 l-h-40">-->
+                    <!--<input type="radio" id="test2" name="gender-radio-group" value="Female" ng-model="userDetailObj.gender" checked>-->
+                    <!--<label for="test2">Female</label>-->
+                <!--</div>-->
+                <!--<div class="col-xs-12">-->
+                    <!--<div class="label-input-text">-->
+                        <!--<label>Work ID</label>-->
+                        <!--<input name="workId" type="text"-->
+                               <!--ng-model="userDetailObj.workId"-->
+                               <!--err-msg-required="Please enter your work Id"-->
+                               <!--class="form-control" placeholder="" />-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
             <div class="row">
                 <p class="heading">Professional Information</p>
-                <div class="col-xs-24">
-                    <div class="label-select-box">
-                        <label>HR &amp; Training</label>
-                        <select name="training" class="form-control" ng-model="userDetailObj.training">
-                            <option value="1">Java Certification</option>
-                            <option value="2">Marketing </option>
-                        </select>
-                    </div>
-                </div>
+                <!--<div class="col-xs-24">-->
+                    <!--<div class="label-select-box">-->
+                        <!--<label>HR &amp; Training</label>-->
+                        <!--<select name="training" class="form-control" ng-model="userDetailObj.training">-->
+                            <!--<option value="1">Java Certification</option>-->
+                            <!--<option value="2">Marketing </option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                <!--</div>-->
                 <div class="col-xs-24">
                     <div class="label-input-text">
                         <label>Skills</label>
@@ -122,10 +128,11 @@
                         <!--</select>-->
                     <!--</div>-->
                     <div class="label-input-text">
-                        <input name="currentCtc" type="number" string-to-number
+                        <input name="currentCtc" type="text"
                                ng-model="userDetailObj.currentCTC"
+                               pattern="^([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
                                err-msg-required="Please enter your current ctc"
-                               err-msg-number="Only digits are allowed"
+                               err-msg-pattern="Only Digits are allowed"
                                class="form-control" placeholder="" />
                     </div>
                 </div>
@@ -136,8 +143,10 @@
                     <div class="label-input-text">
                         <label>Notice Period</label>
                         <input name="noticePeriod" type="text" class="form-control"
+                               pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
+                               err-msg-pattern="Only digits & positive numbers are allowed"
                                ng-model="userDetailObj.noticePeriod"
-                               placeholder="" />
+                               placeholder="Notice period in days" />
                     </div>
                 </div>
             </div>
@@ -259,6 +268,7 @@
     jQuery.noConflict();
     jQuery(document).ready(function($) {
         $.fn.datepicker.defaults.format = "dd-mm-yyyy";
+        $.fn.datepicker.defaults.autoclose = true;
         $(document).on('click', '.icon-calendar', function() {
             $('.datepicker').datepicker();
             $('.datepicker-dob').datepicker({

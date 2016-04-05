@@ -25,20 +25,36 @@
             };
             getPositionList();
 
-            $scope.onApplyPositionClick = function (item) {
+            $scope.onApplyPositionClick = function (item, view) {
                 if(!$rootScope.loggedInStatus){
-                    var callback = function () {
-                        navigationService.goToOpenPositionsList();
-                    };
-                    navigationService.goToLoginView(callback);
+                    var callbackFn;
+                    if(view == 'listView') {
+                        callbackFn = function () {
+                            navigationService.goToOpenPositionsList();
+                        };
+                    }
+                    else{
+                        callbackFn = function () {
+                            navigationService.goToOpenPositionDetails(item.positionId);
+                        };
+                    }
+                    navigationService.goToLoginView(callbackFn);
                     return;
                 }
                 var isApplicantExistUrl = apiUrlConfig.isApplicantCreated;
                 apiMethods.apiGETReq(isApplicantExistUrl).then(function (response) {
                     if(!response.data.response){
-                        var callback = function () {
-                            navigationService.goToOpenPositionsList();
-                        };
+                        var callback;
+                        if(view == 'listView') {
+                            callback = function () {
+                                navigationService.goToOpenPositionsList();
+                            };
+                        }
+                        else{
+                            callback = function () {
+                                navigationService.goToOpenPositionDetails(item.positionId);
+                            };
+                        }
                         navigationService.goToApplyPosition(item.positionId, callback);
                     }
                     else{
