@@ -25,7 +25,7 @@
             };
             getPositionList();
 
-            $scope.onApplyPositionClick = function (item) {
+            $scope.onApplyPositionClick = function (item, view) {
                 if(!$rootScope.loggedInStatus){
                     var callback = function () {
                         navigationService.goToOpenPositionsList();
@@ -36,9 +36,17 @@
                 var isApplicantExistUrl = apiUrlConfig.isApplicantCreated;
                 apiMethods.apiGETReq(isApplicantExistUrl).then(function (response) {
                     if(!response.data.response){
-                        var callback = function () {
-                            navigationService.goToOpenPositionsList();
-                        };
+                        var callback;
+                        if(view == 'listView') {
+                            callback = function () {
+                                navigationService.goToOpenPositionsList();
+                            };
+                        }
+                        else{
+                            callback = function () {
+                                navigationService.goToOpenPositionDetails(item.positionId);
+                            };
+                        }
                         navigationService.goToApplyPosition(item.positionId, callback);
                     }
                     else{

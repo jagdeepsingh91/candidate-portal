@@ -1,9 +1,11 @@
 (function () {
     angular.module("candidatePortal.application").factory('candidatePortal.services.myHttpInterceptor',[
         '$q',
+        '$window',
         '$injector',
         'candidatePortal.services.commonService',
-        function ($q, $injector, commonService) {
+        'candidatePortal.services.localStorageService',
+        function ($q, $window, $injector, commonService, localStorageService) {
             return {
                 // optional method
                 'request': function (config) {
@@ -35,7 +37,7 @@
                 // optional method
                 'responseError': function (rejection) {
                     console.log("On Failure");
-                    console.log(rejection);
+                    console.log(rejection.status);
                     // do something on error
                     var $http = $http || $injector.get( '$http' );
                     if(!$http.pendingRequests.length)
@@ -45,9 +47,14 @@
                             //permissionsService.doLogOut();
                         }
                     }
-                    if(rejection.status == 0){
-                        //permissionsService.doLogOut();
-                        //commonService.showErrorMsg("Session Timeout! Please Login to continue.");
+                    if(rejection.status == -1){
+                        var navigationService = $injector.get('candidatePortal.services.navigationService');
+                        localStorageService.doLogOut();
+                        var callback = function () {
+                            $window.history.back();
+                        };
+                        navigationService.goToLoginView(callback);
+                        commonService.showErrorMsg("Session Expired! Please login to continue.", 5000);
                     }
                     return $q.reject(rejection);
                 }

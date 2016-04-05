@@ -28,14 +28,14 @@
                 var req = userModel.createUserApiObj($scope.signUpObj);
                 apiMethods.apiPOSTReq(url, req).then(function (response) {
                     commonService.showSuccessMsg("User Account created successfully");
-                    //var userObj = userModel.digestUserApiObj(response.data.response);
-                    //localStorageService.saveUserDetails(userObj);
-                    if(!$rootScope.loggedInStatus)
-                        navigationService.goToLoginView();
-                    else if(callback)
-                        callback();
-                    else
-                        navigationService.goToOpenPositionsList();
+                    var userObj = userModel.digestUserApiObj(response.data.response);
+                    localStorageService.saveUserDetails(userObj);
+                    //if(!$rootScope.loggedInStatus)
+                    //    navigationService.goToLoginView();
+                    //else if(callback)
+                    //    callback();
+                    //else
+                    navigationService.goToOpenPositionsList();
                 }, function (response) {
                     commonService.onApiResponseError(response);
                 });
