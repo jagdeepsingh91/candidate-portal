@@ -2,8 +2,8 @@
     angular.module("candidatePortal.application").factory('candidatePortal.services.apiUrlConfig',[
         function () {
 
-            var basePath = "http://siddharthk:8080";
-            //var basePath = "http://sumeets1:8080";
+            var basePath = "http://siddharthk:8080/CandidatePortal";
+            //var basePath = "http://sumeets1:8080/CandidatePortal";
             return {
                 // User
                 createUser : basePath+"/user/",
@@ -32,6 +32,10 @@
                 positionFields : basePath+"/position/fields",
                 getPositionDetails : function (id) {
                     return basePath+"/position/"+id
+                },
+                // Master
+                getMastersId : function (type, value) {
+                    return basePath+"/masters/id/"+type+"/"+value;
                 }
                 
             }

@@ -24,6 +24,22 @@
             <img src="images/loading.gif"/>
         </div>
     </div>
+
+    <div class="col-sm-24 alert-wrapper">
+        <div class="bs-example mar-auto">
+            <div id="appSuccessMsgDiv" class="alert alert-success fade in" style="display:none;text-align: center;">
+                <!--<span data-dismiss="alert" class="close">×</span>-->
+                <strong>Success!</strong> {{appSuccessMsg}}
+            </div>
+        </div>
+        <div class="bs-example mar-auto">
+            <div id="appErrorMsgDiv" class="alert error-msg fade in" style="display:none;text-align: center;">
+                <!--<span data-dismiss="alert" class="close">×</span>-->
+                <strong>Error!</strong> {{appErrorMsg}}
+            </div>
+        </div>
+    </div>
+
     <!--<header id="header" class="row">-->
          <!--<div ng-include="'web/app/modules/header/header.tpl.html'"></div>-->
     <!--</header>-->

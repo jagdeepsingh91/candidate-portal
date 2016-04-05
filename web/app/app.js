@@ -118,6 +118,10 @@
                         name: 'stringToNumber',
                         files: ['app/directives/string-to-number.js']
                     },
+                    {
+                        name: 'setModelValue',
+                        files: ['app/directives/set-model-value.js']
+                    },
                     // Services
                     {
                         name: 'commonService',
