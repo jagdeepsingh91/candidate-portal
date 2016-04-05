@@ -38,16 +38,17 @@
                     </div>
                     <p class="pad-t-5 color-a">
                         <br/>
-                        {{applyToPositionObj.selectedFiles[0].progress}}
-                        <span ng-if="applyToPositionObj.selectedFiles[0].progress != 'Success' && applyToPositionObj.selectedFiles[0].progress != 'Failed'">%</span>
-                        <span ng-if="applyToPositionObj.selectedFiles[0].progress == 'Failed'"> - {{applyToPositionObj.selectedFiles[0].response.response}}</span>
+                        <!--{{applyToPositionObj.selectedFiles[0].progress}}-->
+                        <span ng-if="applyToPositionObj.selectedFiles[0].progress != 'Success' && applyToPositionObj.selectedFiles[0].progress != 'Failed'">Please wait uploading Resume ...</span>
+                        <span ng-if="applyToPositionObj.selectedFiles[0].progress == 'Success'">Uploaded Successfully.</span>
+                        <span ng-if="applyToPositionObj.selectedFiles[0].progress == 'Failed'">Uploading Failed - {{applyToPositionObj.selectedFiles[0].response.response}}</span>
                     </p>
                 </div>
-                <div class="col-md-4"><a class="link-btn red-btn" ng-click="onRemoveSelectedFileClick()">Remove</a></div>
+                <div class="col-md-4"><a class="link-btn red-btn cursor-pointer" ng-click="onRemoveSelectedFileClick()">Remove</a></div>
             </div>
         </div>
     </div>
     <!-- <button type="submit" class="btn btn-lg btn-15 pull-right">Next</button> -->
-    <a class="link-btn btn-15-grey pull-left pad-l-r-40" ng-click="onUploadResumeBack()">Previous</a>
-    <a class="link-btn btn-15 pull-right pad-l-r-40" ng-click="onUploadResumeNext()">Next</a>
+    <a class="link-btn btn-15-grey pull-left pad-l-r-40 cursor-pointer" ng-click="onUploadResumeBack()">Previous</a>
+    <a class="link-btn btn-15 pull-right pad-l-r-40 cursor-pointer" ng-click="onUploadResumeNext()">Next</a>
 </div>
