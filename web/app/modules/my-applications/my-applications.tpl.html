@@ -16,7 +16,7 @@
     <div class="border-container clearfix" ng-if="loggedInStatus && applicationsList.length > 0">
         <div class="result" ng-repeat="item in applicationsList">
             <div class="col-md-20">
-                <span class="heading-text">{{item.positionTitle}}</span>
+                <span class="heading-text cursor-pointer" ng-click="goToPositionDetails(item)">{{item.positionTitle}}</span>
                 <span class="color-8 pad-l-15">{{item.positionCode}}</span>
                 <span class="btn-green mar-l-10" ng-if="item.positionStatus==1">Open</span>
                 <span class="btn-pink mar-l-10" ng-if="item.positionStatus==2">Close</span>

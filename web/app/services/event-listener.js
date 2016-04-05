@@ -6,7 +6,13 @@
         'candidatePortal.services.commonService',
         function ($rootScope, $state, $location, commonService) {
 
-            var accessibleStates = ["login", "forgotPassword", "signUp", "resetPassword"];
+            var nonAccessibleStatesWithoutLogin = [
+                "home.updateProfile",
+                "home.apply",
+                "home.apply.uploadResume",
+                "home.apply.applicationForm",
+                "home.changePassword"
+            ];
 
             $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
@@ -37,12 +43,12 @@
                                 break;
                         }
                     }
-                    //else{
-                    //    if(accessibleStates.indexOf(toState.name) == -1){
-                    //        event.preventDefault();
-                    //        commonService.showInfoMsg("Unauthorized access");
-                    //    }
-                    //}
+                    else{
+                        if(nonAccessibleStatesWithoutLogin.indexOf(toState.name) != -1){
+                            event.preventDefault();
+                            commonService.showInfoMsg("Unauthorized access");
+                        }
+                    }
                 }
             );
             $rootScope.$on('$stateChangeError',
