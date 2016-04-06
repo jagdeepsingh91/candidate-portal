@@ -1,1 +1,0 @@
-!function(){angular.module("candidatePortal.application").directive("stringToNumber",function(){return{restrict:"A",require:"ngModel",link:function(r,n,t,e){e.$parsers.push(function(r){return""+r}),e.$formatters.push(function(r){return parseFloat(r,10)})}}})}();
