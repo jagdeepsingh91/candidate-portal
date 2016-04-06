@@ -1,1 +1,91 @@
-<div ui-view><div class="row"><div class="col-md-24"><div class="well clearfix well-sm search-open-positions"><span class="xs-font pad-l-5">Search Open Positions</span><form class="pad-t-5" role="form"><div class="form-group search col-md-10"><span class="icon-search"></span> <input class="form-control" type="text" ng-model="searchBoxText" placeholder="Search by skills, position name etc."></div><div class="form-group col-md-4"><select class="form-control" ng-model="positionSearchObj.selectedDepartment" ng-options="item.id as item.name for item in departmentsList"><option value="">Select Department</option><!--<option>Lorem Ipsum</option>--></select></div><div class="form-group col-md-4"><select class="form-control" ng-model="positionSearchObj.selectedSkill" ng-options="item.id as item.name for item in skillsList"><option value="">Select Skills</option></select></div><div class="form-group col-md-4"><select class="form-control" ng-model="positionSearchObj.selectedLocation" ng-options="item.id as item.name for item in locationsList"><option value="">Select Location</option></select></div><div class="form-group col-md-2"><input class="btn btn-default" type="submit" value="Search" ng-click="onSearchClick()"></div></form></div></div></div><div class="row"><div class="col-md-21 xs-font">Showing {{positionsList.length}} results</div><div class="col-md-3" ng-init="positionOrder = true"><select ng-model="positionOrder" class="form-control col-md-5 no-border" ng-options="item.value as item.type for item in orderOptionsList"></select></div></div><div class="row"><div class="col-md-24"><div class="border-container clearfix"><div class="result col-md-24" ng-repeat="item in positionsList | filter : searchBoxText | orderBy : item.firstFieldToDisplay: positionOrder"><div class="col-md-12"><span class="heading-text cursor-pointer" ng-click="goToPositionDetails(item)">{{item.firstFieldToDisplay}}</span> <span class="color-8 pad-l-15">{{item.positionCode}}</span></div><div class="col-md-12 text-right"><span class="color-b xs-font">Posted on {{item.positionPublishedDate}}</span></div><div class="col-md-24"><p class="pad-t-b-10">{{item.commaSeparatedFieldList}}</p></div><div class="col-md-24"><span class="label label-default" ng-repeat="skill in item.primarySkills.split(',')">{{skill}}</span> <span class="label label-default" ng-repeat="skill in item.secondarySkills.split(',')">{{skill}}</span></div><div class="col-md-24"><p class="pad-t-b-20"><!--<span ng-bind-html="item.responsibilities"></span>--><!--<a class="link cursor-pointer" ng-click="goToPositionDetails(item)">Read More</a>--></p></div><div class="col-md-20"><div class="row"><div class="col-md-2" ng-if="!item.applicantStatus"><input class="btn" type="button" ng-click="onApplyPositionClick(item)" value="Apply"></div><div class="col-md-4 applied" ng-if="item.applicantStatus"><span class="icon-circle-check"></span> <span>Applied</span></div><!--<div class="col-md-2">--><!--<input class="btn btn-white" type="button" value="Refer" />--><!--</div>--><!--<div class="col-md-2">--><!--<input class="btn btn-white" type="button" value="Share" />--><!--</div>--></div></div></div></div></div></div></div>
+<div ui-view>
+    <div class="row">
+        <div class="col-md-24">
+            <div class="well clearfix well-sm search-open-positions">
+                <span class="xs-font pad-l-5">Search Open Positions</span>
+                <form class="pad-t-5" role="form">
+                    <div class="form-group search col-md-10">
+                        <span class="icon-search"></span>
+                        <input class="form-control" type="text" ng-model="searchBoxText" placeholder="Search by skills, position name etc.">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <select class="form-control" ng-model="positionSearchObj.selectedDepartment"
+                                ng-options="item.id as item.name for item in departmentsList">
+                            <option value="">Select Department</option>
+                            <!--<option>Lorem Ipsum</option>-->
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <select class="form-control" ng-model="positionSearchObj.selectedSkill"
+                                ng-options="item.id as item.name for item in skillsList">
+                            <option value="">Select Skills</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <select class="form-control" ng-model="positionSearchObj.selectedLocation"
+                                ng-options="item.id as item.name for item in locationsList">
+                            <option value="">Select Location</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input class="btn btn-default" type="submit" value="Search" ng-click="onSearchClick()"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-21 xs-font">Showing {{positionsList.length}} results</div>
+        <div class="col-md-3" ng-init="positionOrder = true">
+            <select ng-model="positionOrder" class="form-control col-md-5 no-border"
+                    ng-options="item.value as item.type for item in orderOptionsList">
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-24">
+            <div class="border-container clearfix">
+                <div class="result col-md-24" ng-repeat="item in positionsList | filter : searchBoxText | orderBy : item.firstFieldToDisplay: positionOrder">
+                    <div class="col-md-12">
+                        <span class="heading-text cursor-pointer" ng-click="goToPositionDetails(item)">{{item.firstFieldToDisplay}}</span>
+                        <span class="color-8 pad-l-15">{{item.positionCode}}</span>
+                    </div>
+                    <div class="col-md-12 text-right">
+                        <span class="color-b xs-font">Posted on  {{item.positionPublishedDate}}</span>
+                    </div>
+                    <div class="col-md-24">
+                        <p class="pad-t-b-10">{{item.commaSeparatedFieldList}}</p>
+                    </div>
+
+                    <div class="col-md-24">
+                        <span class="label label-default" ng-repeat="skill in item.primarySkills.split(',')">{{skill}}</span>
+                        <span class="label label-default" ng-repeat="skill in item.secondarySkills.split(',')">{{skill}}</span>
+                    </div>
+                    <div class="col-md-24">
+                        <p class="pad-t-b-20" >
+                            <!--<span ng-bind-html="item.responsibilities"></span>-->
+                            <!--<a class="link cursor-pointer" ng-click="goToPositionDetails(item)">Read More</a>-->
+                        </p>
+                    </div>
+                    <div class="col-md-20">
+                        <div class="row">
+                            <div class="col-md-2" ng-if="!item.applicantStatus">
+                                <input class="btn" type="button" ng-click="onApplyPositionClick(item)" value="Apply" />
+                            </div>
+                            <div class="col-md-4 applied" ng-if="item.applicantStatus">
+                                <span class="icon-circle-check"></span>
+                                <span>Applied</span>
+                            </div>
+                            <!--<div class="col-md-2">-->
+                                <!--<input class="btn btn-white" type="button" value="Refer" />-->
+                            <!--</div>-->
+                            <!--<div class="col-md-2">-->
+                                <!--<input class="btn btn-white" type="button" value="Share" />-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

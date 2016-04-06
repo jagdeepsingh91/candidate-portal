@@ -1,1 +1,33 @@
-!function(){angular.module("candidatePortal.application").controller("candidatePortal.modules.open-position.position-list.positionListController",["$q","$scope","candidatePortal.services.apiUrlConfig","candidatePortal.services.apiMethods","candidatePortal.services.commonService","candidatePortal.services.navigationService","candidatePortal.models.positionModel",function(o,i,t,e,n,s,a){i.positionSearchObj={},i.goToPositionDetails=function(o){s.goToOpenPositionDetails(o.positionId)},i.onSearchClick=function(){var o={departmentId:i.positionSearchObj.selectedDepartment,locationId:i.positionSearchObj.selectedLocation,skillId:i.positionSearchObj.selectedSkill},s=t.positionList;e.apiGETReq(s,o).then(function(o){i.positionsList=a.digestPositionApiObj(o.data.response),console.log(i.positionsList)},function(o){n.onApiResponseError(o)})}}])}();
+(function () {
+    angular.module('candidatePortal.application').controller('candidatePortal.modules.open-position.position-list.positionListController',[
+        '$q',
+        '$scope',
+        'candidatePortal.services.apiUrlConfig',
+        'candidatePortal.services.apiMethods',
+        'candidatePortal.services.commonService',
+        'candidatePortal.services.navigationService',
+        'candidatePortal.models.positionModel',
+        function ($q, $scope, apiUrlConfig, apiMethods, commonService, navigationService, positionModel) {
+            $scope.positionSearchObj = {};
+
+            $scope.goToPositionDetails = function (item) {
+                navigationService.goToOpenPositionDetails(item.positionId);
+            };
+
+            $scope.onSearchClick = function () {
+                var req = {
+                    departmentId : $scope.positionSearchObj.selectedDepartment,
+                    locationId : $scope.positionSearchObj.selectedLocation,
+                    skillId : $scope.positionSearchObj.selectedSkill
+                };
+                var url = apiUrlConfig.positionList;
+                apiMethods.apiGETReq(url, req).then(function (response) {
+                    $scope.positionsList = positionModel.digestPositionApiObj(response.data.response);
+                    console.log($scope.positionsList);
+                }, function (response) {
+                    commonService.onApiResponseError(response);
+                });
+            };
+        }
+    ]);
+})();

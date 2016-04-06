@@ -1,1 +1,84 @@
-!function(){angular.module("candidatePortal.application").directive("userInfoForm",["candidatePortal.models.applicantModel",function(e){return{restrict:"AE",scope:{isFormValid:"=",userDetailObj:"=?",onSubmitCallback:"=?",locationsList:"=?",skillsList:"=?",branchList:"=?",degreeList:"=?"},templateUrl:"app/directives/user-info-form/user-form.tpl.html",link:function(i,t,r){console.log(i.userDetailObj),console.log(i.locationsList),i.userDetailObj||(i.userDetailObj=e.digestApplicantApiObj({})),i.yearsList=[];var o=(new Date).getFullYear();console.log(o);for(var a=1960;o>=a;a++)i.yearsList.push(a.toString());i.isFormValid=function(){var e=!0;return i.applicantForm.$invalid&&(console.log(i.applicantForm.$error),null!=i.applicantForm.$error.required&&i.applicantForm.$error.required.forEach(function(e){e.$setDirty()}),null!=i.applicantForm.$error.dateGreaterThan&&i.applicantForm.$error.dateGreaterThan.forEach(function(e){e.$setDirty()}),e=!1),e},i.addEducation=function(){i.userDetailObj.educationDetails.push({})},i.removeEducation=function(e){var t=i.userDetailObj.educationDetails.indexOf(e);-1!=t&&i.userDetailObj.educationDetails.splice(t,1)},i.addCompany=function(){i.userDetailObj.employmentHistoryDetails.push({})},i.removeCompany=function(e){console.log(e),console.log(i.userDetailObj.employmentHistoryDetails);var t=i.userDetailObj.employmentHistoryDetails.indexOf(e);-1!=t&&i.userDetailObj.employmentHistoryDetails.splice(t,1)},jQuery(document).ready(function(e){e(".datepicker").datepicker(),e(".icon-calendar").click(function(){console.log("hehe"),e(this).prev().datepicker("show"),e(".datepicker-inline").remove()})})}}}])}();
+(function () {
+    angular.module('candidatePortal.application').directive('userInfoForm',[
+        'candidatePortal.models.applicantModel',
+        function (applicantModel) {
+            return {
+                restrict: 'AE',
+                scope: {
+                    isFormValid : '=',
+                    userDetailObj : '=?',
+                    onSubmitCallback : '=?',
+                    locationsList : '=?',
+                    skillsList : '=?',
+                    branchList : '=?',
+                    degreeList : '=?'
+                },
+                templateUrl : "app/directives/user-info-form/user-form.tpl.html",
+                link: function(scope, element, attrs) {
+                    console.log(scope.userDetailObj);
+                    console.log(scope.locationsList);
+                    if(!scope.userDetailObj){
+                        scope.userDetailObj = applicantModel.digestApplicantApiObj({});
+                    }
+                    scope.yearsList = [];
+                    var currentYear = new Date().getFullYear();
+                    console.log(currentYear);
+                    for(var i= 1960; i <= currentYear; i++){
+                        scope.yearsList.push(i.toString());
+                    }
+
+                    scope.isFormValid = function () {
+                        var isValid = true;
+                        if(scope.applicantForm.$invalid){
+                            console.log(scope.applicantForm.$error);
+                            if(scope.applicantForm.$error.required != null){
+                                scope.applicantForm.$error.required.forEach(function(element){
+                                    element.$setDirty();
+                                });
+                            }
+                            if(scope.applicantForm.$error.dateGreaterThan != null){
+                                scope.applicantForm.$error.dateGreaterThan.forEach(function(element){
+                                    element.$setDirty();
+                                });
+                            }
+                            isValid = false;
+                        }
+                        return isValid;
+                    };
+
+                    scope.addEducation = function () {
+                        scope.userDetailObj.educationDetails.push({});
+                    };
+
+                    scope.removeEducation = function (item) {
+                        var index = scope.userDetailObj.educationDetails.indexOf(item);
+                        if(index != -1){
+                            scope.userDetailObj.educationDetails.splice(index, 1);
+                        }
+                    };
+
+                    scope.addCompany = function () {
+                        scope.userDetailObj.employmentHistoryDetails.push({});
+                    };
+
+                    scope.removeCompany = function (item) {
+                        console.log(item);
+                        console.log(scope.userDetailObj.employmentHistoryDetails);
+                        var index = scope.userDetailObj.employmentHistoryDetails.indexOf(item);
+                        if(index != -1){
+                            scope.userDetailObj.employmentHistoryDetails.splice(index, 1);
+                        }
+                    };
+                    jQuery(document).ready(function($) {
+                        $('.datepicker').datepicker();
+                        $('.icon-calendar').click(function () {
+                            console.log("hehe");
+                            $(this).prev().datepicker("show");
+                            $('.datepicker-inline').remove();
+                        });
+                    });
+                }
+            }
+        }
+    ]);
+})();

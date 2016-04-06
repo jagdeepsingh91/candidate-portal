@@ -1,1 +1,112 @@
-!function(){angular.module("candidatePortal.application").controller("candidatePortal.modules.profile.profileController",["$scope","$rootScope","$state","candidatePortal.services.apiUrlConfig","candidatePortal.services.apiMethods","candidatePortal.services.commonService","candidatePortal.services.navigationService","candidatePortal.services.localStorageService","candidatePortal.models.applicantModel",function(e,o,i,n,t,a,l,r,c){e.profileObj={};var p=function(){var o=n.getApplicantProfile;t.apiGETReq(o).then(function(o){e.profileObj.applicantDetailObj=c.digestApplicantApiObj(o.data.response)},function(e){a.onApiResponseError(e)})};o.loggedInStatus&&p();var s=function(){var o=n.getAttachments;t.apiGETReq(o).then(function(o){e.profileObj.attachmentsObj=c.digestApplicantAttachmentsApiObj(o.data.response)},function(e){a.onApiResponseError(e)})};o.loggedInStatus&&s(),e.onViewFullProfile=function(){jQuery.noConflict(),jQuery(document).ready(function(e){e(".view-profile-container").slideToggle(),e(".view-profile-btn span").toggleClass("icon-chevron-thin-up")})},e.onSignUpClick=function(){var e=function(){l.goToUserProfile()};l.goToSignUpView(e)},e.onSignInClick=function(){var e=function(){l.goToUserProfile()};l.goToLoginView(e)},e.onUpdateResumeClick=function(){if(console.log(e.profileObj.updateResumeObj),!e.profileObj.updateResumeObj)return void a.showInfoMsg("Please select Resume to upload");var o=n.resumeUpload,i=new FormData;i.append("file",e.profileObj.updateResumeObj[0]),t.apiUploadFileReq(o,i).then(function(e){u(e.data.response)},function(e){a.onApiResponseError(e)})};var u=function(o){var i=n.createApplicantProfile,l=c.convertUIObj2ApiObj(e.profileObj.applicantDetailObj);l.applicantOriginalResumePath=o.applicantOriginalResumePath,l.applicantOriginalDocPath=o.applicantOriginalDocPath,t.apiPOSTReq(i,l).then(function(e){a.showSuccessMsg("Resume Updated successfully")},function(e){a.onApiResponseError(e)})};e.onEditProfileClick=function(){l.goToUpdateProfile()},e.onAddDocumentsClick=function(){if(!e.profileObj.attachFileObj)return void a.showInfoMsg("Please select file to upload");var o=n.uploadAttachments,i=new FormData;i.append("file",e.profileObj.attachFileObj[0]),t.apiUploadFileReq(o,i).then(function(e){s(),a.showSuccessMsg("File uploaded successfully")},function(e){a.onApiResponseError(e)})}}])}();
+(function () {
+
+    angular.module('candidatePortal.application').controller('candidatePortal.modules.profile.profileController', [
+        '$scope',
+        '$rootScope',
+        '$state',
+        'candidatePortal.services.apiUrlConfig',
+        'candidatePortal.services.apiMethods',
+        'candidatePortal.services.commonService',
+        'candidatePortal.services.navigationService',
+        'candidatePortal.services.localStorageService',
+        'candidatePortal.models.applicantModel',
+        function ($scope, $rootScope, $state, apiUrlConfig, apiMethods, commonService, navigationService, localStorageService, applicantModel) {
+
+            $scope.profileObj = {};
+
+            var getProfileObj = function () {
+                var url = apiUrlConfig.getApplicantProfile;
+                apiMethods.apiGETReq(url).then(function (response) {
+                    $scope.profileObj.applicantDetailObj = applicantModel.digestApplicantApiObj(response.data.response);
+                }, function (response) {
+                    commonService.onApiResponseError(response);
+                });
+            };
+            if($rootScope.loggedInStatus)
+                getProfileObj();
+
+            var getApplicantAttachments = function () {
+                var url = apiUrlConfig.getAttachments;
+                apiMethods.apiGETReq(url).then(function (response) {
+                    $scope.profileObj.attachmentsObj = applicantModel.digestApplicantAttachmentsApiObj(response.data.response);
+                }, function (response) {
+                    commonService.onApiResponseError(response);
+                });
+            };
+            if($rootScope.loggedInStatus)
+                getApplicantAttachments();
+
+            $scope.onViewFullProfile = function () {
+                jQuery.noConflict();
+                jQuery(document).ready(function($) {
+                    $('.view-profile-container').slideToggle();
+                    $('.view-profile-btn span').toggleClass('icon-chevron-thin-up');
+                });
+            };
+
+            $scope.onSignUpClick = function () {
+                var callback = function () {
+                    navigationService.goToUserProfile();
+                };
+                navigationService.goToSignUpView(callback);
+            };
+
+            $scope.onSignInClick = function () {
+                var callback = function () {
+                    navigationService.goToUserProfile();
+                };
+                navigationService.goToLoginView(callback);
+            };
+
+            $scope.onUpdateResumeClick = function () {
+                console.log($scope.profileObj.updateResumeObj);
+                if(!$scope.profileObj.updateResumeObj){
+                    commonService.showInfoMsg("Please select Resume to upload");
+                    return;
+                }
+
+                var url = apiUrlConfig.resumeUpload;
+                var fd = new FormData();
+                fd.append('file', $scope.profileObj.updateResumeObj[0]);
+                apiMethods.apiUploadFileReq(url, fd).then(function (response) {
+                    createApplicantForUpdateResume(response.data.response);
+                }, function (response) {
+                    commonService.onApiResponseError(response);
+                });
+            };
+
+            var createApplicantForUpdateResume = function (response) {
+                var url = apiUrlConfig.createApplicantProfile;
+                var req = applicantModel.convertUIObj2ApiObj($scope.profileObj.applicantDetailObj);
+                req.applicantOriginalResumePath = response.applicantOriginalResumePath;
+                req.applicantOriginalDocPath = response.applicantOriginalDocPath;
+                apiMethods.apiPOSTReq(url, req).then(function (response) {
+                    commonService.showSuccessMsg("Resume Updated successfully");
+                }, function (response) {
+                    commonService.onApiResponseError(response);
+                });
+            };
+
+            $scope.onEditProfileClick = function () {
+                navigationService.goToUpdateProfile();
+            };
+
+            $scope.onAddDocumentsClick = function () {
+                if(!$scope.profileObj.attachFileObj){
+                    commonService.showInfoMsg("Please select file to upload");
+                    return;
+                }
+
+                var url = apiUrlConfig.uploadAttachments;
+                var fd = new FormData();
+                fd.append('file', $scope.profileObj.attachFileObj[0]);
+                apiMethods.apiUploadFileReq(url, fd).then(function (response) {
+                    getApplicantAttachments();
+                    commonService.showSuccessMsg("File uploaded successfully");
+                }, function (response) {
+                    commonService.onApiResponseError(response);
+                });
+            };
+        }
+    ]);
+})();

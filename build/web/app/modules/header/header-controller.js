@@ -1,1 +1,24 @@
-!function(){angular.module("candidatePortal.application").controller("candidatePortal.modules.header.headerController",["$scope","$rootScope","$state","candidatePortal.services.apiUrlConfig","candidatePortal.services.apiMethods",function(o,e,t,a,l){o.onLogoutClick=function(){var o=a.logout;l.apiPOSTReq(o).then(function(o){console.log(" logout service success !!!!!"),e.loggedInStatus=!1,t.go("home")},function(o){console.log("logout service failure !!!!!"),console.log(o)})}}])}();
+(function () {
+
+    angular.module('candidatePortal.application').controller('candidatePortal.modules.header.headerController', [
+        '$scope',
+        '$rootScope',
+        '$state',
+        'candidatePortal.services.apiUrlConfig',
+        'candidatePortal.services.apiMethods',
+        function ($scope, $rootScope, $state, apiUrlConfig, apiMethods) {
+
+        $scope.onLogoutClick = function(){
+            var url = apiUrlConfig.logout;
+            apiMethods.apiPOSTReq(url).then(function (response) {
+                console.log(" logout service success !!!!!");
+                $rootScope.loggedInStatus = false;
+                $state.go("home");
+            }, function(response){
+                console.log("logout service failure !!!!!");
+                console.log(response);
+            });
+        }
+
+    }]);
+})();

@@ -1,1 +1,54 @@
-!function(){angular.module("candidatePortal.application").factory("candidatePortal.services.localStorageService",["$rootScope",function(e){var t="TPCandidatePortal",a=function(e){if(e){var a=JSON.stringify(e);localStorage.setItem(t,a)}},r=function(){var e=localStorage.getItem(t);return e?JSON.parse(e):{}},n=function(){localStorage.removeItem(t),e.loggedInStatus=!1},o=function(t){if(!t)return null;e.loggedInStatus=!0,e.loggedInUserName=t.name;var n=r();n.userDetails=t,a(n)},l=function(){var t=r().userDetails;return t?(e.loggedInUserName=t.name,e.loggedInStatus=!0,t):null};return{doLogOut:n,saveUserDetails:o,getUserDetails:l}}])}();
+(function () {
+    angular.module("candidatePortal.application").factory('candidatePortal.services.localStorageService', [
+        '$rootScope',
+        function ($rootScope) {
+            var localStoreDBName = "TPCandidatePortal";
+
+            var saveToLocalStore = function (obj) {
+                if(!obj)
+                    return;
+                var obj2Json = JSON.stringify(obj);
+                localStorage.setItem(localStoreDBName,obj2Json);
+            };
+
+            var getLocalStoreObj = function () {
+                var data = localStorage.getItem(localStoreDBName);
+                if(!data)
+                    return {};
+
+                return JSON.parse(data);
+            };
+
+            var doLogOut = function () {
+                //localStorage.setItem(localStoreDBName, undefined);
+                localStorage.removeItem(localStoreDBName);
+                $rootScope.loggedInStatus = false;
+            };
+
+            var saveUserDetails = function(obj){
+                if(!obj)
+                    return null;
+                $rootScope.loggedInStatus = true;
+                $rootScope.loggedInUserName = obj.name;
+                var storedObj = getLocalStoreObj();
+                storedObj.userDetails = obj;
+                saveToLocalStore(storedObj);
+            };
+
+            var getUserDetails = function(){
+                var userObj = getLocalStoreObj().userDetails;
+                if(!userObj)
+                    return null;
+                $rootScope.loggedInUserName = userObj.name;
+                $rootScope.loggedInStatus = true;
+                return userObj;
+            };
+
+            return {
+                doLogOut : doLogOut,
+                saveUserDetails : saveUserDetails,
+                getUserDetails : getUserDetails
+            };
+        }
+    ]);
+})();

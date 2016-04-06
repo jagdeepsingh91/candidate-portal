@@ -1,1 +1,53 @@
-<div class="row"><div class="col-md-24 steps-wrapper"><div class="col-md-12 step active"><p><span>1</span> <span>Upload Resume</span></p><div class="pull-right"></div></div><div class="col-md-12 text-right step"><p class="pull-right"><span>2</span> <span>Application Form</span></p><div class="pull-left"></div></div></div><div class="border-container col-md-24" oc-lazy-load="['quickFileUpload']"><div class="row text-center pad-t-b-20" ng-show="!applyToPositionObj.selectedFiles"><input type="file" quick-file-upload="applyToPositionObj.selectedFiles" url="uploadUrl"> <span class="icon-inbox-upload upload-icon"></span><p class="pad-t-b-20 large-font"><strong class="color-8 med">Drag &amp; drop to upload resume</strong></p><p class="color-8">Supported file format .pdf, .doc, .docx</p><p class="pad-t-5 color-8">You can <a href="#" class="link underline">browse &amp; choose file</a></p></div><div class="row text-center pad-t-b-20" ng-show="applyToPositionObj.selectedFiles.length > 0"><div class="uploading-files col-md-11 col-md-offset-6"><div class="col-md-5"><span class="icon-document-text upload-icon"></span></div><div class="col-md-15 text-left"><p class="color-8 med-font">Uploading {{applyToPositionObj.selectedFiles[0].file.name}}</p><div class="progress-bar mar-t-b-10-5"><span ng-if="applyToPositionObj.selectedFiles[0].progress != 'Success'" style="width: {{applyToPositionObj.selectedFiles[0].progress}}%"></span> <span style="width: 100%" ng-if="applyToPositionObj.selectedFiles[0].progress == 'Success'"></span></div><p class="pad-t-5 color-a"><br>{{applyToPositionObj.selectedFiles[0].progress}} <span ng-if="applyToPositionObj.selectedFiles[0].progress != 'Success' && applyToPositionObj.selectedFiles[0].progress != 'Failed'">%</span> <span ng-if="applyToPositionObj.selectedFiles[0].progress == 'Failed'">- {{applyToPositionObj.selectedFiles[0].response.response}}</span></p></div><div class="col-md-4"><a class="link-btn red-btn" ng-click="onRemoveSelectedFileClick()">Remove</a></div></div></div></div><!-- <button type="submit" class="btn btn-lg btn-15 pull-right">Next</button> --> <a class="link-btn btn-15-grey pull-left pad-l-r-40" ng-click="onUploadResumeBack()">Previous</a> <a class="link-btn btn-15 pull-right pad-l-r-40" ng-click="onUploadResumeNext()">Next</a></div>
+<div class="row">
+    <div class="col-md-24 steps-wrapper">
+        <div class="col-md-12 step active">
+            <p>
+                <span>1</span>
+                <span>Upload Resume</span>
+            </p>
+            <div class="pull-right"></div>
+        </div>
+        <div class="col-md-12 text-right step">
+            <p class="pull-right">
+                <span>2</span>
+                <span>Application Form</span>
+            </p>
+            <div class="pull-left"></div>
+        </div>
+    </div>
+    <div class="border-container col-md-24" oc-lazy-load="['quickFileUpload']">
+        <div class="row text-center pad-t-b-20" ng-show="!applyToPositionObj.selectedFiles">
+            <input type="file" quick-file-upload="applyToPositionObj.selectedFiles" url="uploadUrl"/>
+            <span class="icon-inbox-upload upload-icon"></span>
+            <p class="pad-t-b-20 large-font"><strong class="color-8 med">Drag &amp; drop to upload resume</strong></p>
+            <p class="color-8">Supported file format .pdf, .doc, .docx</p>
+            <p class="pad-t-5 color-8">You can <a href="#" class="link underline">browse &amp; choose file</a></p>
+        </div>
+        <div class="row text-center pad-t-b-20" ng-show="applyToPositionObj.selectedFiles.length > 0">
+            <div class="uploading-files col-md-11 col-md-offset-6">
+                <div class="col-md-5">
+                    <span class="icon-document-text upload-icon"></span>
+                </div>
+                <div class="col-md-15 text-left">
+                    <p class="color-8 med-font">Uploading {{applyToPositionObj.selectedFiles[0].file.name}} </p>
+                    <div class="progress-bar mar-t-b-10-5">
+                        <span ng-if="applyToPositionObj.selectedFiles[0].progress != 'Success'"
+                              style="width: {{applyToPositionObj.selectedFiles[0].progress}}%">
+                        </span>
+                        <span style="width: 100%;" ng-if="applyToPositionObj.selectedFiles[0].progress == 'Success'"></span>
+                    </div>
+                    <p class="pad-t-5 color-a">
+                        <br/>
+                        {{applyToPositionObj.selectedFiles[0].progress}}
+                        <span ng-if="applyToPositionObj.selectedFiles[0].progress != 'Success' && applyToPositionObj.selectedFiles[0].progress != 'Failed'">%</span>
+                        <span ng-if="applyToPositionObj.selectedFiles[0].progress == 'Failed'"> - {{applyToPositionObj.selectedFiles[0].response.response}}</span>
+                    </p>
+                </div>
+                <div class="col-md-4"><a class="link-btn red-btn" ng-click="onRemoveSelectedFileClick()">Remove</a></div>
+            </div>
+        </div>
+    </div>
+    <!-- <button type="submit" class="btn btn-lg btn-15 pull-right">Next</button> -->
+    <a class="link-btn btn-15-grey pull-left pad-l-r-40" ng-click="onUploadResumeBack()">Previous</a>
+    <a class="link-btn btn-15 pull-right pad-l-r-40" ng-click="onUploadResumeNext()">Next</a>
+</div>

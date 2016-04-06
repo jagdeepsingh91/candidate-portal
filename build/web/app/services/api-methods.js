@@ -1,1 +1,60 @@
-!function(){angular.module("candidatePortal.application").factory("candidatePortal.services.apiMethods",["$http",function(a){return{apiGETReq:function(t,n,o){return a({method:"GET",url:t,params:n,showLoadingBar:o||!0})},apiPOSTReq:function(t,n,o){return a({method:"POST",url:t,data:n,showLoadingBar:o||!0})},apiPATCHReq:function(t,n,o){return a({method:"PATCH",url:t,data:n,showLoadingBar:o||!0})},apiPUTReq:function(t,n,o){return a({method:"PUT",url:t,data:n,showLoadingBar:o||!0})},apiDELETEReq:function(t,n,o){return a({method:"DELETE",url:t,data:n,showLoadingBar:o||!0})},apiUploadFileReq:function(t,n,o){return a({method:"POST",url:t,data:n,headers:{"Content-Type":void 0},showLoadingBar:o||!0})}}}])}();
+(function () {
+    angular.module("candidatePortal.application").factory('candidatePortal.services.apiMethods',[
+        '$http',
+        function ($http) {
+            return {
+                apiGETReq : function (url, obj, showLoadingBar) {
+                    return $http({
+                        method: 'GET',
+                        url: url,
+                        params: obj,
+                        showLoadingBar : showLoadingBar || true
+                    });
+                },
+                apiPOSTReq : function (url, obj, showLoadingBar) {
+                    return $http({
+                        method: 'POST',
+                        url: url,
+                        data: obj,
+                        showLoadingBar : showLoadingBar || true
+                    });
+                },
+                apiPATCHReq : function (url, obj, showLoadingBar) {
+                    return $http({
+                        method: 'PATCH',
+                        url: url,
+                        data: obj,
+                        showLoadingBar : showLoadingBar || true
+                    });
+                },
+                apiPUTReq : function (url, obj, showLoadingBar) {
+                    return $http({
+                        method: 'PUT',
+                        url: url,
+                        data: obj,
+                        showLoadingBar : showLoadingBar || true
+                    });
+                },
+                apiDELETEReq : function (url, obj, showLoadingBar) {
+                    return $http({
+                        method: 'DELETE',
+                        url: url,
+                        data: obj,
+                        showLoadingBar : showLoadingBar || true
+                    });
+                },
+                apiUploadFileReq : function (url, obj, showLoadingBar) {
+                    return $http({
+                        method: 'POST',
+                        url: url,
+                        data: obj,
+                        headers: {
+                            "Content-Type" : undefined
+                        },
+                        showLoadingBar : showLoadingBar || true
+                    });
+                }
+            }
+        }
+    ]);
+})();

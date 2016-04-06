@@ -1,1 +1,75 @@
-!function(){angular.module("candidatePortal.application").factory("candidatePortal.services.navigationService",["$state",function(o){var i=function(){o.go("home.profile")},n=function(){o.go("home.changePassword")},e=function(){o.go("forgotPassword")},t=function(){o.go("home.updateProfile")},a=function(i){o.go("signUp",{callback:i})},g=function(i){o.go("login",{callback:i})},s=function(){o.go("home")},c=function(){o.go("home.apply.applicationForm")},p=function(){o.go("home.apply.uploadResume")},l=function(){o.go("home.openPositions.positionsList")},u=function(i){o.go("home.openPositions.positionDetails",{id:i})},r=function(){o.go("home.myApplications")},f=function(i,n){o.go("home.apply.uploadResume",{id:i,callback:n})};return{goToUserProfile:i,goToSignUpView:a,goToLoginView:g,goToHomeView:s,goToApplicationForm:c,goToUploadResume:p,goToOpenPositionsList:l,goToOpenPositionDetails:u,goToMyApplications:r,goToApplyPosition:f,goToUpdateProfile:t,goToChangePassword:n,goToForgotPassword:e}}])}();
+(function () {
+    angular.module("candidatePortal.application").factory('candidatePortal.services.navigationService',[
+        '$state',
+        function ($state) {
+
+            var goToUserProfile = function () {
+                $state.go("home.profile");
+            };
+
+            var goToChangePassword = function () {
+                $state.go("home.changePassword");
+            };
+
+            var goToForgotPassword = function () {
+                $state.go("forgotPassword");
+            };
+
+            var goToUpdateProfile = function () {
+                $state.go("home.updateProfile");
+            };
+
+            var goToSignUpView = function (callbackFn) {
+                $state.go("signUp", {callback : callbackFn});
+            };
+
+            var goToLoginView = function (callbackFn) {
+                $state.go("login", {callback : callbackFn});
+            };
+
+            var goToHomeView = function () {
+                $state.go("home");
+            };
+
+            var goToApplicationForm = function () {
+                $state.go("home.apply.applicationForm");
+            };
+
+            var goToUploadResume = function () {
+                $state.go("home.apply.uploadResume");
+            };
+
+            var goToOpenPositionsList = function () {
+                $state.go("home.openPositions.positionsList");
+            };
+
+            var goToOpenPositionDetails = function (id) {
+                $state.go("home.openPositions.positionDetails", {id : id});
+            };
+
+            var goToMyApplications = function () {
+                $state.go("home.myApplications");
+            };
+            
+            var goToApplyPosition = function (id, callbackFn) {
+                $state.go("home.apply.uploadResume", {id : id, callback : callbackFn});
+            };
+
+            return {
+                goToUserProfile : goToUserProfile,
+                goToSignUpView : goToSignUpView,
+                goToLoginView : goToLoginView,
+                goToHomeView : goToHomeView,
+                goToApplicationForm : goToApplicationForm,
+                goToUploadResume : goToUploadResume,
+                goToOpenPositionsList : goToOpenPositionsList,
+                goToOpenPositionDetails : goToOpenPositionDetails,
+                goToMyApplications : goToMyApplications,
+                goToApplyPosition : goToApplyPosition,
+                goToUpdateProfile : goToUpdateProfile,
+                goToChangePassword : goToChangePassword,
+                goToForgotPassword : goToForgotPassword
+            };
+        }
+    ]);
+})();

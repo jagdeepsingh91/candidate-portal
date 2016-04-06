@@ -1,1 +1,146 @@
-!function(){angular.module("candidatePortal.application").directive("multipleAutocomplete",["$filter","candidatePortal.services.apiMethods",function(e,r){return{restrict:"EA",scope:{suggestionsArr:"=?",modelArr:"=ngModel",apiUrl:"=",dtoType:"@"},templateUrl:"app/directives/autocomplete/multiple-autocomplete-field/multiple-autocomplete-tpl.html",link:function(t,n,l){t.objectProperty=l.objectProperty,t.selectedItemIndex=0,t.name=l.name,t.isRequired=l.required,t.errMsgRequired=l.errMsgRequired,t.isHover=!1,t.isFocused=!1;var o=function(){var e=t.apiUrl;r.apiGETReq(e,null,!1).then(function(e){"user"==t.dtoType?t.suggestionsArr=e.data.response:t.suggestionsArr=e.data.response},function(e){console.log("Unable to fetch list")})};null!=t.suggestionsArr&&""!=t.suggestionsArr||(null!=t.apiUrl&&""!=t.apiUrl?o():console.log("Please provide suggestion array list or url")),null!=t.modelArr&&""!=t.modelArr||(t.modelArr=[]),t.onFocus=function(){t.isFocused=!0},t.onMouseEnter=function(){t.isHover=!0},t.onMouseLeave=function(){t.isHover=!1},t.onBlur=function(){t.isFocused=!1},t.onChange=function(){t.selectedItemIndex=0},t.keyParser=function(r){var n={38:"up",40:"down",8:"backspace",13:"enter",9:"tab",27:"esc"},l=n[r.keyCode];if("backspace"==l&&""==t.inputValue)0!=t.modelArr.length&&t.modelArr.pop();else if("down"==l){var o=e("filter")(t.suggestionsArr,t.inputValue);o=e("filter")(o,t.alreadyAddedValues),t.selectedItemIndex<o.length-1&&t.selectedItemIndex++}else if("up"==l&&t.selectedItemIndex>0)t.selectedItemIndex--;else if("enter"==l){var o=e("filter")(t.suggestionsArr,t.inputValue);o=e("filter")(o,t.alreadyAddedValues),t.selectedItemIndex<o.length&&t.onSuggestedItemsClick(o[t.selectedItemIndex])}},t.onSuggestedItemsClick=function(e){t.modelArr.push(e),t.inputValue=""};var s=function(e,r){var t=!1;if(null==e||""==e)return t;for(var n=0;n<e.length&&!(t=angular.equals(e[n],r));n++);return t};t.alreadyAddedValues=function(e){var r=!0;return r=!s(t.modelArr,e)},t.removeAddedValues=function(e){if(null!=t.modelArr&&""!=t.modelArr){var r=t.modelArr.indexOf(e);-1!=r&&t.modelArr.splice(r,1)}},t.mouseEnterOnItem=function(e){t.selectedItemIndex=e}}}}])}();
+(function () {
+
+    angular.module('candidatePortal.application').directive('multipleAutocomplete', [
+        '$filter',
+        'candidatePortal.services.apiMethods',
+        function ($filter, apiMethods) {
+            return {
+                restrict: 'EA',
+                scope : {
+                    suggestionsArr : '=?',
+                    modelArr : '=ngModel',
+                    apiUrl : '=',
+                    dtoType : '@'
+                },
+                templateUrl: 'app/directives/autocomplete/multiple-autocomplete-field/multiple-autocomplete-tpl.html',
+                //controller : 'talentpool.dashboard.timeline.timelineController',
+                link : function(scope, element, attr){
+                    scope.objectProperty = attr.objectProperty;
+                    scope.selectedItemIndex = 0;
+                    scope.name = attr.name;
+                    scope.isRequired = attr.required;
+                    scope.errMsgRequired = attr.errMsgRequired;
+                    scope.isHover = false;
+                    scope.isFocused = false;
+
+                    var getSuggestionsList = function () {
+                        var url = scope.apiUrl;
+                        apiMethods.apiGETReq(url, null, false).then(function (response) {
+                            if(scope.dtoType == "user")
+                                scope.suggestionsArr = response.data.response;
+                            else
+                                scope.suggestionsArr = response.data.response;
+                        }, function (response) {
+                            console.log("Unable to fetch list");
+                        });
+                    };
+
+                    if(scope.suggestionsArr == null || scope.suggestionsArr == ""){
+                        if(scope.apiUrl != null && scope.apiUrl != "")
+                            getSuggestionsList();
+                        else{
+                            console.log("Please provide suggestion array list or url");
+                        }
+                    }
+
+                    if(scope.modelArr == null || scope.modelArr == ""){
+                        scope.modelArr = [];
+                    }
+                    scope.onFocus = function () {
+                        scope.isFocused=true;
+                    };
+
+                    scope.onMouseEnter = function () {
+                        scope.isHover = true
+                    };
+
+                    scope.onMouseLeave = function () {
+                        scope.isHover = false;
+                    };
+
+                    scope.onBlur = function () {
+                        scope.isFocused=false;
+                    };
+
+                    scope.onChange = function () {
+                        scope.selectedItemIndex = 0;
+                    };
+
+                    scope.keyParser = function ($event) {
+                        var keys = {
+                            38: 'up',
+                            40: 'down',
+                            8 : 'backspace',
+                            13: 'enter',
+                            9 : 'tab',
+                            27: 'esc'
+                        };
+                        var key = keys[$event.keyCode];
+                        if(key == 'backspace' && scope.inputValue == ""){
+                            if(scope.modelArr.length != 0)
+                                scope.modelArr.pop();
+                        }
+                        else if(key == 'down'){
+                            var filteredSuggestionArr = $filter('filter')(scope.suggestionsArr, scope.inputValue);
+                            filteredSuggestionArr = $filter('filter')(filteredSuggestionArr, scope.alreadyAddedValues);
+                            if(scope.selectedItemIndex < filteredSuggestionArr.length -1)
+                                scope.selectedItemIndex++;
+                        }
+                        else if(key == 'up' && scope.selectedItemIndex > 0){
+                            scope.selectedItemIndex--;
+                        }
+                        else if(key == 'enter'){
+                            var filteredSuggestionArr = $filter('filter')(scope.suggestionsArr, scope.inputValue);
+                            filteredSuggestionArr = $filter('filter')(filteredSuggestionArr, scope.alreadyAddedValues);
+                            if(scope.selectedItemIndex < filteredSuggestionArr.length)
+                                scope.onSuggestedItemsClick(filteredSuggestionArr[scope.selectedItemIndex]);
+                        }
+                    };
+
+                    scope.onSuggestedItemsClick = function (selectedValue) {
+                        scope.modelArr.push(selectedValue);
+                        scope.inputValue = "";
+                    };
+
+                    var isDuplicate = function (arr, item) {
+                        var duplicate = false;
+                        if(arr == null || arr == "")
+                            return duplicate;
+
+                        for(var i=0;i<arr.length;i++){
+                            duplicate = angular.equals(arr[i], item);
+                            if(duplicate)
+                                break;
+                        }
+                        return duplicate;
+                    };
+
+                    scope.alreadyAddedValues = function (item) {
+                        var isAdded = true;
+                        isAdded = !isDuplicate(scope.modelArr, item);
+                        //if(scope.modelArr != null && scope.modelArr != ""){
+                        //    isAdded = scope.modelArr.indexOf(item) == -1;
+                        //    console.log("****************************");
+                        //    console.log(item);
+                        //    console.log(scope.modelArr);
+                        //    console.log(isAdded);
+                        //}
+                        return isAdded;
+                    };
+
+                    scope.removeAddedValues = function (item) {
+                        if(scope.modelArr != null && scope.modelArr != "") {
+                            var itemIndex = scope.modelArr.indexOf(item);
+                            if (itemIndex != -1)
+                                scope.modelArr.splice(itemIndex, 1);
+                        }
+                    };
+
+                    scope.mouseEnterOnItem = function (index) {
+                        scope.selectedItemIndex = index;
+                    };
+                }
+            };
+        }
+    ]);
+})();

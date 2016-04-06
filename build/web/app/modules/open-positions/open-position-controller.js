@@ -1,1 +1,85 @@
-!function(){angular.module("candidatePortal.application").controller("candidatePortal.modules.open-position.openPositionController",["$q","$scope","$rootScope","candidatePortal.services.apiUrlConfig","candidatePortal.services.apiMethods","candidatePortal.services.commonService","candidatePortal.services.navigationService","candidatePortal.models.positionModel",function(o,i,n,e,t,s,a,r){i.orderOptionsList=[{type:"Ascending",value:!0},{type:"Descending",value:!1}];var p=function(){var o=e.positionList;t.apiGETReq(o).then(function(o){i.positionsList=r.digestPositionApiObj(o.data.response),console.log(i.positionsList)},function(o){s.onApiResponseError(o)})};p(),i.onApplyPositionClick=function(o){if(!n.loggedInStatus){var i=function(){a.goToOpenPositionsList()};return void a.goToLoginView(i)}var r=e.isApplicantCreated;t.apiGETReq(r).then(function(i){if(i.data.response)c(o);else{var n=function(){a.goToOpenPositionsList()};a.goToApplyPosition(o.positionId,n)}},function(o){s.onApiResponseError(o)})};var c=function(o){d().then(function(i){i.applicantPositionId=o.positionId,l(i,o)},function(o){s.onApiResponseError(o)})},l=function(o,i){var n=e.createApplicantProfile;t.apiPOSTReq(n,o).then(function(o){i.applicantStatus="Applied",s.showSuccessMsg("Applied to position")},function(o){s.onApiResponseError(o)})},d=function(){var i=o.defer(),n=e.getApplicantProfile;return t.apiGETReq(n).then(function(o){i.resolve(o.data.response)},function(o){i.reject(o)}),i.promise}}])}();
+(function () {
+    angular.module('candidatePortal.application').controller('candidatePortal.modules.open-position.openPositionController',[
+        '$q',
+        '$scope',
+        '$rootScope',
+        'candidatePortal.services.apiUrlConfig',
+        'candidatePortal.services.apiMethods',
+        'candidatePortal.services.commonService',
+        'candidatePortal.services.navigationService',
+        'candidatePortal.models.positionModel',
+        function ($q, $scope, $rootScope, apiUrlConfig, apiMethods, commonService, navigationService, positionModel) {
+            $scope.orderOptionsList = [
+                {type : "Ascending", value : true},
+                {type : "Descending", value : false}
+            ];
+
+            var getPositionList = function () {
+                var url = apiUrlConfig.positionList;
+                apiMethods.apiGETReq(url).then(function (response) {
+                    $scope.positionsList = positionModel.digestPositionApiObj(response.data.response);
+                    console.log($scope.positionsList);
+                }, function (response) {
+                    commonService.onApiResponseError(response);
+                });
+            };
+            getPositionList();
+
+            $scope.onApplyPositionClick = function (item) {
+                if(!$rootScope.loggedInStatus){
+                    var callback = function () {
+                        navigationService.goToOpenPositionsList();
+                    };
+                    navigationService.goToLoginView(callback);
+                    return;
+                }
+                var isApplicantExistUrl = apiUrlConfig.isApplicantCreated;
+                apiMethods.apiGETReq(isApplicantExistUrl).then(function (response) {
+                    if(!response.data.response){
+                        var callback = function () {
+                            navigationService.goToOpenPositionsList();
+                        };
+                        navigationService.goToApplyPosition(item.positionId, callback);
+                    }
+                    else{
+                        applyToPositionDirectly(item);
+                    }
+                }, function (response) {
+                    commonService.onApiResponseError(response);
+                });
+
+            };
+
+            var applyToPositionDirectly = function (obj) {
+                getApplicantProfile().then(function (response) {
+                    response.applicantPositionId = obj.positionId;
+                    applyToPositionNow(response, obj);
+                }, function (response) {
+                    commonService.onApiResponseError(response);
+                });
+            };
+
+            var applyToPositionNow = function (request, obj) {
+                var url = apiUrlConfig.createApplicantProfile;
+                apiMethods.apiPOSTReq(url, request).then(function (response) {
+                    obj.applicantStatus = "Applied";
+                    commonService.showSuccessMsg("Applied to position");
+                }, function (response) {
+                    commonService.onApiResponseError(response);
+                });
+            };
+
+            var getApplicantProfile = function () {
+                var deferred = $q.defer();
+                var url = apiUrlConfig.getApplicantProfile;
+                apiMethods.apiGETReq(url).then(function (response) {
+                    deferred.resolve(response.data.response);
+                }, function (response) {
+                    deferred.reject(response);
+                });
+                return deferred.promise;
+            };
+
+        }
+    ]);
+})();

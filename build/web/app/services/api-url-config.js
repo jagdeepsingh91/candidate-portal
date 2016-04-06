@@ -1,1 +1,44 @@
-!function(){angular.module("candidatePortal.application").factory("candidatePortal.services.apiUrlConfig",[function(){var t="http://siddharthk:8080/CandidatePortal";return{createUser:t+"/user/",userLogin:t+"/user/login",userLogout:t+"/user/logout",changePassword:t+"/user/password",forgotPassword:t+"/user/password",validatePasswordUUID:function(e){return t+"/user/password/validate/"+e},getAttachments:t+"/profile/attachments",isApplicantCreated:t+"/profile/id",createApplicantProfile:t+"/profile/create",getApplicantProfile:t+"/profile/",resumeUpload:t+"/profile/upload",profileStatus:t+"/profile/status",uploadAttachments:t+"/profile/upload/attachment",getProfileMasterList:function(e){return t+"/profile/master/"+e},positionList:t+"/position/list",positionFields:t+"/position/fields",getPositionDetails:function(e){return t+"/position/"+e},getMastersId:function(e,r){return t+"/masters/id/"+e+"/"+r}}}])}();
+(function () {
+    angular.module("candidatePortal.application").factory('candidatePortal.services.apiUrlConfig',[
+        function () {
+
+            var basePath = "http://siddharthk:8080/CandidatePortal";
+            //var basePath = "http://sumeets1:8080/CandidatePortal";
+            return {
+                // User
+                createUser : basePath+"/user/",
+                userLogin : basePath+"/user/login",
+                userLogout : basePath+"/user/logout",
+                changePassword : basePath+"/user/password",
+                forgotPassword : basePath+"/user/password",
+                validatePasswordUUID : function (uuid) {
+                    return basePath+"/user/password/validate/"+uuid;
+                },
+
+                // Profile
+                getAttachments : basePath+"/profile/attachments",
+                isApplicantCreated : basePath+"/profile/id",
+                createApplicantProfile : basePath+"/profile/create",
+                getApplicantProfile : basePath+"/profile/",
+                resumeUpload : basePath+"/profile/upload",
+                profileStatus : basePath+"/profile/status",
+                uploadAttachments : basePath+"/profile/upload/attachment",
+                getProfileMasterList : function (type) {
+                    return basePath+"/profile/master/"+type
+                },
+
+                // Position
+                positionList : basePath+"/position/list",
+                positionFields : basePath+"/position/fields",
+                getPositionDetails : function (id) {
+                    return basePath+"/position/"+id
+                },
+                // Master
+                getMastersId : function (type, value) {
+                    return basePath+"/masters/id/"+type+"/"+value;
+                }
+                
+            }
+        }
+    ]);
+})();

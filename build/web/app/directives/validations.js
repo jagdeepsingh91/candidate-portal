@@ -1,1 +1,195 @@
-!function(){angular.module("candidatePortal.application").directive("compareTo",["$parse",function(e){return{require:"ngModel",scope:{otherModelValue:"=compareTo"},link:function(e,r,a,n){n.$validators.compareTo=function(r){return r==e.otherModelValue},e.$watch("otherModelValue",function(){n.$validate()})}}}]),angular.module("candidatePortal.application").directive("dateGreaterThan",["$parse",function(e){return{require:"ngModel",scope:{otherModelValue:"=dateGreaterThan"},link:function(e,r,a,n){console.log(a.ngRequired),console.log(a.required),n.$validators.dateGreaterThan=function(r){var a=moment(r,"DD-MM-YYYY"),n=moment(e.otherModelValue,"DD-MM-YYYY"),o=a.diff(n,"days");return console.log(o),o>0||null==r&&null==e.otherModelValue},e.$watch("otherModelValue",function(){n.$validate()})}}}]),angular.module("candidatePortal.application").directive("myValidation",["$parse","$compile","$interval","$rootScope",function(e,r,a,n){return{restrict:"EA",compile:function(e,r,a){jQuery.noConflict(),jQuery(document).ready(function(a){var n=r.name,o=r.onSuccessCls||"has-success",t=r.onErrorCls||"has-error",l=r.errMsgCls||"error-msg",i=function(e){for(var r=a(e)[0].attributes,o=a(e).attr("name"),t="",i=0;i<r.length;i++)0==r[i].name.indexOf("err-msg")&&("err-msg-required"==r[i].name?t+='<p class="'+l+'" ng-show="'+n+"."+o+'.$error.required">'+r[i].value+"</p>":"err-msg-pattern"==r[i].name?t+='<p class="'+l+'" ng-show="'+n+"."+o+'.$error.pattern">'+r[i].value+"</p>":"err-msg-email"==r[i].name?t+='<p class="'+l+'" ng-show="'+n+"."+o+'.$error.email">'+r[i].value+"</p>":"err-msg-number"==r[i].name?t+='<p class="'+l+'" ng-show="'+n+"."+o+'.$error.number">'+r[i].value+"</p>":"err-msg-min"==r[i].name?t+='<p class="'+l+'" ng-show="'+n+"."+o+'.$error.min">'+r[i].value+"</p>":"err-msg-max"==r[i].name?t+='<p class="'+l+'" ng-show="'+n+"."+o+'.$error.max">'+r[i].value+"</p>":"err-msg-maxlength"==r[i].name?t+='<p class="'+l+'" ng-show="'+n+"."+o+'.$error.maxlength">'+r[i].value+"</p>":"err-msg-minlength"==r[i].name?t+='<p class="'+l+'" ng-show="'+n+"."+o+'.$error.minlength">'+r[i].value+"</p>":"err-msg-compareto"==r[i].name?t+='<p class="'+l+'" ng-show="'+n+"."+o+'.$error.compareTo">'+r[i].value+"</p>":"err-msg-dategreaterthan"==r[i].name&&(t+='<p class="'+l+'" ng-show="'+n+"."+o+'.$error.dateGreaterThan">'+r[i].value+"</p>"));return t},s=function(e){var r=i(e),o=a(e).attr("name"),t='<span ng-show="'+n+"."+o+".$invalid && "+n+"."+o+'.$dirty">'+r+"</span>";return t},u=function(e){var r=a(e).attr("name");if(null!=r&&void 0!=r){var l="{'"+t+"' : "+n+"."+r+".$invalid && "+n+"."+r+".$dirty, '"+o+"' : !"+n+"."+r+".$invalid && "+n+"."+r+".$dirty}";a(e).parent().closest("div").attr("ng-class",l);var i=s(e);a(e).parent().append(i)}else console.log("please type input element name for below item"),console.log(a(e))},c=function(e){for(var r=a(e).find("input, textarea, select, multiple-autocomplete"),n=0;n<r.length;n++){a(r[n]).attr("required"),a(r[n]).attr("ng-required");u(r[n])}};c(e)})}}}])}();
+/**
+ *  Custom validation directive
+ *  @author Jagdeep
+ *
+ *  How to use
+ *  load this directive and write in html
+ *  Example :
+ *  <form name="anyName" my-validation> optional attributes : on-success-cls="class name", on-error-cls="class name", err-msg-cls="class name"
+ *      <input type="anyType" ng-model="modelName" required
+ *      err-msg-required="required message"
+ *      err-msg-pattern = "pattern message"
+ *      err-msg-min = "min message"
+ *      err-msg-max = "max message"
+ *      err-msg-minlength = "minlength message"
+ *      err-msg-maxlength = "maxlength message"
+ *      err-msg-number = "number message"
+ *      />
+ *  </form>
+ *  given err msg validation only it will validate
+ */
+(function () {
+    angular.module('candidatePortal.application').directive('compareTo', [
+        '$parse',
+        function ($parse) {
+            return {
+                require: "ngModel",
+                scope: {
+                    otherModelValue: "=compareTo"
+                },
+                link: function(scope, element, attributes, ngModel) {
+                    ngModel.$validators.compareTo = function(modelValue) {
+                        return modelValue == scope.otherModelValue;
+                    };
+                    scope.$watch("otherModelValue", function() {
+                        ngModel.$validate();
+                    });
+                }
+            };
+        }
+    ]);
+    angular.module('candidatePortal.application').directive('dateGreaterThan', [
+        '$parse',
+        function ($parse) {
+            return {
+                require: "ngModel",
+                scope: {
+                    otherModelValue: "=dateGreaterThan"
+                },
+                link: function(scope, element, attributes, ngModel) {
+                    console.log(attributes.ngRequired);
+                    console.log(attributes.required);
+                    //if(attributes.required || attributes.ngRequired);
+                    ngModel.$validators.dateGreaterThan = function(modelValue) {
+                        var toDate = moment(modelValue, "DD-MM-YYYY");
+                        var fromDate = moment(scope.otherModelValue, "DD-MM-YYYY");
+                        var diff = toDate.diff(fromDate, 'days');
+                        console.log(diff);
+                        return  diff > 0 || (modelValue == null && scope.otherModelValue == null) ? true : false;
+                        //return true;
+                    };
+                    scope.$watch("otherModelValue", function() {
+                        ngModel.$validate();
+                    });
+                }
+            };
+        }
+    ]);
+    angular.module('candidatePortal.application').directive('myValidation', [
+        '$parse',
+        '$compile',
+        '$interval',
+        '$rootScope',
+        function ($parse, $compile, $interval, $rootScope) {
+            return {
+                restrict: 'EA',
+                compile : function (tElement, tAttrs, transclude) {
+                    jQuery.noConflict();
+                    jQuery(document).ready(function($) {
+                        var formName = tAttrs.name;
+                        var onSuccessCls = tAttrs.onSuccessCls || "has-success";
+                        var onErrorCls = tAttrs.onErrorCls || "has-error";
+                        var errMsgCls = tAttrs.errMsgCls || "error-msg";
+
+                        var createErrMsgTemplate = function (elem) {
+                            var attrs = $(elem)[0].attributes;
+                            var elemName = $(elem).attr("name");
+                            var htmlStr = "";
+                            for (var i = 0; i < attrs.length; i++) {
+                                if (attrs[i].name.indexOf("err-msg") == 0) {
+                                    if (attrs[i].name == 'err-msg-required') {
+                                        htmlStr += '<p class="' + errMsgCls + '" ng-show="' + formName + '.' + elemName + '.$error.required">' + attrs[i].value + '</p>';
+                                    }
+                                    else if (attrs[i].name == 'err-msg-pattern') {
+                                        htmlStr += '<p class="' + errMsgCls + '" ng-show="' + formName + '.' + elemName + '.$error.pattern">' + attrs[i].value + '</p>';
+                                    }
+                                    else if (attrs[i].name == 'err-msg-email') {
+                                        htmlStr += '<p class="' + errMsgCls + '" ng-show="' + formName + '.' + elemName + '.$error.email">' + attrs[i].value + '</p>';
+                                    }
+                                    else if (attrs[i].name == 'err-msg-number') {
+                                        htmlStr += '<p class="' + errMsgCls + '" ng-show="' + formName + '.' + elemName + '.$error.number">' + attrs[i].value + '</p>';
+                                    }
+                                    else if (attrs[i].name == 'err-msg-min') {
+                                        htmlStr += '<p class="' + errMsgCls + '" ng-show="' + formName + '.' + elemName + '.$error.min">' + attrs[i].value + '</p>';
+                                    }
+                                    else if (attrs[i].name == 'err-msg-max') {
+                                        htmlStr += '<p class="' + errMsgCls + '" ng-show="' + formName + '.' + elemName + '.$error.max">' + attrs[i].value + '</p>';
+                                    }
+                                    else if (attrs[i].name == 'err-msg-maxlength') {
+                                        htmlStr += '<p class="' + errMsgCls + '" ng-show="' + formName + '.' + elemName + '.$error.maxlength">' + attrs[i].value + '</p>';
+                                    }
+                                    else if (attrs[i].name == 'err-msg-minlength') {
+                                        htmlStr += '<p class="' + errMsgCls + '" ng-show="' + formName + '.' + elemName + '.$error.minlength">' + attrs[i].value + '</p>';
+                                    }
+                                    else if (attrs[i].name == 'err-msg-compareto') {
+                                        htmlStr += '<p class="' + errMsgCls + '" ng-show="' + formName + '.' + elemName + '.$error.compareTo">' + attrs[i].value + '</p>';
+                                    }
+                                    else if (attrs[i].name == 'err-msg-dategreaterthan') {
+                                        htmlStr += '<p class="' + errMsgCls + '" ng-show="' + formName + '.' + elemName + '.$error.dateGreaterThan">' + attrs[i].value + '</p>';
+                                    }
+                                }
+                            }
+                            return htmlStr;
+                        };
+
+                        var createErrTemplate = function (elem) {
+                            var errMsgHtml = createErrMsgTemplate(elem);
+                            var elemName = $(elem).attr("name");
+                            var errHtml = '<span ng-show="' + formName + '.' + elemName + '.$invalid && ' + formName + '.' + elemName + '.$dirty">' + errMsgHtml + '</span>';
+                            return errHtml;
+                        };
+
+                        var doValidate = function (elem) {
+                            // for error class at parent div
+                            var elemName = $(elem).attr("name");
+                            if (elemName != null && elemName != undefined) {
+                                var errClassStr = "{'" + onErrorCls + "' : " + formName + "." + elemName + ".$invalid && " + formName + "." + elemName + ".$dirty, '" + onSuccessCls + "' : !" + formName + "." + elemName + ".$invalid && " + formName + "." + elemName + ".$dirty}";
+                                $(elem).parent().closest('div').attr("ng-class", errClassStr);
+                                // for error messages
+                                var errTemplates = createErrTemplate(elem);
+                                $(elem).parent().append(errTemplates);
+                            }
+                            else{
+                                console.log("please type input element name for below item");
+                                console.log($(elem));
+                            }
+                        };
+
+                        var findFieldsAndOperate = function (element) {
+                            var inputElem = $(element).find("input, textarea, select, multiple-autocomplete");
+                            //console.log(inputElem);
+                            for (var i = 0; i < inputElem.length; i++) {
+                                var isReq = $(inputElem[i]).attr("required");
+                                var isNgReq = $(inputElem[i]).attr("ng-required");
+                                //if ((isReq && isReq != undefined) || (isNgReq && isNgReq != undefined)) {
+                                doValidate(inputElem[i]);
+                                //}
+                            }
+                            //$compile(tElement.contents())(scope);
+                        };
+                        findFieldsAndOperate(tElement);
+
+                        //var observeDOM = (function(){
+                        //    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
+                        //        eventListenerSupported = window.addEventListener;
+                        //
+                        //    return function(obj, callback){
+                        //        if( MutationObserver ){
+                        //            // define a new observer
+                        //            var obs = new MutationObserver(function(mutations, observer){
+                        //                console.log("observing");
+                        //                if( mutations[0].addedNodes.length || mutations[0].removedNodes.length )
+                        //                    callback(mutations);
+                        //            });
+                        //            // have the observer observe foo for changes in children
+                        //            obs.observe( obj, { childList:true, subtree:true });
+                        //        }
+                        //        else if( eventListenerSupported ){
+                        //            obj.addEventListener('DOMNodeInserted', callback, false);
+                        //            obj.addEventListener('DOMNodeRemoved', callback, false);
+                        //        }
+                        //    }
+                        //})();
+                        ////console.log(tElement[0]);
+                        //observeDOM( tElement[0] ,function(args1){
+                        //    //console.log('dom changed', args1[0].addedNodes);
+                        //    //console.log($(args1[0].addedNodes));
+                        //    //findFieldsAndOperate(args1[0].addedNodes);
+                        //});
+
+                    });
+                }
+            };
+        }
+    ]);
+})();
