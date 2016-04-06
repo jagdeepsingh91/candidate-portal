@@ -117,9 +117,7 @@
                         </multiple-autocomplete>
                     </div>
                 </div>
-                <div class="col-xs-3 l-h-40">
-                    <label>Current CTC</label>
-                </div>
+               
                 <div class="col-xs-5">
                     <!--<div class="label-select-box pad-l-0">-->
                         <!--<select class="form-control" ng-model="userDetailObj.currentCTC">-->
@@ -128,6 +126,7 @@
                         <!--</select>-->
                     <!--</div>-->
                     <div class="label-input-text">
+                        <label>Current CTC</label>
                         <input name="currentCtc" type="text"
                                ng-model="userDetailObj.currentCTC"
                                pattern="^([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
@@ -136,8 +135,8 @@
                                class="form-control" placeholder="" />
                     </div>
                 </div>
-                <div class="col-xs-3">
-                    SGD
+                <div class="col-xs-7">
+                    <p class="s-font l-h-40 f-w-100 color-a">SGD</p>
                 </div>
                 <div class="col-xs-12">
                     <div class="label-input-text">
@@ -276,6 +275,9 @@
             });
             $(this).prev().datepicker("show");
             $('.datepicker-inline').remove();
-        });
+        });	
+		$('td.day').click(function(){
+			$('.datepicker-dropdown').hide();
+		})
     });
 </script>

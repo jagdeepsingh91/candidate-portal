@@ -1,1 +1,0 @@
-!function(){angular.module("candidatePortal.application").filter("filterPositionFields",["$filter",function(i){return function(i,n){return i?i.filter(function(i){return-1==n.indexOf(i.fieldId)}):i}}])}();

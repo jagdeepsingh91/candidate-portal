@@ -1,1 +1,0 @@
-!function(){angular.module("candidatePortal.application").directive("simpleFileUpload",["$parse",function(n){return{restrict:"A",link:function(i,a,e){var t=n(e.ngModel),l=t.assign;a.bind("change",function(){i.$apply(function(){l(i,a[0].files)})})}}}])}();

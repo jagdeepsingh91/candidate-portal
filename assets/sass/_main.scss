@@ -70,6 +70,7 @@ hr.color-e {border-color: $grey-15;}
 
 /* Font Weight */
 strong.med {font-weight: 500;}
+.f-w-100 {font-weight: 100;}
 
 /* Width */
 .wid-70 {width: 70px;}
@@ -155,8 +156,16 @@ strong.med {font-weight: 500;}
 		color: $grey-6;
 		font-size: $s-font-size;	
 		box-shadow: none;
-		border-bottom: none;
-		&:first-of-type {
+		border-bottom-color: transparent;
+		&.last-child {			
+			border-bottom-color: $grey-5;
+			&:focus {
+				border-top-color: $bt-default;
+				border-bottom-color: $bt-default;
+			}
+		}
+		
+		/*&:first-of-type {
 			border-radius: 2px 2px 0 0;
 			border-bottom: none;
 			&:focus {
@@ -165,16 +174,13 @@ strong.med {font-weight: 500;}
 		}
 		&:last-of-type {
 			border-radius: 0 0 2px 2px; 
-			border-bottom: inherit;
-			&:focus {
-				border-bottom: inherit;
-			}
+			border-bottom: 1px;
 		}
 		&:focus {
 			border: inherit;
 			border-bottom: none;
 			box-shadow: none;
-		}
+		}*/
 	}
 }
 .steps-wrapper {

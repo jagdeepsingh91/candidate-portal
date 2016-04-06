@@ -44,6 +44,7 @@ input[type="text"], input[type="email"], input[type="password"], select.form-con
     position: absolute;
     top: 0;
     width: 100%;
+	cursor: pointer;
 }
 /*************** Button Styling ******************/
 [type=button] {
@@ -91,6 +92,7 @@ input[type="text"], input[type="email"], input[type="password"], select.form-con
 	color: #FFF;
 	line-height: $base-height;
 	border-radius: $base-border-radius;
+	cursor: pointer;
 	&:hover {
 		background: $base-hover-color;
 		color: #FFF;
@@ -286,3 +288,6 @@ select.form-control {
 		margin: 0;  
 	}
 }	
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	background: transparent;
+}
