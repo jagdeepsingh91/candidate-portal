@@ -81,6 +81,7 @@
                 req.applicantOriginalResumePath = response.applicantOriginalResumePath;
                 req.applicantOriginalDocPath = response.applicantOriginalDocPath;
                 apiMethods.apiPOSTReq(url, req).then(function (response) {
+                    getProfileObj();
                     commonService.showSuccessMsg("Resume Updated successfully");
                 }, function (response) {
                     commonService.onApiResponseError(response);
