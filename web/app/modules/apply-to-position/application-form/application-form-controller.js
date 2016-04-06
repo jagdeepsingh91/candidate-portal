@@ -9,8 +9,10 @@
         'candidatePortal.services.navigationService',
         'candidatePortal.models.applicantModel',
         function ($scope, $state, $stateParams, apiUrlConfig, apiMethods, commonService, navigationService, applicantModel) {
-
             var positionId = $stateParams.id;
+            if(!$scope.applyToPositionObj.userDetailObj){
+                navigationService.goToApplyPosition(positionId);
+            }
             $scope.onApplicationFormSubmit = function () {
                 if(!$scope.formObj()){
                     commonService.showInfoMsg("Form is incomplete");
@@ -23,7 +25,10 @@
                 apiMethods.apiPOSTReq(url, req).then(function (response) {
                     commonService.showSuccessMsg("Applied to position");
                     console.log(response);
-                    navigationService.goToOpenPositionsList();
+                    if($scope.callbackFn)
+                        $scope.callbackFn();
+                    else
+                        navigationService.goToOpenPositionsList();
                 }, function (response) {
                     commonService.onApiResponseError(response);
                 });

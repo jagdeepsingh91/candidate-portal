@@ -36,10 +36,12 @@
             };
 
             $scope.onUploadResumeBack = function () {
-                if($scope.callbackFn)
-                    $scope.callbackFn();
-                else
-                    navigationService.goToOpenPositionsList();
+                //if($scope.callbackFn)
+                //    $scope.callbackFn();
+                //else
+                //    navigationService.goToOpenPositionsList();
+
+                window.history.back();
             };
         }
     ]);
