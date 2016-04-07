@@ -171,7 +171,7 @@
                     <div class="col-xs-8">
                         <div class="label-input-text">
                             <label>From</label>
-                            <input name="fromDate{{$index}}" type="text" class="form-control datepicker"
+                            <input name="fromDate{{$index}}" type="text" class="form-control datepickerfrom"
                                    ng-model="item.employerFromDate"
                                    placeholder="" />
                             <span class="icon-calendar"></span>
@@ -183,7 +183,7 @@
                             <input name="toDate{{$index}}" type="text"
                                    date-greater-than="item.employerFromDate"
                                    err-msg-dategreaterthan="to date can't be less than from date"
-                                   class="form-control datepicker"
+                                   class="form-control datepickerto"
                                    ng-model="item.employerToDate"
                                    placeholder=""/>
                             <span class="icon-calendar"></span>
@@ -269,7 +269,9 @@
         $.fn.datepicker.defaults.format = "dd-mm-yyyy";
         $.fn.datepicker.defaults.autoclose = true;
         $(document).on('click', '.icon-calendar', function() {
-            $('.datepicker').datepicker();
+            $('.datepickerfrom, datepickerto').datepicker({
+				keepOpen: false
+			});
             $('.datepicker-dob').datepicker({
                 endDate:'-5y'
             });
