@@ -10,8 +10,8 @@
         'candidatePortal.models.positionModel',
         function ($q, $scope, $rootScope, apiUrlConfig, apiMethods, commonService, navigationService, positionModel) {
             $scope.orderOptionsList = [
-                {type : "Ascending", value : true},
-                {type : "Descending", value : false}
+                {type : "Ascending", value : false},
+                {type : "Descending", value : true}
             ];
 
             var getPositionList = function () {

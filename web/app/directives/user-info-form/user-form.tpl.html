@@ -65,14 +65,17 @@
                     </div>
                 </div>
                 <div class="col-xs-24">
-                    <div class="label-select-box">
+                    <div class="label-input-text">
                         <label>Location</label>
-                        <select name="location" class="form-control" ng-model="userDetailObj.applicantCity"
-                                err-msg-required="Please select your location"
-                                set-model-value="locationsList"
-                                ng-options="item as item.name for item in locationsList">
-                            <option value="">Select Location</option>
-                        </select>
+                        <!--<select name="location" class="form-control" ng-model="userDetailObj.applicantCity"-->
+                                <!--err-msg-required="Please select your location"-->
+                                <!--set-model-value="locationsList"-->
+                                <!--ng-options="item as item.name for item in locationsList">-->
+                            <!--<option value="">Select Location</option>-->
+                        <!--</select>-->
+                        <input name="location" type="text" ng-model="userDetailObj.applicantCity"
+                               err-msg-required="Please enter your location"
+                               class="form-control" placeholder="Enter your location"/>
                     </div>
                 </div>
                 <!--<div class="col-xs-2 l-h-38">-->

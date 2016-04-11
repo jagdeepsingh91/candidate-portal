@@ -99,7 +99,9 @@
             <p class="large-font color-9">My Resume</p>
             <div class="docs-attached" ng-if="profileObj.applicantDetailObj.applicantOriginalDocPath">
                 <span class="icon-document-file-pdf"></span>
-                <p>{{profileObj.applicantDetailObj.applicantOriginalDocPath}}</p>
+                <p class="cursor-pointer" ng-click="downloadFile(profileObj.applicantDetailObj.applicantOriginalDocPath)">
+                    {{profileObj.applicantDetailObj.applicantOriginalDocPath}}
+                </p>
                 <div class="pull-right l-h-40">
                     <!--<span class="date">12 Oct 2015</span>-->
                     <!--<span class="icon-trash-can" onclick="confirm('Are you sure?')"></span>-->
@@ -115,7 +117,8 @@
                             </a>
                         </div>
                         <div class="media-body">
-                            <p class="heading">Update Resume</p>
+                            <p class="heading" ng-if="!profileObj.updateResumeObj[0].name">Update Resume</p>
+                            <p class="heading" ng-if="profileObj.updateResumeObj[0].name">{{profileObj.updateResumeObj[0].name}}</p>
                             <p class="color-a">Supported file format .pdf, .doc, .docx<br>You can <a href="#" class="link underline">browse &amp; choose file</a> </p>
                         </div>
                     </div>
@@ -145,7 +148,7 @@
 
             <div class="docs-attached" ng-repeat="item in profileObj.attachmentsObj">
                 <span class="icon-document-certificate"></span>
-                <p>{{item.originalFileName}}</p>
+                <p class="cursor-pointer" ng-click="downloadFile(item.relativeFilePath)">{{item.originalFileName}}</p>
                 <div class="pull-right l-h-40">
                     <span class="date">{{item.dateCreated}}</span>
                     <!--<span class="icon-trash-can" onclick="confirm('Are you sure?')"></span>-->

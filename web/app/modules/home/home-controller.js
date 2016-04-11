@@ -39,7 +39,7 @@
                     navigationService.goToOpenPositionsList();
                 }, function (response) {
                     localStorageService.doLogOut();
-                    commonService.onApiResponseError(response);
+                    //commonService.onApiResponseError(response);
                 });
             };
 

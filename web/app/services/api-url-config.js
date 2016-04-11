@@ -36,7 +36,9 @@
                 // Master
                 getMastersId : function (type, value) {
                     return basePath+"/masters/id/"+type+"/"+value;
-                }
+                },
+                // Documents
+                downloadFile : basePath+"/document/download"
                 
             }
         }

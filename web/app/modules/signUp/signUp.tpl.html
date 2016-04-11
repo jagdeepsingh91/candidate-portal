@@ -1,19 +1,43 @@
 <div class="row" oc-lazy-load="['myValidation']">
-    <form name="signUpForm" my-validation novalidate class="login-form">
+    <div class="border-container my-profile col-md-24" ng-show="showTermsAndConditionView">
+        <p>
+            Before continuing please read the statement below
+        </p>
+        <br/>
+        <p>
+            NOTICE RELATING TO THE PERSONAL DATA PROTECTION ACT 2014
+            <br/>
+            <br/>
+            In view of the Personal Data Protection Act taking effect from 2nd July 2014, we would like to keep you informed that Raffles Institution is committed to ensuring that your personal information submitted to us will be kept strictly confidential. All personal information provided by the individual are to be used solely for recruitment purposes and will not be disclosed to any third parties.
+
+
+            Raffles Institution will not keep personal information any longer than it requires the information for business and legal purposes. We will seek your consent if we will be using your personal information for any purpose other than recruitment. If you have any queries or complaints relating to this Notice or otherwise relating to misuse or suspected misuse of your personal information, you may send us an email to
+
+            <a class="link" href="mailto:rihr@ri.edu.sg"> rihr@ri.edu.sg </a>
+
+        </p>
+        <br/>
+        <div class="row">
+            <a class="link-btn btn-15 col-md-3 pad-l-r-20 cursor-pointer" ng-click="onTermsAccepted()">Yes, I accept</a>
+            <span class="col-md-1"></span>
+            <a class="link-btn btn-15-grey col-md-4 pad-l-r-20 cursor-pointer" ng-click="onTermsRejected()">No, I do not accept</a>
+        </div>
+    </div>
+    <form name="signUpForm" my-validation novalidate class="login-form" ng-show="!showTermsAndConditionView">
         <div class="row pad-t-b-20">
             <div class="col-md-18">
                 <a class="cursor-pointer" ng-click="onBackButtonClick()">&lt; Back</a>
             </div>
         </div>
         <div class="border-container">
-            <a href="#" class="btn-linkedin">
-                <span class="icon-linkedin"></span>
-                Sign in with <span>Linkedin</span>
-            </a>
-            <a href="#" class="btn-fb">
-                <span class="icon-facebook"></span>Sign in with <span>Facebook</span>
-            </a>
-            <div class="col-md-24 text-center pad-t-b-10">OR</div>
+            <!--<a href="#" class="btn-linkedin">-->
+                <!--<span class="icon-linkedin"></span>-->
+                <!--Sign in with <span>Linkedin</span>-->
+            <!--</a>-->
+            <!--<a href="#" class="btn-fb">-->
+                <!--<span class="icon-facebook"></span>Sign in with <span>Facebook</span>-->
+            <!--</a>-->
+            <!--<div class="col-md-24 text-center pad-t-b-10">OR</div>-->
             <div>
                 <label class="sr-only">Full Name</label>
                 <input name="fullName" type="text"
