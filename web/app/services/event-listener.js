@@ -4,7 +4,8 @@
         '$state',
         '$location',
         'candidatePortal.services.commonService',
-        function ($rootScope, $state, $location, commonService) {
+        'candidatePortal.services.navigationService',
+        function ($rootScope, $state, $location, commonService, navigationService) {
 
             var nonAccessibleStatesWithoutLogin = [
                 "home.updateProfile",
@@ -14,39 +15,30 @@
                 "home.changePassword"
             ];
 
+            var nonAccessibleStatesWithLogin = [
+                "login",
+                "forgotPassword",
+                "signUp"
+            ];
+
             $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
                     console.log("from state", fromState.name);
                     console.log("to State", toState.name);
                     console.log("on state change params", toParams);
 
-                    var getSwitchCaseValue = function (state) {
-                        console.log(toState.name.startsWith(state) ? toState.name : "");
-                        return toState.name.startsWith(state) ? toState.name : "";
-                    };
-
-                    if($rootScope.loggedInStatus){
-                        switch (toState.name){
-                            case getSwitchCaseValue("login") :
-                                event.preventDefault();
-                                commonService.showInfoMsg("Unauthorized access");
-                                break;
-
-                            case getSwitchCaseValue("forgotPassword") :
-                                event.preventDefault();
-                                commonService.showInfoMsg("Unauthorized access");
-                                break;
-
-                            case getSwitchCaseValue("signUp") :
-                                event.preventDefault();
-                                commonService.showInfoMsg("Unauthorized access");
-                                break;
+                    if($rootScope.loggedInStatus && nonAccessibleStatesWithLogin.indexOf(toState.name) != -1){
+                        event.preventDefault();
+                        commonService.showInfoMsg("Unauthorized access");
+                        if(fromState.name == "" || fromState.name == null){
+                            navigationService.goToOpenPositionsList();
                         }
                     }
-                    else{
-                        if(nonAccessibleStatesWithoutLogin.indexOf(toState.name) != -1){
-                            event.preventDefault();
-                            commonService.showInfoMsg("Unauthorized access");
+                    else if(!$rootScope.loggedInStatus && nonAccessibleStatesWithoutLogin.indexOf(toState.name) != -1){
+                        event.preventDefault();
+                        commonService.showInfoMsg("Unauthorized access");
+                        if(fromState.name == "" || fromState.name == null){
+                            navigationService.goToOpenPositionsList();
                         }
                     }
                 }

@@ -42,6 +42,22 @@
                         }]
                     }
                 })
+                //.state('signUp.termAndCondition', {
+                //    url: '/terms-and-conditions',
+                //    views: {
+                //        "": {
+                //            templateUrl: 'web/app/modules/signUp/terms-condition/terms-condition.tpl.html'
+                //        }
+                //    }
+                //    //resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
+                //    //    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                //    //        return $ocLazyLoad.load([
+                //    //            'userModel',
+                //    //            'signUpController'
+                //    //        ]);
+                //    //    }]
+                //    //}
+                //})
                 .state('home', {
                     url: '/home',
                     views: {

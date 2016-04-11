@@ -83,6 +83,7 @@
                 apiMethods.apiPOSTReq(url, req).then(function (response) {
                     getProfileObj();
                     commonService.showSuccessMsg("Resume Updated successfully");
+                    $scope.profileObj.updateResumeObj = null;
                 }, function (response) {
                     commonService.onApiResponseError(response);
                 });
@@ -90,6 +91,15 @@
 
             $scope.onEditProfileClick = function () {
                 navigationService.goToUpdateProfile();
+            };
+
+            $scope.downloadFile = function (filePath) {
+                var url = apiUrlConfig.downloadFile+"?filePath="+filePath;
+                window.open(url, "_blank");
+                //var req = {
+                //    filePath : filePath
+                //};
+                //apiMethods.apiGETReq(url, req);
             };
 
             $scope.onAddDocumentsClick = function () {
@@ -103,6 +113,7 @@
                 fd.append('file', $scope.profileObj.attachFileObj[0]);
                 apiMethods.apiUploadFileReq(url, fd).then(function (response) {
                     getApplicantAttachments();
+                    $scope.profileObj.attachFileObj = undefined;
                     commonService.showSuccessMsg("File uploaded successfully");
                 }, function (response) {
                     commonService.onApiResponseError(response);
