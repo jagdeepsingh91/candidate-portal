@@ -15,6 +15,7 @@
             };
 
             $scope.onSearchClick = function () {
+                $scope.positionSearchObj.searchBoxText = null;
                 var req = {
                     departmentId : $scope.positionSearchObj.selectedDepartment,
                     locationId : $scope.positionSearchObj.selectedLocation,
