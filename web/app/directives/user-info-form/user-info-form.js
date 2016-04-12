@@ -41,6 +41,16 @@
                                     element.$setDirty();
                                 });
                             }
+                            if(scope.applicantForm.$error.pattern != null){
+                                scope.applicantForm.$error.pattern.forEach(function(element){
+                                    element.$setDirty();
+                                });
+                            }
+                            if(scope.applicantForm.$error.number != null){
+                                scope.applicantForm.$error.number.forEach(function(element){
+                                    element.$setDirty();
+                                });
+                            }
                             isValid = false;
                         }
                         return isValid;
