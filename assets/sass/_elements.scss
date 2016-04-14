@@ -152,7 +152,7 @@ select.form-control {
 	border: 1px solid $grey-13;
 	width: 100%; 
 	height: $btn-social-height;
-	padding: 0 15px;
+	padding: 0 0;
 	margin-bottom: 20px;
 	label {
 		display: table-cell;
@@ -167,7 +167,7 @@ select.form-control {
 		box-shadow: none;
 		width: 100%;
 		padding: 0 0 0 15px;
-		background-position: center right;
+		background-position: 95% center;
 		font-size: $med-font-size;
 		color: $grey-14;
 		font-weight: 100;
@@ -239,14 +239,15 @@ select.form-control {
 }
 
 /**************** Elements with Label ****************/
-.label-input-text {
+div.label-input-text {
 	border: 1px solid $grey-13;
 	display: table;
 	width: 100%; 
 	height: $btn-social-height;
-	padding: 0 15px;
+	padding: 0 5px;
 	margin-bottom: 20px;
 	background: #FFF;
+	position: relative;
 	input {
 		border: none;
 		box-shadow: none;
@@ -260,14 +261,23 @@ select.form-control {
 		font-weight: 100;
 	}
 	label {		
-		font-size: $xs-font-size;
+		font-size: $med-font-size;
 		font-weight: 100;
 		color: $grey-11;
-		margin-left: 15px;
-		display: table-cell;
-		width: 1px;
-		white-space: nowrap;
-		vertical-align: middle;
+		margin-left: 10px;	
+		position: absolute;
+		top: 15px;
+		transition: 0.5s ease all;
+	}
+	&.focused {
+		label {
+			top: 5px;
+			font-size: $xs-font-size;
+		}
+		input {
+			height: $base-height;
+			margin-top: 15px;
+		}
 	}
 }
 

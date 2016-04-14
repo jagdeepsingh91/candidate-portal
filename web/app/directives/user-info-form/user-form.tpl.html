@@ -48,7 +48,7 @@
                                        err-msg-required="Please enter your mobile no"
                                        err-msg-pattern="Only digits are allowed"
                                        err-msg-number="Only digits are allowed"
-                                       placeholder="Mobile Number" class="form-control" required/>
+                                       placeholder="" class="form-control" required/>
                             </div>
                         </div>
                         <div class="col-xs-12">
@@ -58,7 +58,7 @@
                                        pattern="^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$"
                                        err-msg-required="Please select your date of birth"
                                        err-msg-pattern="Invalid Format. Should be (DD-MM-YYYY)"
-                                       class="form-control datepicker-dob" placeholder="DD-MM-YYYY"  required/>
+                                       class="form-control datepicker-dob" placeholder=""  required/>
                                 <span class="icon-calendar"></span>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                         <!--</select>-->
                         <input name="location" type="text" ng-model="userDetailObj.applicantCity"
                                err-msg-required="Please enter your location"
-                               class="form-control" placeholder="Enter your location"/>
+                               class="form-control" placeholder=""/>
                     </div>
                 </div>
                 <!--<div class="col-xs-2 l-h-38">-->
@@ -139,7 +139,7 @@
                     </div>
                 </div>
                 <div class="col-xs-7">
-                    <p class="s-font l-h-40 f-w-100 color-a">SGD</p>
+                    <p class="s-font l-h-50 f-w-100 color-a">SGD</p>
                 </div>
                 <div class="col-xs-12">
                     <div class="label-input-text">
@@ -148,7 +148,7 @@
                                pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
                                err-msg-pattern="Only digits & positive numbers are allowed"
                                ng-model="userDetailObj.noticePeriod"
-                               placeholder="Notice period in days" />
+                               placeholder="" />
                     </div>
                 </div>
             </div>
@@ -209,7 +209,7 @@
                 <div ng-repeat="item in userDetailObj.educationDetails">
                     <div class="col-xs-8">
                         <div class="label-select-box">
-                            <label>Year</label>
+                            <!-- <label>Year</label> -->
                             <select name="yearOfPassing{{$index}}" class="form-control"
                                     ng-model="item.yearOfPassing"
                                     set-model-value="yearsList"
@@ -220,7 +220,7 @@
                     </div>
                     <div class="col-xs-8">
                         <div class="label-select-box">
-                            <label>Degree</label>
+                            <!-- <label>Degree</label> -->
                             <select name="degree{{$index}}" class="form-control"
                                     ng-model="item.degree"
                                     set-model-value="degreeList"
@@ -231,7 +231,7 @@
                     </div>
                     <div class="col-xs-8">
                         <div class="label-select-box">
-                            <label>Branch</label>
+                            <!-- <label>Branch</label> -->
                             <select name="branch{{$index}}" class="form-control"
                                     ng-model="item.branch"
                                     set-model-value="branchList"
@@ -262,9 +262,6 @@
             </div>
         </div>
     </div>
-    <!-- <button type="submit" class="btn btn-lg btn-15 pull-right">Next</button> -->
-    <!--<a class="link-btn btn-15-grey pull-left pad-l-r-40">Previous</a>-->
-    <!--<a href="#" class="link-btn btn-15 pull-right pad-l-r-40">Submit</a>-->
 </div>
 <script>
     jQuery.noConflict();
@@ -283,6 +280,7 @@
         });	
 		$('td.day').click(function(){
 			$('.datepicker-dropdown').hide();
-		})
+		});			
     });
+		
 </script>
