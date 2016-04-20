@@ -69,7 +69,11 @@
                 var fd = new FormData();
                 fd.append('file', $scope.profileObj.updateResumeObj[0]);
                 apiMethods.apiUploadFileReq(url, fd).then(function (response) {
-                    createApplicantForUpdateResume(response.data.response);
+                    console.log($scope.profileObj.applicantDetailObj.applicantId);
+                    if($scope.profileObj.applicantDetailObj.applicantId)
+                        createApplicantForUpdateResume(response.data.response);
+                    else
+                        navigationService.goToUpdateProfile(response.data.response);
                 }, function (response) {
                     commonService.onApiResponseError(response);
                 });

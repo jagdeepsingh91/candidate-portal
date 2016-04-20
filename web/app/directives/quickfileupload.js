@@ -34,17 +34,17 @@
 							for(var i=0; i< filesSelected.length;i++) {
 								var fileTypeArr = filesSelected[i].name.split(".");
 								var fileType = fileTypeArr[fileTypeArr.length - 1];
-								if(fileType == "pdf" || fileType == "doc" || fileType == "docx") {
+								//if(fileType == "pdf" || fileType == "doc" || fileType == "docx") {
 									var index = filesUploaded + i;
 									scope.fileArrayObj.push({file: filesSelected[i], type: fileType, progress: "0"});
 									var fd = new FormData();
 									fd.append('file', filesSelected[i]);
 									upload(uploadUrl, fd, index);
-								}
-								else{
-									scope.fileArrayObj = undefined;
-									commonService.showInfoMsg("Unsupported format. Only pdf, doc & docx are allowed");
-								}
+								//}
+								//else{
+								//	scope.fileArrayObj = undefined;
+								//	commonService.showInfoMsg("Unsupported format. Only pdf, doc & docx are allowed");
+								//}
 							}
 							console.log(scope.fileArrayObj);
 						});

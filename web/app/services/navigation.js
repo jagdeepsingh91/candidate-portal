@@ -15,8 +15,8 @@
                 $state.go("forgotPassword");
             };
 
-            var goToUpdateProfile = function () {
-                $state.go("home.updateProfile");
+            var goToUpdateProfile = function (userObj) {
+                $state.go("home.updateProfile", {userObj : userObj});
             };
 
             var goToSignUpView = function (callbackFn) {

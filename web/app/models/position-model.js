@@ -96,7 +96,8 @@
                     firstFieldToDisplay: apiObj.firstFieldToDisplay,
                     commaSeparatedFieldList: apiObj.commaSeparatedFieldList,
                     positionPublishedDate: apiObj.positionPublishedDate,
-                    applicantStatus: apiObj.applicantStatus
+                    applicantStatus: apiObj.applicantStatus,
+                    appliedDate: apiObj.appliedDate
                 }
             };
             

@@ -12,7 +12,7 @@
                 //    $("body").prepend(alertHtml);
                 //});
                 if(time == "" || time == null || time == undefined)
-                    time = 2000;
+                    time = 4000;
                 jQuery.noConflict();
                 jQuery(document).ready(function($){
                     window.scrollTo(0, 0);
@@ -31,7 +31,7 @@
                 //    $("body").prepend(alertHtml);
                 //});
                 if(time == "" || time == null || time == undefined)
-                    time = 2000;
+                    time = 4000;
 
                 jQuery.noConflict();
                 jQuery(document).ready(function($){
@@ -51,7 +51,7 @@
                 //    $("body").prepend(alertHtml);
                 //});
                 if(time == "" || time == null || time == undefined)
-                    time = 2000;
+                    time = 4000;
 
                 jQuery.noConflict();
                 jQuery(document).ready(function($){
@@ -71,7 +71,7 @@
                 //    $("body").prepend(alertHtml);
                 //});
                 if(time == "" || time == null || time == undefined)
-                    time = 2000;
+                    time = 4000;
 
                 jQuery.noConflict();
                 jQuery(document).ready(function($){
@@ -83,7 +83,8 @@
 
             var onApiResponseError = function (response) {
                 if(response.data != null){
-                    showErrorMsg(response.data.response);
+                    if(response.data.response != null && response.data.response != "")
+                        showErrorMsg(response.data.response);
                 }
                 //else
                 //    showErrorMsg("Server Failure");
