@@ -47,14 +47,14 @@
                             //permissionsService.doLogOut();
                         }
                     }
-                    if(rejection.status == -1){
+                    if(rejection.status == -1 || rejection.status == 401){
                         var navigationService = $injector.get('candidatePortal.services.navigationService');
                         localStorageService.doLogOut();
                         var callback = function () {
                             $window.history.back();
                         };
-                        navigationService.goToLoginView(callback);
                         commonService.showErrorMsg("Session Expired! Please login to continue.", 5000);
+                        navigationService.goToLoginView(callback);
                     }
                     return $q.reject(rejection);
                 }

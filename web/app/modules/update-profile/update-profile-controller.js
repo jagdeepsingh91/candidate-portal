@@ -13,7 +13,8 @@
         function ($scope, $rootScope, $state, apiUrlConfig, apiMethods, commonService, navigationService, localStorageService, applicantModel) {
 
             //$scope.formObj = {};
-
+            var userObj = $state.params.userObj;
+            console.log(userObj);
             var getProfileObj = function () {
                 var url = apiUrlConfig.getApplicantProfile;
                 apiMethods.apiGETReq(url).then(function (response) {
@@ -25,9 +26,11 @@
                     commonService.onApiResponseError(response);
                 });
             };
-            if($rootScope.loggedInStatus)
+            if($rootScope.loggedInStatus && userObj == null)
                 getProfileObj();
-
+            else if(userObj){
+                $scope.updateProfileObj= applicantModel.digestApplicantApiObj(userObj);
+            }
             //var getLocationId = function (city) {
             //    var url = apiUrlConfig.getMastersId("location", city);
             //    apiMethods.apiGETReq(url).then(function (response) {

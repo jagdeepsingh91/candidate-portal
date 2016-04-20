@@ -94,6 +94,7 @@
                 })
                 .state('home.updateProfile', {
                     url: '/update-profile',
+                    params : {userObj : null},
                     views: {
                         "": {
                             controller: 'candidatePortal.modules.update-profile.updateProfileController', // This view will use AppCtrl loaded below in the resolve

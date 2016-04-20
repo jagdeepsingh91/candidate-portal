@@ -35,7 +35,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-21 xs-font">Showing {{positionsList.length}} results</div>
+        <div class="col-md-21 xs-font">
+            Showing {{positionsList.length}}
+            <span ng-show="positionsList.length > 1">results</span>
+            <span ng-show="positionsList.length <= 1">result</span>
+        </div>
         <div class="col-md-3" ng-init="positionOrder = true">
             <select ng-model="positionOrder" class="form-control col-md-5 no-border"
                     ng-options="item.value as item.type for item in orderOptionsList">
@@ -72,9 +76,9 @@
                             <div class="col-md-2" ng-if="!item.applicantStatus">
                                 <input class="btn" type="button" ng-click="onApplyPositionClick(item, 'listView')" value="Apply" />
                             </div>
-                            <div class="col-md-4 applied" ng-if="item.applicantStatus">
+                            <div class="col-md-8 applied" ng-if="item.applicantStatus">
                                 <span class="icon-circle-check"></span>
-                                <span>Applied</span>
+                                <span>Applied on {{item.appliedDate}}</span>
                             </div>
                             <!--<div class="col-md-2">-->
                                 <!--<input class="btn btn-white" type="button" value="Refer" />-->

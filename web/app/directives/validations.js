@@ -47,14 +47,14 @@
                     otherModelValue: "=dateGreaterThan"
                 },
                 link: function(scope, element, attributes, ngModel) {
-                    console.log(attributes.ngRequired);
-                    console.log(attributes.required);
+                    //console.log(attributes.ngRequired);
+                    //console.log(attributes.required);
                     //if(attributes.required || attributes.ngRequired);
                     ngModel.$validators.dateGreaterThan = function(modelValue) {
                         var toDate = moment(modelValue, "DD-MM-YYYY");
                         var fromDate = moment(scope.otherModelValue, "DD-MM-YYYY");
                         var diff = toDate.diff(fromDate, 'days');
-                        console.log(diff);
+                        //console.log(diff);
                         return  diff > 0 || (modelValue == null && scope.otherModelValue == null) ? true : false;
                         //return true;
                     };
@@ -133,7 +133,7 @@
                             // for error class at parent div
                             var elemName = $(elem).attr("name");
                             if (elemName != null && elemName != undefined) {
-                                var errClassStr = "{'" + onErrorCls + "' : " + formName + "." + elemName + ".$invalid && " + formName + "." + elemName + ".$dirty, '" + onSuccessCls + "' : !" + formName + "." + elemName + ".$invalid && " + formName + "." + elemName + ".$dirty}";
+                                var errClassStr = "{'" + onErrorCls + "' : " + formName + "." + elemName + ".$invalid && " + formName + "." + elemName + ".$dirty, '" + onSuccessCls + "' : !" + formName + "." + elemName + ".$invalid && " + formName + "." + elemName + ".$dirty, 'focused' : "+$(elem).attr("ng-model")+" || "+ formName + "." + elemName + ".$invalid}";
                                 $(elem).parent().closest('div').attr("ng-class", errClassStr);
                                 // for error messages
                                 var errTemplates = createErrTemplate(elem);

@@ -31,18 +31,20 @@
                         </span>
                     </p>
                     <p class="color-8">{{profileObj.applicantDetailObj.applicantCity}}</p>
-                    <p class="pad-t-b-10">
-                        <span class="xs-font color-9 inline-block wid-70" ng-if="profileObj.applicantDetailObj.employmentHistoryDetails[profileObj.applicantDetailObj.employmentHistoryDetails.length-1].employerName">
+                    <p class="pad-t-b-10" ng-if="profileObj.applicantDetailObj.employmentHistoryDetails[0].employerName">
+                        <span class="xs-font color-9 inline-block wid-70">
                             Current
                         </span>
-                        <span class="med-font mar-l-20">{{profileObj.applicantDetailObj.employmentHistoryDetails[profileObj.applicantDetailObj.employmentHistoryDetails.length-1].employerName}}</span>
+                        <span class="med-font mar-l-20">
+                            {{profileObj.applicantDetailObj.employmentHistoryDetails[0].employerName}}
+                        </span>
                     </p>
-                    <p>
-                        <span class="xs-font color-9 inline-block wid-70" ng-if="profileObj.applicantDetailObj.employmentHistoryDetails[profileObj.applicantDetailObj.employmentHistoryDetails.length-2]">
+                    <p ng-if="profileObj.applicantDetailObj.employmentHistoryDetails[1]">
+                        <span class="xs-font color-9 inline-block wid-70">
                             Previous
                         </span>
                         <span class="med-font mar-l-20">
-                            {{profileObj.applicantDetailObj.employmentHistoryDetails[profileObj.applicantDetailObj.employmentHistoryDetails.length-2].employerName}}
+                            {{profileObj.applicantDetailObj.employmentHistoryDetails[1].employerName}}
                         </span>
                     </p>
                 </div>

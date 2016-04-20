@@ -38,9 +38,9 @@
                             <div class="col-md-2" ng-if="!positionDetailsObj.applicantStatus">
                                 <input class="btn" type="button" value="Apply" ng-click="onApplyPositionClick(positionDetailsObj, 'detailView')"/>
                             </div>
-                            <div class="col-md-4 applied" ng-if="positionDetailsObj.applicantStatus">
+                            <div class="col-md-8 applied" ng-if="positionDetailsObj.applicantStatus">
                                 <span class="icon-circle-check"></span>
-                                <span>Applied</span>
+                                <span>Applied on {{positionDetailsObj.appliedDate}}</span>
                             </div>
                             <!--<div class="col-md-2">-->
                                 <!--<input class="btn btn-white" type="button" value="Refer" />-->

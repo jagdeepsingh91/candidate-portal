@@ -40,10 +40,10 @@
                             </div>
                         </div>
                         <div class="col-xs-12">
-                            <div class="label-input-text">
+                            <div class="label-input-text" ng-class="{'focused' : userDetailObj.applicantCellPhone ? true : true}">
                                 <label>Phone</label>
                                 <input name="userPhone" type="text"
-                                       pattern="^[0-9]*$"
+                                       pattern="[\d+\s]*"
                                        ng-model="userDetailObj.applicantCellPhone"
                                        err-msg-required="Please enter your mobile no"
                                        err-msg-pattern="Only digits are allowed"
@@ -111,7 +111,7 @@
                     <!--</div>-->
                 <!--</div>-->
                 <div class="col-xs-24">
-                    <div class="label-input-text">
+                    <div class="label-input-text focused">
                         <label>Skills</label>
                         <!--<input type="text" class="form-control" placeholder="" />-->
                         <multiple-autocomplete suggestions-arr="skillsList"
@@ -143,10 +143,10 @@
                 </div>
                 <div class="col-xs-12">
                     <div class="label-input-text">
-                        <label>Notice Period</label>
+                        <label>Notice Period (in days)</label>
                         <input name="noticePeriod" type="text" class="form-control"
                                pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
-                               err-msg-pattern="Only digits & positive numbers are allowed"
+                               err-msg-pattern="Please enter notice period in days."
                                ng-model="userDetailObj.noticePeriod"
                                placeholder="" />
                     </div>
