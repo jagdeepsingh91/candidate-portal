@@ -1,8 +1,8 @@
 (function () {
     angular.module("candidatePortal.application").factory('candidatePortal.services.apiUrlConfig',[
         function () {
-
-            var basePath = "http://siddharthk:8080/CandidatePortal";
+			var basePath = "http://tpdemo3.talentica.com/CandidatePortal";
+            //var basePath = "http://siddharthk:8080/CandidatePortal";
             //var basePath = "http://sumeets1:8080/CandidatePortal";
             return {
                 // User

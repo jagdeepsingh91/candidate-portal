@@ -5,7 +5,7 @@
 	color: #FFF;
 	display: block;
 	margin: 10px 0 0;
-	border-radius: $base-border-radius;	
+	border-radius: $base-border-radius;
 	line-height: $btn-social-height;
 	text-align: center;
 	&:hover {
@@ -27,7 +27,7 @@
 input[type="text"], input[type="email"], input[type="password"], select.form-control, .btn {
 	font-size: $xs-font-size;
 	height: $base-height;
-	border-radius: 2px;	
+	border-radius: 2px;
 	color: $base-color;
 	line-height: normal;
 	&:focus {box-shadow: none;}
@@ -98,11 +98,11 @@ input[type="text"], input[type="email"], input[type="password"], select.form-con
 		color: #FFF;
 	}
 }
-.btn-linkedin {	
-	@include btn-social($linkedin-bg, $linkedin-bg-hover);	
+.btn-linkedin {
+	@include btn-social($linkedin-bg, $linkedin-bg-hover);
 }
-.btn-fb {	
-	@include btn-social($fb-bg, $fb-bg-hover);	
+.btn-fb {
+	@include btn-social($fb-bg, $fb-bg-hover);
 }
 .btn-15 {
 	@include btn-social($base-active-color, $base-hover-color);
@@ -118,7 +118,7 @@ input[type="text"], input[type="email"], input[type="password"], select.form-con
 	&:hover {
 		background: $grey-2;
 		color: $grey-8;
-	} 
+	}
 }
 .btn-15-darkgrey {
 	@include btn-social($grey-1, $grey-8);
@@ -141,7 +141,7 @@ input[type="text"], input[type="email"], input[type="password"], select.form-con
 }
 
 /**************** Dropdown Styling ******************/
-select.form-control { 
+select.form-control {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	background: #fff url("../../dist/img/down-arrow.png") no-repeat scroll 95% center;
@@ -150,7 +150,7 @@ select.form-control {
 .label-select-box {
 	display: table;
 	border: 1px solid $grey-13;
-	width: 100%; 
+	width: 100%;
 	height: $btn-social-height;
 	padding: 0 0;
 	margin-bottom: 20px;
@@ -172,8 +172,39 @@ select.form-control {
 		color: $grey-14;
 		font-weight: 100;
 	}
-}
+  .dateArrow{background-position:90% center;}
 
+}
+.application-form .dateLabel{margin-top:17px;}
+.dateOfBirth .dateBox{width:19%;margin-left:12px;}
+.dateOfBirth .monthBox{width:30%;float:left;@extend .mar-l-10;}
+.dateOfBirth .yearBox{width:25%;float:left;@extend .mar-l-10;}
+.timePeriod .eduPeriod{width:36%;float:left;}
+/***************other elements css***************/
+.separator{width: 98%;border: 1px solid #eeeeee;margin:0px 0px 20px 8px;}
+.application-form .hyphen{font-size: 20px;margin:11px -4px 0px -4px;}
+.grayBox{background: #f8f8f8;padding: 10px 0px 0px 20px;height: 72px;width:98%;margin:0px 0px 20px 8px;}
+.declaration p{color: $grey-6;}
+.accordion-toggle{cursor:pointer;}
+.noRadio{margin-left:7em;margin-top:8px}
+.accordion-content{position:relative;}
+.detailsNo{position: absolute;left: -42px}
+.numberBlk{padding: 5px 12px;background: #f8f8f8;display:block;}
+.stepsContainer div,.stepsContainer span{float:left}
+.stepsContainer{float: left;margin:0px 0px 30px 23px;width:100%;}
+.stepsName{width: 20%;display: inline-block;font-size:$sm-font-size;margin-left:10px;}
+.stepsIndicator{width:350px;height:4px;margin-top:13px;}
+.indicatorLeft{background:$greenLight;@extend .stepsIndicator;}
+.indicatorRight{background:$greenDark;@extend .stepsIndicator;}
+.stepNum{font-size:26px;}
+.width9{width:9%}
+.step2 span{color:$greenDark;}
+.globalSeparator{border-bottom: 1px solid #eeeeee;width: 100%;position: absolute;left: 0px;}
+.questionGradu{margin:0px 0px 30px 10px;float:left;color:$grey-6;}
+.graduationRadio{margin:-11px 0px 0px 30px;float:left;}
+.icons{color: #bfbfbf;float: right;}
+.deleteIcon{font-size: 24px;color: #888;margin-left: 4px;margin-top: 8px;display: inline-block;cursor: pointer;}
+.personalInfo{margin-left:-10px;width:780px;}
 /*************** Custom Radio **************/
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
@@ -196,7 +227,7 @@ select.form-control {
 			height: 30px;
 			border: 1px solid $grey-13;
 			border-radius: 100%;
-			background: #fff;			
+			background: #fff;
 		}
 		&:after {
 			content: '';
@@ -223,7 +254,25 @@ select.form-control {
     transform: scale(1);
 }
 
-
+/*************Custom checkbox**************/
+.checkboxLabel{content: '';
+  position: absolute;
+  left: -20px;
+  top: 6px;
+  width: 27px;
+  height: 26px;
+  border: 1px solid #e7e7e7;
+  /* border-radius: 100%; */
+  background: #fff;}
+[type="checkbox"]:checked, [type="checkbox"]:not(:checked){left:-9999px;position:absolute;}
+input[type=checkbox]:checked + label:before{content: '';
+  width: 100%;
+  height: 100%;
+  background: url("../../dist/img/checkbox-bg.png") no-repeat scroll 95% center;
+  position: absolute;
+  left: 0px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;}
 /************** Search box ****************/
 .search {
 	position: relative;
@@ -242,29 +291,41 @@ select.form-control {
 div.label-input-text {
 	border: 1px solid $grey-13;
 	display: table;
-	width: 100%; 
+	width: 100%;
 	height: $btn-social-height;
 	padding: 0 5px;
 	margin-bottom: 20px;
 	background: #FFF;
 	position: relative;
-	input {
+	input,textarea {
 		border: none;
 		box-shadow: none;
 		color: $grey-14;
-		display: table-cell;		
-		width: 100%; 
+		display: table-cell;
+		width: 100%;
 		vertical-align: middle;
 		padding: 0 10px;
 		height: inherit;
 		font-size: $med-font-size;
 		font-weight: 100;
 	}
-	label {		
+  textarea:focus{
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    -webkit-appearance: none;
+    outline-color: transparent;
+    outline-style: none;
+  }
+	label {
 		font-size: $med-font-size;
 		font-weight: 100;
 		color: $grey-11;
-		margin-left: 10px;	
+		margin-left: 10px;
 		position: absolute;
 		top: 15px;
 		transition: 0.5s ease all;
@@ -292,12 +353,12 @@ div.label-input-text {
 	position: relative;
 	margin-top: 10px;
 	input {
-		
+
 	}
 	a {
-		margin: 0;  
+		margin: 0;
 	}
-}	
+}
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
 	background: transparent;
 }
