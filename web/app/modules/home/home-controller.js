@@ -109,6 +109,17 @@
                 });
             };
             getDegreeList();
+
+            var getApplicantSourceList = function () {
+                var url = apiUrlConfig.getMastersDropdownList("customField3");
+                apiMethods.apiGETReq(url, null, false).then(function (response) {
+                    $scope.applicantSourceList = response.data.response.content;
+                    console.log($scope.applicantSourceList);
+                }, function (response) {
+                    console.log("Error in fetching applicant source list. reason :", response);
+                });
+            };
+            getApplicantSourceList();
         }
     ]);
 })();

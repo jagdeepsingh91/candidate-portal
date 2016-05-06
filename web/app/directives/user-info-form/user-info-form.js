@@ -11,7 +11,8 @@
                     locationsList : '=?',
                     skillsList : '=?',
                     branchList : '=?',
-                    degreeList : '=?'
+                    degreeList : '=?',
+                    applicantSourceList : '=?'
                 },
                 templateUrl : "app/directives/user-info-form/user-form.tpl.html",
                 link: function(scope, element, attrs) {
@@ -21,11 +22,15 @@
                         scope.userDetailObj = applicantModel.digestApplicantApiObj({});
                     }
                     scope.yearsList = [];
+                    //scope.datesList = [];
+                    //scope.monthsList = [];
                     var currentYear = new Date().getFullYear();
-                    console.log(currentYear);
                     for(var i= 1960; i <= currentYear; i++){
                         scope.yearsList.push(i.toString());
                     }
+                    //for(var i= 1960; i <= currentYear; i++){
+                    //    scope.yearsList.push(i.toString());
+                    //}
 
                     scope.isFormValid = function () {
                         var isValid = true;
@@ -64,6 +69,17 @@
                         var index = scope.userDetailObj.educationDetails.indexOf(item);
                         if(index != -1){
                             scope.userDetailObj.educationDetails.splice(index, 1);
+                        }
+                    };
+
+                    scope.addTeaching = function () {
+                        scope.userDetailObj.table1.push({});
+                    };
+
+                    scope.removeTeaching = function (item) {
+                        var index = scope.userDetailObj.table1.indexOf(item);
+                        if(index != -1){
+                            scope.userDetailObj.table1.splice(index, 1);
                         }
                     };
 

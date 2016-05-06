@@ -51,8 +51,10 @@
                     //console.log(attributes.required);
                     //if(attributes.required || attributes.ngRequired);
                     ngModel.$validators.dateGreaterThan = function(modelValue) {
-                        var toDate = moment(modelValue, "DD-MM-YYYY");
-                        var fromDate = moment(scope.otherModelValue, "DD-MM-YYYY");
+                        var toDate = moment(modelValue, "MM-YYYY");
+                        var fromDate = moment(scope.otherModelValue, "MM-YYYY");
+                        console.log(toDate);
+                        console.log(fromDate);
                         var diff = toDate.diff(fromDate, 'days');
                         //console.log(diff);
                         return  diff > 0 || (modelValue == null && scope.otherModelValue == null) ? true : false;
