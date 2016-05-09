@@ -383,50 +383,60 @@
                 <div class="globalSeparator"></div>
             <!--Educational Information-->
                 <div class="row">
-                    <p class="heading accordion-toggle">Education <span class="icons icon-circle-plus"></span></p>
-                    <div ng-repeat="item in userDetailObj.educationDetails">
-                        <div class="col-xs-8">
-                            <div class="label-select-box">
-                                <!-- <label>Year</label> -->
-                                <select name="yearOfPassing{{$index}}" class="form-control"
-                                        ng-model="item.yearOfPassing"
-                                        set-model-value="yearsList"
-                                        ng-options="item for item in yearsList">
-                                    <option value="">Select Year</option>
-                                </select>
+                    <p class="heading accordion-toggle">Education <span class="icons icon-circle-minus"></span></p>
+                    <div>
+                        <div ng-repeat="item in userDetailObj.educationDetails">
+                            <div class="col-xs-24">
+                                <div class="label-input-text">
+                                    <label>Institute Name</label>
+                                    <input name="institute{{$index}}" type="text" class="form-control"
+                                           ng-model="item.institute"
+                                           placeholder="" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-8">
-                            <div class="label-select-box">
-                                <!-- <label>Degree</label> -->
-                                <select name="degree{{$index}}" class="form-control"
-                                        ng-model="item.degree"
-                                        set-model-value="degreeList"
-                                        ng-options="item as item.name for item in degreeList">
-                                    <option value="">Select Degree</option>
-                                </select>
+                            <div class="col-xs-8">
+                                <div class="label-select-box">
+                                    <!-- <label>Year</label> -->
+                                    <select name="yearOfPassing{{$index}}" class="form-control"
+                                            ng-model="item.yearOfPassing"
+                                            set-model-value="yearsList"
+                                            ng-options="item for item in yearsList">
+                                        <option value="">Select Year</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-8">
-                            <div class="label-select-box">
-                                <!-- <label>Branch</label> -->
-                                <select name="branch{{$index}}" class="form-control"
-                                        ng-model="item.branch"
-                                        set-model-value="branchList"
-                                        ng-options="item as item.name for item in branchList">
-                                    <option value="">Select Branch</option>
-                                </select>
+                            <div class="col-xs-8">
+                                <div class="label-select-box">
+                                    <!-- <label>Degree</label> -->
+                                    <select name="degree{{$index}}" class="form-control"
+                                            ng-model="item.degree"
+                                            set-model-value="degreeList"
+                                            ng-options="item as item.name for item in degreeList">
+                                        <option value="">Select Degree</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-24">
-                            <input type="button" ng-if="$index > 0"
-                                   ng-click="removeEducation(item)"
-                                   class="form-control"
-                                   value="+Remove Education" />
-                            <input type="button" ng-if="$index == userDetailObj.educationDetails.length-1"
-                                   class="form-control"
-                                   ng-click="addEducation(item)"
-                                   value="+Add Education" />
+                            <div class="col-xs-8">
+                                <div class="label-select-box">
+                                    <!-- <label>Branch</label> -->
+                                    <select name="branch{{$index}}" class="form-control"
+                                            ng-model="item.branch"
+                                            set-model-value="branchList"
+                                            ng-options="item as item.name for item in branchList">
+                                        <option value="">Select Branch</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-24">
+                                <input type="button" ng-if="$index > 0"
+                                       ng-click="removeEducation(item)"
+                                       class="form-control"
+                                       value="+Remove Education" />
+                                <input type="button" ng-if="$index == userDetailObj.educationDetails.length-1"
+                                       class="form-control"
+                                       ng-click="addEducation(item)"
+                                       value="+Add Education" />
+                            </div>
                         </div>
                     </div>
                     <!--<div class="accordion-content displayNone">-->
@@ -536,88 +546,62 @@
                     <!--</div>-->
                 </div>
                 <div class="globalSeparator"></div>
-            <div class="row">
-                <p class="heading accordion-toggle">Teaching Subject Proficiency (Applicable for Academic and Relief position only)<span class="icons icon-circle-plus"></span></p>
-                <div ng-repeat="item in userDetailObj.table1">
-                    <div class="col-xs-12">
-                        <div class="label-input-text">
-                            <label>Subject</label>
-                            <input name="teachingSubject{{$index}}" type="text" class="form-control"
-                                   ng-model="item.teachingSubject"
-                                   placeholder="" />
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="label-input-text">
-                            <label>Level</label>
-                            <input name="teachingLevel{{$index}}" type="text" class="form-control"
-                                   ng-model="item.teachingLevel"
-                                   placeholder="" />
-                        </div>
-                    </div>
-                    <div class="col-xs-24">
-                        <input type="button" ng-if="$index > 0"
-                               ng-click="removeTeaching(item)"
-                               class="form-control"
-                               value="+Remove" />
-                        <input type="button" ng-if="$index == userDetailObj.table1.length-1"
-                               class="form-control"
-                               ng-click="addTeaching(item)"
-                               value="+Add" />
-                    </div>
-                </div>
-            </div>
-            <div class="globalSeparator"></div>
             <!--Employment Information-->
             <div class="row">
-                <p class="heading accordion-toggle">Employment Experience <span class="icons icon-circle-plus"></span></p>
-                <div ng-repeat="item in userDetailObj.employmentHistoryDetails">
-                    <div class="col-xs-24">
-                        <div class="label-input-text">
-                            <label>Company Name</label>
-                            <input name="company{{$index}}" type="text" class="form-control"
-                                   ng-model="item.employerName"
-                                   placeholder="" />
+                <p class="heading accordion-toggle">Employment Experience <span class="icons icon-circle-minus"></span></p>
+                <div>
+                    <!--<div class="detailsNo">-->
+                        <!--<span class="numberBlk">1</span>-->
+                        <!--<span class="deleteIcon icon-trash-can"></span>-->
+                    <!--</div>-->
+                    <div ng-repeat="item in userDetailObj.employmentHistoryDetails">
+                        <div class="col-xs-24">
+                            <div class="label-input-text">
+                                <label>Company Name</label>
+                                <input name="company{{$index}}" type="text" class="form-control"
+                                       ng-model="item.employerName"
+                                       placeholder="" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-8">
-                        <div class="label-input-text">
-                            <label>Designation</label>
-                            <input name="designation{{$index}}" type="text"
-                                   ng-model="item.designationName"
-                                   class="form-control" placeholder="" />
+                        <div class="col-xs-8">
+                            <div class="label-input-text">
+                                <label>Designation</label>
+                                <input name="designation{{$index}}" type="text"
+                                       ng-model="item.designationName"
+                                       class="form-control" placeholder="" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-8">
-                        <div class="label-input-text">
-                            <label>From</label>
-                            <input name="fromDate{{$index}}" type="text" class="form-control datepickerfrom"
-                                   ng-model="item.employerFromDate"
-                                   placeholder="" />
-                            <span class="icon-calendar"></span>
+                        <div class="col-xs-8">
+                            <div class="label-input-text">
+                                <label>From</label>
+                                <input name="fromDate{{$index}}" type="text" class="form-control datepickerfrom"
+                                       ng-model="item.employerFromDate"
+                                       placeholder="" />
+                                <span class="icon-calendar"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-8">
-                        <div class="label-input-text">
-                            <label>To</label>
-                            <input name="toDate{{$index}}" type="text"
-                                   date-greater-than="item.employerFromDate"
-                                   err-msg-dategreaterthan="to date can't be less than from date"
-                                   class="form-control datepickerto"
-                                   ng-model="item.employerToDate"
-                                   placeholder=""/>
-                            <span class="icon-calendar"></span>
+                        <div class="col-xs-8">
+                            <div class="label-input-text">
+                                <label>To</label>
+                                <input name="toDate{{$index}}" type="text"
+                                       date-greater-than="item.employerFromDate"
+                                       err-msg-dategreaterthan="to date can't be less than from date"
+                                       class="form-control datepickerto"
+                                       ng-model="item.employerToDate"
+                                       placeholder=""/>
+                                <span class="icon-calendar"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-24">
-                        <input type="button" ng-if="$index > 0"
-                               ng-click="removeCompany(item)"
-                               class="form-control"
-                               value="+Remove Company" />
-                        <input type="button" ng-if="$index == userDetailObj.employmentHistoryDetails.length-1"
-                               class="form-control"
-                               ng-click="addCompany(item)"
-                               value="+Add Company" />
+                        <div class="col-xs-24">
+                            <input type="button" ng-if="$index > 0"
+                                   ng-click="removeCompany(item)"
+                                   class="form-control"
+                                   value="+Remove Company" />
+                            <input type="button" ng-if="$index == userDetailObj.employmentHistoryDetails.length-1"
+                                   class="form-control"
+                                   ng-click="addCompany(item)"
+                                   value="+Add Company" />
+                        </div>
                     </div>
                 </div>
                 <!--<div class="accordion-content displayNone">-->
@@ -993,9 +977,9 @@
                 <div class="globalSeparator"></div>
             <!--Others-->
                 <div class="row">
-                    <p class="heading accordion-toggle">Others <span class="icons icon-circle-plus"></span></p>
+                    <p class="heading accordion-toggle">Others <span class="icons icon-circle-minus"></span></p>
                     <div class="accordion-content">
-                        <div class="col-xs-8">
+                        <div class="col-xs-12">
                             <!--<div class="label-select-box">-->
                                 <!--&lt;!&ndash; <label>Year</label> &ndash;&gt;-->
                                 <!--<select name="" class="form-control"-->
@@ -1014,7 +998,7 @@
                                        placeholder="" />
                             </div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-12">
                             <div class="label-input-text">
                                 <label>Date of availability</label>
                                 <input name="dateOfAvailability" type="text" class="form-control datepickerfrom"
@@ -1023,7 +1007,7 @@
                                 <span class="icon-calendar"></span>
                             </div>
                         </div>
-                        <div class="col-xs-10">
+                        <div class="col-xs-12">
                             <div class="label-select-box">
                                 <!--<label>Applicant Source</label>-->
                                 <!--<input name="applicantSource" type="text" class="form-control"-->
@@ -1037,7 +1021,15 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xs-8">
+                        <div class="col-xs-12">
+                            <div class="label-input-text">
+                                <label>If others, please indicate</label>
+                                <input name="ifOtherApplicantSource" type="text" class="form-control"
+                                       ng-model="userDetailObj.ifOtherApplicantSource"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="col-xs-13">
                             <label class="floatLeft dateLabel">Expected Monthly Salary (in SGD)</label>
                             <div class="label-input-text">
                                 <label>Current CTC (in SGD)</label>
@@ -1085,9 +1077,68 @@
                     </div>
                 </div>
                 <div class="globalSeparator"></div>
+                <div class="row">
+                    <p class="heading accordion-toggle">Teaching Subject Proficiency (Applicable for Academic and Relief position only)<span class="icons icon-circle-minus"></span></p>
+                    <div>
+                        <div ng-repeat="item in userDetailObj.table1">
+                            <div class="col-xs-12">
+                                <div class="label-input-text">
+                                    <label>Subject</label>
+                                    <input name="teachingSubject{{$index}}" type="text" class="form-control"
+                                           ng-model="item.teachingSubject"
+                                           placeholder="" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="label-input-text">
+                                    <label>Level</label>
+                                    <input name="teachingLevel{{$index}}" type="text" class="form-control"
+                                           ng-model="item.teachingLevel"
+                                           placeholder="" />
+                                </div>
+                            </div>
+                            <div class="col-xs-24">
+                                <input type="button" ng-if="$index > 0"
+                                       ng-click="removeTeaching(item)"
+                                       class="form-control"
+                                       value="+Remove" />
+                                <input type="button" ng-if="$index == userDetailObj.table1.length-1"
+                                       class="form-control"
+                                       ng-click="addTeaching(item)"
+                                       value="+Add" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="heading accordion-toggle">Please indicate your period of availability<span class="icons icon-circle-minus"></span></p>
+                    <div>
+                        <div class="col-xs-12">
+                            <div class="label-input-text">
+                                <label>From</label>
+                                <input name="availabilityFrom" type="text" class="form-control datepicker"
+                                       ng-model="userDetailObj.availabilityFrom"
+                                       placeholder="" />
+                                <span class="icon-calendar"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="label-input-text">
+                                <label>To</label>
+                                <input name="availabilityTo" type="text" class="form-control datepicker"
+                                       ng-model="userDetailObj.availabilityTo"
+                                       date-greater-than="userDetailObj.availabilityFrom"
+                                       err-msg-dategreaterthan="to date can't be less than from date"
+                                       placeholder="" />
+                                <span class="icon-calendar"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="globalSeparator"></div>
             <!--Declaration-->
                 <div class="row declaration">
-                    <p class="heading accordion-toggle">Declaration <span class="icons icon-circle-plus"></span></p>
+                    <p class="heading accordion-toggle">Declaration <span class="icons icon-circle-minus"></span></p>
                     <div class="accordion-content">
                         <div class="col-xs-24">
                            <p>1. Do you have a criminal record?</p>
@@ -1206,6 +1257,9 @@
             $('.datepicker-dob').datepicker({
                 endDate:'-5y'
             });
+            $('.datepicker').datepicker({
+
+            });
             $(this).prev().datepicker("show");
             $('.datepicker-inline').remove();
         });	
@@ -1224,8 +1278,8 @@
             else{
                 $(icon).addClass('icon-circle-minus').removeClass('icon-circle-plus');
             }
-            //Hide the other panels
-//            $(this).next().not($(this).next()).slideUp('fast');
+//              Hide the other panels
+//                $(".accordion-toggle").next().not($(this).next()).slideToggle('fast');
 
         });
         $(document).on('click','.deleteIcon',function(){

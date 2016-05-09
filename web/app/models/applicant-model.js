@@ -208,6 +208,9 @@
                     appliedBefore : apiObj.customField10,
                     ifAppliedBeforeDetail : apiObj.customField11,
                     nationality: apiObj.customField12,
+                    ifOtherApplicantSource : apiObj.customField13,
+                    availabilityFrom : apiObj.customField14,
+                    availabilityTo : apiObj.customField15,
                     table1 : digestTable1ApiObj(apiObj.table1)
                 }
             };
@@ -415,6 +418,9 @@
                     customField10 : uiObj.appliedBefore,
                     customField11 : uiObj.ifAppliedBeforeDetail,
                     customField12: uiObj.nationality,
+                    customField13 : uiObj.ifOtherApplicantSource,
+                    customField14 : uiObj.availabilityFrom,
+                    customField15 : uiObj.availabilityTo,
                     table1 : convertTable1UiObj(uiObj.table1)
                 }
             };
