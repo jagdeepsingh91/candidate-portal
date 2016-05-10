@@ -35,6 +35,17 @@
                 return arrList;
             };
 
+            var parseApiDateForEmployment = function (apiDate) {
+                if(!apiDate)
+                    return;
+
+                var arr = apiDate.split("-");
+                if(arr.length != 3)
+                    return;
+
+                return arr[1]+"-"+arr[2];
+            };
+
             var digestEmploymentHistoryApiObj = function (apiObj) {
                 if(!apiObj || apiObj == null)
                     return [{}];
@@ -58,8 +69,8 @@
                         designationName: apiObj[i].designationName,
                         employerExperience: apiObj[i].employerExperience,
                         employmentHistoryId: apiObj[i].employmentHistoryId,
-                        employerFromDate: apiObj[i].employerFromDate,
-                        employerToDate: apiObj[i].employerToDate
+                        employerFromDate: parseApiDateForEmployment(apiObj[i].employerFromDate),
+                        employerToDate: parseApiDateForEmployment(apiObj[i].employerToDate)
                     };
                     arrList.push(obj);
                 }
@@ -79,6 +90,25 @@
                     });
                 }
                 return skillsArr;
+            };
+
+            var digestTable1ApiObj = function (apiObj) {
+                if(!apiObj)
+                    return [{}];
+
+                if(apiObj.length == 0)
+                    return [{}];
+
+                var arr = [];
+                for(var i=0;i<apiObj.length; i++){
+                    var obj = {
+                        teachingSubject: apiObj[i].customField0,
+                        teachingLevel: apiObj[i].customField1,
+                        id: apiObj[i].id
+                    };
+                    arr.push(obj);
+                }
+                return arr;
             };
 
             var digestApplicantApiObj = function (apiObj) {
@@ -164,7 +194,24 @@
                     fresher: apiObj.fresher,
                     note: apiObj.note,
                     joiningDate: apiObj.joiningDate,
-                    blacklistReason: apiObj.blacklistReason
+                    blacklistReason: apiObj.blacklistReason,
+                    applicantAddress: apiObj.customField0,
+                    postalCode: apiObj.customField1,
+                    dateOfAvailability: apiObj.customField2,
+                    applicantSource: apiObj.customField3,
+                    criminalRecord : apiObj.customField4,
+                    suspendedFromEmployment : apiObj.customField5,
+                    suspendedFromEmploymentReason : apiObj.customField6,
+                    sufferingFromMedical : apiObj.customField7,
+                    friendsInSameInstitute : apiObj.customField8,
+                    ifYesNameAndRelation : apiObj.customField9,
+                    appliedBefore : apiObj.customField10,
+                    ifAppliedBeforeDetail : apiObj.customField11,
+                    nationality: apiObj.customField12,
+                    ifOtherApplicantSource : apiObj.customField13,
+                    availabilityFrom : apiObj.customField14,
+                    availabilityTo : apiObj.customField15,
+                    table1 : digestTable1ApiObj(apiObj.table1)
                 }
             };
 
@@ -200,6 +247,13 @@
                 return arrList;
             };
 
+            var convertUiDateForEmployment = function (uiDate) {
+                if(!uiDate)
+                    return;
+
+                return "01-"+uiDate;
+            };
+
             var convertEmploymentHistoryUIObj2ApiObj = function (uiObj) {
                 if(!uiObj)
                     return null;
@@ -222,8 +276,8 @@
                         designationName: uiObj[i].designationName,
                         employerExperience: uiObj[i].employerExperience,
                         employmentHistoryId: uiObj[i].employmentHistoryId,
-                        employerFromDate: uiObj[i].employerFromDate,
-                        employerToDate: uiObj[i].employerToDate
+                        employerFromDate: convertUiDateForEmployment(uiObj[i].employerFromDate),
+                        employerToDate: convertUiDateForEmployment(uiObj[i].employerToDate)
                     };
                     arrList.push(obj);
                 }
@@ -248,6 +302,22 @@
                     namesArr.push(skillsObj[i].name);
                 }
                 return namesArr.join(",");
+            };
+
+            var convertTable1UiObj = function (uiObj) {
+                if(!uiObj)
+                    return;
+
+                var arr = [];
+                for(var i=0;i<uiObj.length; i++){
+                    var obj = {
+                        customField0: uiObj[i].teachingSubject,
+                        customField1: uiObj[i].teachingLevel,
+                        id: uiObj[i].id
+                    };
+                    arr.push(obj);
+                }
+                return arr;
             };
 
             var convertUIObj2ApiObj = function (uiObj) {
@@ -334,7 +404,24 @@
                     fresher: uiObj.fresher,
                     note: uiObj.note,
                     joiningDate: uiObj.joiningDate,
-                    blacklistReason: uiObj.blacklistReason
+                    blacklistReason: uiObj.blacklistReason,
+                    customField0: uiObj.applicantAddress,
+                    customField1: uiObj.postalCode,
+                    customField2: uiObj.dateOfAvailability,
+                    customField3: uiObj.applicantSource,
+                    customField4 : uiObj.criminalRecord,
+                    customField5 : uiObj.suspendedFromEmployment,
+                    customField6 : uiObj.suspendedFromEmploymentReason,
+                    customField7 : uiObj.sufferingFromMedical,
+                    customField8 : uiObj.friendsInSameInstitute,
+                    customField9 : uiObj.ifYesNameAndRelation,
+                    customField10 : uiObj.appliedBefore,
+                    customField11 : uiObj.ifAppliedBeforeDetail,
+                    customField12: uiObj.nationality,
+                    customField13 : uiObj.ifOtherApplicantSource,
+                    customField14 : uiObj.availabilityFrom,
+                    customField15 : uiObj.availabilityTo,
+                    table1 : convertTable1UiObj(uiObj.table1)
                 }
             };
 

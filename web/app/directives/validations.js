@@ -51,11 +51,23 @@
                     //console.log(attributes.required);
                     //if(attributes.required || attributes.ngRequired);
                     ngModel.$validators.dateGreaterThan = function(modelValue) {
-                        var toDate = moment(modelValue, "DD-MM-YYYY");
-                        var fromDate = moment(scope.otherModelValue, "DD-MM-YYYY");
+                        if(!modelValue)
+                            return true;
+
+                        var toDate, fromDate;
+                        if(modelValue.split("-").length == 2) {
+                            toDate = moment(modelValue, "MM-YYYY");
+                            fromDate = moment(scope.otherModelValue, "MM-YYYY");
+                        }
+                        else{
+                            toDate = moment(modelValue, "DD-MM-YYYY");
+                            fromDate = moment(scope.otherModelValue, "DD-MM-YYYY");
+                        }
+                        console.log(toDate);
+                        console.log(fromDate);
                         var diff = toDate.diff(fromDate, 'days');
-                        //console.log(diff);
-                        return  diff > 0 || (modelValue == null && scope.otherModelValue == null) ? true : false;
+                        console.log(diff);
+                        return  diff >= 0 || (modelValue == null && scope.otherModelValue == null) ? true : false;
                         //return true;
                     };
                     scope.$watch("otherModelValue", function() {

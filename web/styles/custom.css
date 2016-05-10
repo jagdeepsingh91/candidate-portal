@@ -2,6 +2,16 @@
     cursor: pointer !important;
 }
 
+.banner{
+    text-align: center;
+    /*position: fixed;*/
+    /*z-index: 9999;*/
+}
+
+.mg-tp-270{
+    margin-top: 270px;
+}
+
 .loadingDiv{
     width: inherit;
     height: 100%;

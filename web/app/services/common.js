@@ -8,10 +8,10 @@ jQuery(window).load(function() {
 	//});
 	jQuery('input').each(function(){
 		if(jQuery(this).text() != ""){
-		jQuery(this).parent().addClass('focused');
+			jQuery(this).parent().addClass('focused');
 		}
 	});
 	jQuery.each(jQuery('input[type=text]'),function(){
-	alert(jQuery(this).val());
+	//alert(jQuery(this).val());
 	});
 });

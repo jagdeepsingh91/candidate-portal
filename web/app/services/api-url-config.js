@@ -1,9 +1,9 @@
 (function () {
     angular.module("candidatePortal.application").factory('candidatePortal.services.apiUrlConfig',[
         function () {
-			var basePath = "http://tpdemo3.talentica.com/CandidatePortal";
+			//var basePath = "http://tpdemo3.talentica.com/CandidatePortal";
             //var basePath = "http://siddharthk:8080/CandidatePortal";
-            //var basePath = "http://sumeets1:8080/CandidatePortal";
+            var basePath = "http://sumeets1:8080/CandidatePortal";
             return {
                 // User
                 createUser : basePath+"/user/",
@@ -36,6 +36,9 @@
                 // Master
                 getMastersId : function (type, value) {
                     return basePath+"/masters/id/"+type+"/"+value;
+                },
+                getMastersDropdownList : function (id) {
+                    return basePath+"/masters/custom/dropdown/"+id;
                 },
                 // Documents
                 downloadFile : basePath+"/document/download"
