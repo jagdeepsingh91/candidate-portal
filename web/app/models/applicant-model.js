@@ -19,15 +19,12 @@
                             id: apiObj[i].majorId,
                             name : apiObj[i].major
                         },
-                        //degreeId: apiObj[i].degreeId,
-                        //degreeTitle: apiObj[i].degreeTitle,
                         educationalInfoId: apiObj[i].educationalInfoId,
                         institute: apiObj[i].institute,
                         instituteId: apiObj[i].instituteId,
-                        //major: apiObj[i].major,
-                        //majorId: apiObj[i].majorId,
-                        //yearOfPassing: apiObj[i].yearOfPassing != null ? apiObj[i].yearOfPassing.split("-")[0] : null,
                         yearOfPassing: apiObj[i].yearOfPassing,
+                        fromYear: apiObj[i].fromYear,
+                        remarks: apiObj[i].remarks,
                         grade: apiObj[i].grade
                     };
                     arrList.push(obj);
@@ -55,20 +52,16 @@
                 for(var i=0; i< apiObj.length; i++){
                     var obj = {
                         applicantId: apiObj[i].applicantId,
-                        //employer : {
-                        //    id: apiObj[i].employerId,
-                        //    name : apiObj[i].employerName
-                        //},
                         employerId: apiObj[i].employerId,
                         employerName: apiObj[i].employerName,
-                        //designation : {
-                        //    id: apiObj[i].designationId,
-                        //    name : apiObj[i].designationName
-                        //},
                         designationId: apiObj[i].designationId,
                         designationName: apiObj[i].designationName,
                         employerExperience: apiObj[i].employerExperience,
                         employmentHistoryId: apiObj[i].employmentHistoryId,
+                        grossSalary: apiObj[i].grossSalary,
+                        allowance: apiObj[i].allowance,
+                        reasonForLeaving: apiObj[i].reasonForLeaving,
+                        dutiesInvolved: apiObj[i].dutiesInvolved,
                         employerFromDate: parseApiDateForEmployment(apiObj[i].employerFromDate),
                         employerToDate: parseApiDateForEmployment(apiObj[i].employerToDate)
                     };
@@ -191,7 +184,7 @@
                     rejectedDate: apiObj.rejectedDate,
                     department: apiObj.department,
                     confidential: apiObj.confidential,
-                    fresher: apiObj.fresher,
+                    fresher: digestEmploymentHistoryApiObj(apiObj.employmentHistoryDetails).length == 0 ? 'true' : 'false',
                     note: apiObj.note,
                     joiningDate: apiObj.joiningDate,
                     blacklistReason: apiObj.blacklistReason,
@@ -211,6 +204,7 @@
                     ifOtherApplicantSource : apiObj.customField13,
                     availabilityFrom : apiObj.customField14,
                     availabilityTo : apiObj.customField15,
+                    salutation : apiObj.customField16,
                     table1 : digestTable1ApiObj(apiObj.table1)
                 }
             };
@@ -223,14 +217,6 @@
                 for(var i=0; i< uiObj.length; i++){
                     var obj = {
                         applicantId: uiObj[i].applicantId,
-                        //degree : {
-                        //    id: uiObj[i].degreeId,
-                        //    name : uiObj[i].degreeTitle
-                        //},
-                        //branch : {
-                        //    id: uiObj[i].majorId,
-                        //    name : uiObj[i].major
-                        //},
                         degreeId: uiObj[i].degree == null ? null :uiObj[i].degree.id,
                         degreeTitle: uiObj[i].degree == null ? null :uiObj[i].degree.name,
                         educationalInfoId: uiObj[i].educationalInfoId,
@@ -238,8 +224,9 @@
                         instituteId: uiObj[i].instituteId,
                         major: uiObj[i].branch == null ? null :uiObj[i].branch.name,
                         majorId: uiObj[i].branch == null ? null :uiObj[i].branch.id,
-                        //yearOfPassing: uiObj[i].yearOfPassing != null ? uiObj[i].yearOfPassing+"-05-01" : null,
                         yearOfPassing: uiObj[i].yearOfPassing,
+                        fromYear: uiObj[i].fromYear,
+                        remarks: uiObj[i].remarks,
                         grade: uiObj[i].grade
                     };
                     arrList.push(obj);
@@ -262,20 +249,16 @@
                 for(var i=0; i< uiObj.length; i++){
                     var obj = {
                         applicantId: uiObj[i].applicantId,
-                        //employer : {
-                        //    id: apiObj[i].employerId,
-                        //    name : apiObj[i].employerName
-                        //},
                         employerId: uiObj[i].employerId,
                         employerName: uiObj[i].employerName,
-                        //designation : {
-                        //    id: apiObj[i].designationId,
-                        //    name : apiObj[i].designationName
-                        //},
                         designationId: uiObj[i].designationId,
                         designationName: uiObj[i].designationName,
                         employerExperience: uiObj[i].employerExperience,
                         employmentHistoryId: uiObj[i].employmentHistoryId,
+                        grossSalary: uiObj[i].grossSalary,
+                        allowance: uiObj[i].allowance,
+                        reasonForLeaving: uiObj[i].reasonForLeaving,
+                        dutiesInvolved: uiObj[i].dutiesInvolved,
                         employerFromDate: convertUiDateForEmployment(uiObj[i].employerFromDate),
                         employerToDate: convertUiDateForEmployment(uiObj[i].employerToDate)
                     };
@@ -395,7 +378,7 @@
                     resumeTypeId: uiObj.resumeTypeId,
                     customFields: uiObj.customFields,
                     educationDetails: convertEducationDetailsUIObj2ApiObj(uiObj.educationDetails),
-                    employmentHistoryDetails: convertEmploymentHistoryUIObj2ApiObj(uiObj.employmentHistoryDetails),
+                    employmentHistoryDetails: uiObj.fresher == true ? [] : convertEmploymentHistoryUIObj2ApiObj(uiObj.employmentHistoryDetails),
                     stepTitle: uiObj.stepTitle,
                     rejectedBy: uiObj.rejectedBy,
                     rejectedDate: uiObj.rejectedDate,
@@ -421,6 +404,7 @@
                     customField13 : uiObj.ifOtherApplicantSource,
                     customField14 : uiObj.availabilityFrom,
                     customField15 : uiObj.availabilityTo,
+                    customField16 : uiObj.salutation,
                     table1 : convertTable1UiObj(uiObj.table1)
                 }
             };

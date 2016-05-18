@@ -55,7 +55,11 @@
                             return true;
 
                         var toDate, fromDate;
-                        if(modelValue.split("-").length == 2) {
+                        if(modelValue.split("-").length == 1) {
+                            toDate = moment(modelValue, "YYYY");
+                            fromDate = moment(scope.otherModelValue, "YYYY");
+                        }
+                        else if(modelValue.split("-").length == 2) {
                             toDate = moment(modelValue, "MM-YYYY");
                             fromDate = moment(scope.otherModelValue, "MM-YYYY");
                         }

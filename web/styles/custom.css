@@ -66,7 +66,7 @@
     color: #3c763d;
 }
 .has-success .form-control {
-    background-color: transparent;
+    background-color: #fff;
     border-color: transparent;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -197,4 +197,15 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+select.form-control::-ms-expand {
+    display: none;
+}
+select.form-control{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
 }

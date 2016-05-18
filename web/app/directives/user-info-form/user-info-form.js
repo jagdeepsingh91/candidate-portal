@@ -12,7 +12,8 @@
                     skillsList : '=?',
                     branchList : '=?',
                     degreeList : '=?',
-                    applicantSourceList : '=?'
+                    applicantSourceList : '=?',
+                    salutationList : '=?'
                 },
                 templateUrl : "app/directives/user-info-form/user-form.tpl.html",
                 link: function(scope, element, attrs) {
