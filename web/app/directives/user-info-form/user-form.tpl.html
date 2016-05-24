@@ -110,6 +110,7 @@
                             <label>Application ID</label>
                             <input name="userApplicationId" type="text"
                                    ng-model="userDetailObj.applicantId"
+                                   ng-disabled="true"
                                    err-msg-required="Please enter your application ID"
                                    placeholder="" class="form-control"/>
                         </div>
@@ -556,6 +557,29 @@
                             <label for="graduateNo" class="noRadio">No</label>
                         </div>
                     </div>
+                    <div class="col-xs-24 timePeriod grayBox">
+                        <label class="floatLeft dateLabel col-xs-6">Total Experience</label>
+                        <div class="col-xs-18">
+                            <div class="label-select-box eduPeriod mar-left-18">
+                                <!-- <label>Year</label> -->
+                                <select name="experienceYear" class="form-control dateArrow"
+                                    ng-model="userDetailObj.applicantWorkingSinceYear"
+                                    set-model-value="experienceList"
+                                    ng-options="item for item in experienceList">
+                                    <option value="">Year</option>
+                                </select>
+                            </div>
+                            <div class="label-select-box eduPeriod mar-left-18">
+                                <!-- <label>Year</label> -->
+                                <select name="experienceMonth" class="form-control dateArrow"
+                                    ng-model="userDetailObj.applicantWorkingSinceMonth"
+                                    set-model-value="monthsList"
+                                    ng-options="item for item in monthsList">
+                                    <option value="">Month</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div ng-if="userDetailObj.fresher != 'true'">
                     <!--<div class="detailsNo">-->
@@ -602,7 +626,7 @@
                         </div>
                         <div class="col-xs-12">
                             <div class="label-input-text">
-                                <label>Gross Salary</label>
+                                <label>Gross Salary (in SGD)</label>
                                 <input name="grossSalary{{$index}}" type="text"
                                        ng-model="item.grossSalary"
                                        pattern="^([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
@@ -613,7 +637,7 @@
                         </div>
                         <div class="col-xs-12">
                             <div class="label-input-text">
-                                <label>Allowance</label>
+                                <label>Allowance (in SGD)</label>
                                 <input name="allowance{{$index}}" type="text"
                                        ng-model="item.allowance"
                                        pattern="^([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"

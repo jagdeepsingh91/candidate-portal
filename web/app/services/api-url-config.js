@@ -2,8 +2,9 @@
     angular.module("candidatePortal.application").factory('candidatePortal.services.apiUrlConfig',[
         function () {
 			//var basePath = "http://tpdemo3.talentica.com/CandidatePortal";
+			var basePath = "http://tp-w2k8r2-vm8:9090/CandidatePortal";
             //var basePath = "http://siddharthk:8080/CandidatePortal";
-            var basePath = "http://sumeets1:8080/CandidatePortal";
+            //var basePath = "http://sumeets1:8080/CandidatePortal";
             return {
                 // User
                 createUser : basePath+"/user/",

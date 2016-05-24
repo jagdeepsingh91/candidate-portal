@@ -104,6 +104,19 @@
                 return arr;
             };
 
+            var getWorkingSinceMonth = function (obj) {
+                if(!obj)
+                    return;
+
+                var arr = obj.split(" ");
+                if(arr.length > 3){
+                    return parseInt(arr[2]);
+                }
+                else{
+                    return null;
+                }
+            };
+
             var digestApplicantApiObj = function (apiObj) {
                 return {
                     applicantId: apiObj.applicantId,
@@ -113,7 +126,9 @@
                     applicantEmail1: apiObj.applicantEmail1,
                     applicantEmail2: apiObj.applicantEmail2,
                     applicantHomePhone: apiObj.applicantHomePhone,
-                    applicantWorkingSince: apiObj.applicantWorkingSince,
+                    //applicantWorkingSince: apiObj.applicantWorkingSince,
+                    applicantWorkingSinceYear: apiObj.applicantExperience != null ? parseInt(apiObj.applicantExperience.split(" ")[0]) : null,
+                    applicantWorkingSinceMonth: getWorkingSinceMonth(apiObj.applicantExperience),
                     applicantWorkPhone: apiObj.applicantWorkPhone,
                     applicantSourceTitle: apiObj.applicantSourceTitle,
                     applicantPositionTitle: apiObj.applicantPositionTitle,
@@ -313,8 +328,8 @@
                     applicantEmail1: uiObj.applicantEmail1,
                     applicantEmail2: uiObj.applicantEmail2,
                     applicantHomePhone: uiObj.applicantHomePhone,
-                    //applicantWorkingSince: uiObj.applicantWorkingSince,
-                    applicantWorkingSince: "0",
+                    applicantWorkingSince: uiObj.applicantWorkingSinceMonth != null ? uiObj.applicantWorkingSinceYear+"."+uiObj.applicantWorkingSinceMonth : uiObj.applicantWorkingSinceYear,
+                    //applicantWorkingSince: "0",
                     applicantWorkPhone: uiObj.applicantWorkPhone,
                     applicantSourceTitle: uiObj.applicantSourceTitle,
                     applicantPositionTitle: uiObj.applicantPositionTitle,
@@ -384,7 +399,7 @@
                     rejectedDate: uiObj.rejectedDate,
                     department: uiObj.department,
                     confidential: uiObj.confidential,
-                    fresher: uiObj.fresher,
+                    fresher: uiObj.fresher == "true" ? true : null,
                     note: uiObj.note,
                     joiningDate: uiObj.joiningDate,
                     blacklistReason: uiObj.blacklistReason,
