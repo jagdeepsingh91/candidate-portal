@@ -8,20 +8,20 @@
                         <span class="icon-search"></span>
                         <input class="form-control" type="text" ng-model="positionSearchObj.searchBoxText" placeholder="Search by skills, position name etc.">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <select class="form-control" ng-model="positionSearchObj.selectedDepartment"
                                 ng-options="item.id as item.name for item in departmentsList">
                             <option value="">Select School</option>
                             <!--<option>Lorem Ipsum</option>-->
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
-                        <select class="form-control" ng-model="positionSearchObj.selectedSkill"
-                                ng-options="item.id as item.name for item in skillsList">
-                            <option value="">Select Department</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
+                    <!--<div class="form-group col-md-4">-->
+                        <!--<select class="form-control" ng-model="positionSearchObj.selectedSkill"-->
+                                <!--ng-options="item.id as item.name for item in skillsList">-->
+                            <!--<option value="">Select Department</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                    <div class="form-group col-md-6">
                         <select class="form-control" ng-model="positionSearchObj.selectedLocation"
                                 ng-options="item.id as item.name for item in locationsList">
                             <option value="">Select Functions</option>
