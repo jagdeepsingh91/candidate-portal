@@ -1,0 +1,26 @@
+<ng-form my-validation name="innerForm">
+    <div class="clearfix">
+        <label class=" f-11">{{item.displayName}}
+            <span class="asterisk" ng-if="item.required">*</span>
+        </label>
+        <p class="pull-right text-danger f-11" ng-if="duplicateName">Duplicate record(s) found</p>
+        <!--<input type="text" id="tags" name="{{item.propertyName}}"-->
+               <!--class="form-control {{item.cssClassName}}"-->
+               <!--ng-model="item.selectedValue"-->
+               <!--placeholder="{{item.watermarkText}}"-->
+               <!--ng-required="item.required"-->
+               <!--ng-pattern="item.regex"-->
+               <!--err-msg-required="This field is required."-->
+               <!--err-msg-pattern="{{item.regexMessage}}">-->
+        <div class="radio" ng-repeat="fields in item.optionList">
+            <input id="{{item.propertyName+$index}}" type="radio" class="{{item.cssClassName}}" name="{{item.propertyName}}"
+                   ng-model="item.selectedValue"
+                   value="{{fields}}"
+                   ng-required="item.required && (item.selectedValue == null || item.selectedValue == '')"
+                   ng-pattern="item.regex"
+                   err-msg-required="This field is required."
+                   err-msg-pattern="{{item.regexMessage}}">
+            <label for="{{item.propertyName+$index}}">{{fields}}</label>
+        </div>
+    </div>
+</ng-form>

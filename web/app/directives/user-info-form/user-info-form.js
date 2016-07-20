@@ -1,110 +1,56 @@
 ﻿(function () {
     angular.module('candidatePortal.application').directive('userInfoForm',[
+        'candidatePortal.services.apiUrlConfig',
+        'candidatePortal.services.apiMethods',
+        'candidatePortal.services.commonService',
         'candidatePortal.models.applicantModel',
-        function (applicantModel) {
+        function (apiUrlConfig, apiMethods, commonService, applicantModel) {
             return {
                 restrict: 'AE',
                 scope: {
-                    isFormValid : '=',
-                    userDetailObj : '=?',
-                    onSubmitCallback : '=?',
-                    locationsList : '=?',
-                    skillsList : '=?',
-                    branchList : '=?',
-                    degreeList : '=?',
-                    applicantSourceList : '=?',
-                    salutationList : '=?'
+                    submitCallback : '=?',
+                    cancelCallback : '=?',
+                    fieldsObj : '=?'
                 },
                 templateUrl : "app/directives/user-info-form/user-form.tpl.html",
                 link: function(scope, element, attrs) {
-                    console.log(scope.userDetailObj);
-                    console.log(scope.locationsList);
-                    if(!scope.userDetailObj){
-                        scope.userDetailObj = applicantModel.digestApplicantApiObj({});
-                    }
-                    scope.yearsList = [];
 
-                    var currentYear = new Date().getFullYear();
-                    for(var i= 1960; i <= currentYear; i++){
-                        scope.yearsList.push(i.toString());
-                    }
-                    scope.experienceList = [];
-                    for(var j=0; j<40; j++){
-                        scope.experienceList.push(j);
-                    }
-                    scope.monthsList = [0,1,2,3,4,5,6,7,8,9,10,11];
-
-                    scope.isFormValid = function () {
-                        var isValid = true;
-                        if(scope.applicantForm.$invalid){
-                            console.log(scope.applicantForm.$error);
-                            if(scope.applicantForm.$error.required != null){
-                                scope.applicantForm.$error.required.forEach(function(element){
-                                    element.$setDirty();
+                    scope.onUpdateApplicantClick  = function () {
+                        if(scope.userProfileForm.$invalid){
+                            if(scope.userProfileForm.$error.required){
+                                scope.userProfileForm.$error.required.forEach(function(field){
+                                    field.$error.required.forEach(function (innerElement) {
+                                        innerElement.$setDirty();
+                                    });
                                 });
                             }
-                            if(scope.applicantForm.$error.dateGreaterThan != null){
-                                scope.applicantForm.$error.dateGreaterThan.forEach(function(element){
-                                    element.$setDirty();
+                            if(scope.userProfileForm.$error.pattern){
+                                scope.userProfileForm.$error.pattern.forEach(function(field){
+                                    if(field.$invalid){
+                                        field.$error.pattern.forEach(function (innerElement) {
+                                            innerElement.$setDirty();
+                                        });
+                                    }
                                 });
                             }
-                            if(scope.applicantForm.$error.pattern != null){
-                                scope.applicantForm.$error.pattern.forEach(function(element){
-                                    element.$setDirty();
-                                });
-                            }
-                            if(scope.applicantForm.$error.number != null){
-                                scope.applicantForm.$error.number.forEach(function(element){
-                                    element.$setDirty();
-                                });
-                            }
-                            isValid = false;
+                            commonService.showErrorMsg("Form is incomplete");
+                            return false;
                         }
-                        return isValid;
-                    };
 
-                    scope.addEducation = function () {
-                        scope.userDetailObj.educationDetails.push({});
-                    };
-
-                    scope.removeEducation = function (item) {
-                        var index = scope.userDetailObj.educationDetails.indexOf(item);
-                        if(index != -1){
-                            scope.userDetailObj.educationDetails.splice(index, 1);
-                        }
-                    };
-
-                    scope.addTeaching = function () {
-                        scope.userDetailObj.table1.push({});
-                    };
-
-                    scope.removeTeaching = function (item) {
-                        var index = scope.userDetailObj.table1.indexOf(item);
-                        if(index != -1){
-                            scope.userDetailObj.table1.splice(index, 1);
-                        }
-                    };
-
-                    scope.addCompany = function () {
-                        scope.userDetailObj.employmentHistoryDetails.push({});
-                    };
-
-                    scope.removeCompany = function (item) {
-                        console.log(item);
-                        console.log(scope.userDetailObj.employmentHistoryDetails);
-                        var index = scope.userDetailObj.employmentHistoryDetails.indexOf(item);
-                        if(index != -1){
-                            scope.userDetailObj.employmentHistoryDetails.splice(index, 1);
-                        }
-                    };
-                    jQuery(document).ready(function($) {
-                        $('.datepicker').datepicker();
-                        $('.icon-calendar').click(function () {
-                            console.log("hehe");
-                            $(this).prev().datepicker("show");
-                            $('.datepicker-inline').remove();
+                        var url = apiUrlConfig.createApplicantProfile;
+                        var req = applicantModel.convertApplicantUi2ApiObj(scope.fieldsObj);
+                        apiMethods.apiPOSTReq(url, req).then(function (response) {
+                            if(scope.submitCallback)
+                                scope.submitCallback(response);
+                        }, function (response) {
+                            commonService.onApiResponseError(response);
                         });
-                    });
+                    };
+
+                    scope.onCancelClick = function () {
+                        if(scope.cancelCallback)
+                            scope.cancelCallback();
+                    };
                 }
             }
         }

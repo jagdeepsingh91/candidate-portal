@@ -1,0 +1,21 @@
+<ng-form my-validation name="innerForm">
+<div class="clearfix label-select-box">
+    <!--<span class="sub-heading">{{item.displayName}}
+        <span ng-if="item.required">*</span>
+    </span>-->
+    <select name="{{item.propertyName}}" class="form-control {{item.cssClassName}}"
+            ng-change="onChange(item.selectedObject[0])"
+            api-url="item.apiURL"
+            list-model="item.optionList"
+            ng-options="item as item['{{item.propertyValue}}'] for item in item.optionList"
+            ng-model="item.selectedObject[0]"
+            set-model-value="item.optionList"
+            ng-required="item.required"
+            ng-pattern="item.regex"
+            err-msg-required="{{item.displayName}} is required."
+            err-msg-pattern="{{item.regexMessage}}">
+        <option value="">Select {{item.displayName}}{{item.required ? '*' : ''}}
+        </option>
+    </select>
+</div>
+</ng-form>

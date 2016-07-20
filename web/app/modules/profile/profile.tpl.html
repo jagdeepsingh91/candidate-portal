@@ -21,13 +21,13 @@
                     </p>
                     <p class="large-font">
                         <span>
-                            {{profileObj.applicantDetailObj.employmentHistoryDetails[0].designationName}}
+                            {{profileObj.applicantDetailObj.employmentHistory[0].designationName}}
                         </span>
-                        <span ng-if="profileObj.applicantDetailObj.employmentHistoryDetails[0].designationName && profileObj.applicantDetailObj.employmentHistoryDetails[0].employerName">
+                        <span ng-if="profileObj.applicantDetailObj.employmentHistory[0].designationName && profileObj.applicantDetailObj.employmentHistory[0].employerName">
                             at
                         </span>
                         <span>
-                            {{profileObj.applicantDetailObj.employmentHistoryDetails[0].employerName}}
+                            {{profileObj.applicantDetailObj.employmentHistory[0].employerName}}
                         </span>
                     </p>
                     <p class="color-8">{{profileObj.applicantDetailObj.applicantCity}}</p>
@@ -39,12 +39,12 @@
                             {{profileObj.applicantDetailObj.employmentHistoryDetails[0].employerName}}
                         </span>
                     </p>
-                    <p ng-if="profileObj.applicantDetailObj.employmentHistoryDetails[1]">
+                    <p ng-if="profileObj.applicantDetailObj.employmentHistoryDetails.length > 1">
                         <span class="xs-font color-9 inline-block wid-70">
                             Previous
                         </span>
                         <span class="med-font mar-l-20">
-                            {{profileObj.applicantDetailObj.employmentHistoryDetails[1].employerName}}
+                            {{profileObj.applicantDetailObj.employmentHistoryDetails[profileObj.applicantDetailObj.employmentHistoryDetails.length-1].employerName}}
                         </span>
                     </p>
                 </div>
@@ -70,14 +70,18 @@
                 <hr class="color-d">
                 <div>
                     <p class="heading2">Education</p>
-                    <span ng-repeat="item in profileObj.applicantDetailObj.educationDetails">
+                    <span ng-repeat="item in profileObj.applicantDetailObj.educationDetail">
                         <div class="row">
                             <div class="col-md-24">
                                 <p class="heading3">
-                                    {{item.degree.name}} <span ng-if="item.institute">- {{item.institute}}</span>
+                                    {{item.degree.name}}
+                                    <span ng-if="item.institute && item.degree.name">-</span>
+                                    {{item.institute}}
                                 </p>
                                 <p class="color-9">
-                                    {{item.branch.name}} <span ng-if="item.grade">- {{item.grade}}</span>
+                                    {{item.branch.name}}
+                                    <span ng-if="item.grade && item.branch.name">- </span>
+                                    {{item.grade}}
                                 </p>
                                 <p class="pad-t-b-5 color-9">Year of Passing - {{item.yearOfPassing}}</p>
                                 <!--<a href="#" class="link">Add Description ?</a>-->

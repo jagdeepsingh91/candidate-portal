@@ -1,0 +1,17 @@
+<ng-form my-validation name="innerForm">
+    <div class="">
+        <label class=" f-11" ng-init="item.selectedListBoxValue = []">
+            {{item.displayName}}
+            <span ng-if="item.required" class="asterisk" >*</span>
+        </label>
+        <br/>
+        <multiple-autocomplete ng-model="item.selectedListBoxValue"
+                               name="{{item.propertyName}}"
+                               suggestions-arr="item.optionList"
+                               ng-required="item.required"
+                               ng-pattern="item.regex"
+                               err-msg-required="This field is required."
+                               err-msg-pattern="{{item.regexMessage}}">
+        </multiple-autocomplete>
+    </div>
+</ng-form>

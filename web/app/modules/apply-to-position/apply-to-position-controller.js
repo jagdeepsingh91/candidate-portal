@@ -9,7 +9,11 @@
         'candidatePortal.services.navigationService',
         function ($scope, $state, $stateParams, apiUrlConfig, apiMethods, commonService, navigationService) {
             $scope.positionId = $stateParams.id;
-            $scope.callbackFn = $state.params.callback;
+            $scope.callbackFn = function () {
+                commonService.showSuccessMsg("Applied to position");
+                if($state.params.callback)
+                    $state.params.callback();
+            };
 
             $scope.applyToPositionObj = {};
         }

@@ -1,0 +1,19 @@
+<ng-form my-validation name="innerForm">
+    <div class="label-input-text multiple-select">
+        <label>{{item.displayName}}
+            <span class="asterisk"  ng-if="item.required">*</span>
+        </label>
+        <multiple-autocomplete title="{{item.displayName}}"
+                               ng-model="item.selectedObject" 
+                               object-property="{{item.propertyValue}}"
+                               name="{{item.propertyName}}" api-url="item.apiURL"
+                               suggestions-arr="item.optionList"
+                               required-attr="item.required"
+                               ng-pattern="item.regex"
+                               err-msg-required="{{item.displayName}} is required."
+                               err-msg-pattern="{{item.regexMessage}}">
+        </multiple-autocomplete>
+        <!--ng-required="item.required"-->
+    </div>
+    <hr>
+</ng-form>

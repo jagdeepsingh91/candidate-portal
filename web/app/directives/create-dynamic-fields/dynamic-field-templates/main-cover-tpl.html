@@ -1,0 +1,56 @@
+
+<!-- Text Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.text"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/text-field-tpl.html'"></div>
+
+<!-- NUmber Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.number"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/number-field-tpl.html'"></div>
+
+<!-- Multi-Select Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.multiSelect"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/multi-select-field-tpl.html'"></div>
+
+<!-- Dropdown Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.dropDown"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/dropdown-field-tpl.html'"></div>
+
+<!-- User Dropdown Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.userDropDown"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/user-dropdown-field-tpl.html'"></div>
+
+<!-- Date Dropdown And Text Dropdown Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.dateDropDown || item.fieldType == dynamicFieldTypes.textDropDown"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/date-dropdown-field-tpl.html'"></div>
+
+<!-- Group Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.group"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/group-field-tpl.html'"></div>
+
+<!-- Table Group Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.tableGroup"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/table_group-field-tpl.html'"></div>
+
+<!-- Date Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.date"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/date-field-tpl.html'"></div>
+
+<!-- Text Autosuggestion Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.textAutosuggest"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/text-autosuggest-field-tpl.html'"></div>
+
+<!-- Text-area Autosuggestion Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.textarea"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/textarea-field-tpl.html'"></div>
+
+<!-- Radio Autosuggestion Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.radio"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/radio-field-tpl.html'"></div>
+
+<!-- Checkbox Autosuggestion Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.checkbox"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/checkbox-field-tpl.html'"></div>
+
+<!-- ListBox  Template-->
+<div ng-if="item.fieldType == dynamicFieldTypes.listBox"
+     ng-include="'/app/directives/create-dynamic-fields/dynamic-field-templates/listbox-field-tpl.html'"></div>

@@ -1,6 +1,7 @@
 (function () {
     angular.module("candidatePortal.application").factory('candidatePortal.models.applicantModel', [
-        function () {
+        'candidatePortal.models.dynamicFieldsModel',
+        function (dynamicFieldsModel) {
 
             var digestEducationDetailsApiObj = function (apiObj) {
                 if(!apiObj || apiObj == null)
@@ -447,11 +448,120 @@
                 }
                 return arrList;
             };
+
+            function digestEducationObj(fieldObj){
+                var educationArr = [];
+                fieldObj.forEach(function (obj, i, arr) {
+                    var eduObj = {};
+                    obj.forEach(function (field, fieldIndex, fieldArr) {
+                        switch (field.propertyName){
+                            case 'degreeTitle' :
+                                eduObj.degree = field.selectedObject != null ? field.selectedObject[0] : null;
+                                break;
+                            case 'yearOfPassing' :
+                                eduObj.yearOfPassing = field.selectedValue;
+                                break;
+                            case 'fromYear' :
+                                eduObj.fromYear = field.selectedValue;
+                                break;
+                            case 'grade' :
+                                eduObj.grade = field.selectedValue;
+                                break;
+                            case 'institute' :
+                                eduObj.institute = field.selectedObject.length > 0 ? field.selectedObject[0].name : null;
+                                break;
+                            case 'major' :
+                                eduObj.branch = field.selectedObject != null ? field.selectedObject[0] : null;
+                                break;
+                        }
+                    });
+                    educationArr.push(eduObj);
+                });
+                return educationArr;
+            }
+
+            function digestEmploymentHistoryObj(fieldObj){
+                var employmentArr = [];
+                fieldObj.forEach(function (obj, i, arr) {
+                    var empObj = {};
+                    obj.forEach(function (field, fieldIndex, fieldArr) {
+                        switch (field.propertyName){
+                            case 'designationName' :
+                                empObj.designationName = field.selectedObject.length > 0 ? field.selectedObject[0].name : null;
+                                break;
+                            case 'reasonForLeaving' :
+                                empObj.reasonForLeaving = field.selectedValue;
+                                break;
+                            case 'allowance' :
+                                empObj.allowance = field.selectedValue;
+                                break;
+                            case 'employerToDate' :
+                                empObj.employerToDate = field.selectedValue;
+                                break;
+                            case 'employerName' :
+                                empObj.employerName = field.selectedObject.length > 0 ? field.selectedObject[0].name : null;
+                                break;
+                            case 'employerFromDate' :
+                                empObj.employerFromDate = field.selectedValue;
+                                break;
+                        }
+                    });
+                    employmentArr.push(empObj);
+                });
+                return employmentArr;
+            }
+
+            var getStaticValueObj = function (dynamicDTO) {
+                if(!dynamicDTO)
+                    return dynamicDTO;
+                var applicantObj = {};
+                dynamicDTO.forEach(function (obj, i, arr) {
+                    if(obj.propertyName == 'applicantName'){
+                        applicantObj.applicantName = obj.selectedValue;
+                    }
+                    else if(obj.propertyName == 'applicantCity'){
+                        applicantObj.applicantCity = obj.selectedValue;
+                    }
+                    else if(obj.fieldType == 'GROUP' && obj.fieldId == 'Education') {
+                        applicantObj.education = digestEducationObj(obj.subFields);
+                    }
+                    else if(obj.fieldType == 'GROUP' && obj.fieldId == 'Employment History') {
+                        applicantObj.employmentHistory = digestEmploymentHistoryObj(obj.subFields);
+                    }
+                });
+                return applicantObj;
+            };
+
+            var digestApplicantDynamicApiObj = function (apiObj) {
+                var dynamicDTO = dynamicFieldsModel.digestDynamicFieldApiObj(apiObj.dynArray);
+                var staticValueObj = getStaticValueObj(dynamicDTO);
+                return {
+                    applicantId : apiObj.applicantId,
+                    applicantOriginalResumePath : apiObj.applicantOriginalResumePath,
+                    applicantPositionId : apiObj.applicantPositionId,
+                    applicantName : staticValueObj.applicantName,
+                    educationDetail : staticValueObj.education,
+                    employmentHistoryDetails : staticValueObj.employmentHistory,
+                    applicantCity : staticValueObj.applicantCity,
+                    dynamicFieldDTO : dynamicDTO
+                }
+            };
+
+            var convertApplicantUi2ApiObj = function (uiObj) {
+                return {
+                    applicantId : uiObj.applicantId,
+                    applicantOriginalResumePath : uiObj.applicantOriginalResumePath,
+                    applicantPositionId : uiObj.applicantPositionId,
+                    dynArray : dynamicFieldsModel.convertDynamicFieldUiObj2ApiObj(uiObj.dynamicFieldDTO)
+                }
+            };
             
             return {
-                digestApplicantApiObj : digestApplicantApiObj,
-                convertUIObj2ApiObj : convertUIObj2ApiObj,
-                digestApplicantAttachmentsApiObj : digestApplicantAttachmentsApiObj
+                //digestApplicantApiObj : digestApplicantApiObj,
+                //convertUIObj2ApiObj : convertUIObj2ApiObj,
+                convertApplicantUi2ApiObj : convertApplicantUi2ApiObj,
+                digestApplicantAttachmentsApiObj : digestApplicantAttachmentsApiObj,
+                digestApplicantDynamicApiObj : digestApplicantDynamicApiObj
             }
         }
     ]);

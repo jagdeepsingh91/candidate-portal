@@ -1,0 +1,17 @@
+<ng-form my-validation name="innerForm">
+    <div class="label-input-text clearfix">
+        <label>{{item.displayName}}
+            <span class="asterisk" ng-if="item.required">*</span>
+        </label>
+        <p class="pull-right text-danger f-11" ng-if="duplicateName">Duplicate record(s) found</p>
+        <textarea name="{{item.propertyName}}"
+               class="form-control {{item.cssClassName}}"
+               ng-model="item.selectedValue"
+               placeholder="{{item.watermarkText}}"
+               ng-required="item.required"
+               ng-pattern="item.regex"
+               err-msg-required="This field is required."
+               err-msg-pattern="{{item.regexMessage}}">
+        </textarea>
+    </div>
+</ng-form>

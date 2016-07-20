@@ -7,7 +7,8 @@
         'candidatePortal.services.commonService',
         'candidatePortal.services.navigationService',
         'candidatePortal.models.applicantModel',
-        function ($scope, $state, apiUrlConfig, apiMethods, commonService, navigationService, applicantModel) {
+        'candidatePortal.models.dynamicFieldsModel',
+        function ($scope, $state, apiUrlConfig, apiMethods, commonService, navigationService, applicantModel, dynamicFieldsModel) {
 
             $scope.uploadUrl = apiUrlConfig.resumeUpload;
 
@@ -19,7 +20,8 @@
                 else if($scope.applyToPositionObj.selectedFiles[0].progress == "Success"){
                     if(!$scope.applyToPositionObj.userDetailObj) {
                         var res = $scope.applyToPositionObj.selectedFiles[0].response.response;
-                        $scope.applyToPositionObj.userDetailObj = applicantModel.digestApplicantApiObj(res);
+                        res.applicantPositionId = $scope.positionId;
+                        $scope.applyToPositionObj.userDetailObj = applicantModel.digestApplicantDynamicApiObj(res);
                     }
                     navigationService.goToApplicationForm();
                 }

@@ -1,0 +1,20 @@
+<ng-form my-validation name="innerForm">
+    <div class="label-input-text">
+        <label>{{item.displayName}}
+            <span class="asterisk" ng-if="item.required">*</span>
+        </label>
+        <span><p class="pull-right text-danger"
+           ng-repeat="dupField in duplicateFieldsArr"
+           ng-if="dupField == item.propertyName">
+            Duplicate record
+        </p></span>
+        <input type="text" id="tags" name="{{item.propertyName}}"
+               class="form-control {{item.cssClassName}}"
+               ng-model="item.selectedValue"
+               ng-required="{{item.required}}"
+               ng-pattern="item.regex"
+               err-msg-required="{{item.displayName}} is required."
+               err-msg-pattern="{{item.regexMessage}}">
+        <!--placeholder="{{item.watermarkText}}"-->
+    </div>
+</ng-form>

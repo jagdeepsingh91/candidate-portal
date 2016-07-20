@@ -1,0 +1,14 @@
+<ng-form my-validation name="innerForm">
+    <div class="label-input-text clearfix">
+        <label>{{item.displayName}}
+            <span class="asterisk"  ng-if="item.required">*</span>
+        </label>
+        <input type="number" name="{{item.propertyName}}" string-to-number
+               ng-required="item.required"
+               ng-pattern="item.regex"
+               err-msg-required="This field is required."
+               err-msg-pattern="{{item.regexMessage}}"
+               class="form-control {{item.cssClassName}}"
+               ng-model="item.selectedValue" placeholder="{{item.watermarkText}}">
+    </div>
+</ng-form>

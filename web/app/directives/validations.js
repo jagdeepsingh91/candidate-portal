@@ -149,7 +149,7 @@
                             // for error class at parent div
                             var elemName = $(elem).attr("name");
                             if (elemName != null && elemName != undefined) {
-                                var errClassStr = "{'" + onErrorCls + "' : " + formName + "." + elemName + ".$invalid && " + formName + "." + elemName + ".$dirty, '" + onSuccessCls + "' : !" + formName + "." + elemName + ".$invalid && " + formName + "." + elemName + ".$dirty, 'focused' : "+$(elem).attr("ng-model")+" || "+ formName + "." + elemName + ".$invalid}";
+                                var errClassStr = "{'" + onErrorCls + "' : " + formName + "." + elemName + ".$invalid && " + formName + "." + elemName + ".$dirty, '" + onSuccessCls + "' : !" + formName + "." + elemName + ".$invalid && " + formName + "." + elemName + ".$dirty, 'focused' : "+$(elem).attr("ng-model")+" || ("+ formName + "." + elemName + ".$invalid && "+ formName + "." + elemName + ".$dirty)}";
                                 $(elem).parent().closest('div').attr("ng-class", errClassStr);
                                 // for error messages
                                 var errTemplates = createErrTemplate(elem);
