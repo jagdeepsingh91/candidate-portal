@@ -24,7 +24,8 @@
                     </div>
                     <div class="col-md-24" oc-lazy-load="['filterPositionFields']">
                         <p class="pad-t-b-20 l-h-28">
-                            <span ng-repeat="item in positionDetailsValueObj | filterPositionFields : ['PositionName', 'PositionCode', 'PositionCreatedOn']" ng-if="item.value">
+                            <span ng-repeat="item in positionDetailsValueObj | filterPositionFields : ['PositionName', 'PositionCode', 'PositionCreatedOn']" ng-if="item.value && item.fieldWebsitePositionDetailsShow == 1">
+
                                 <strong class="med">{{item.fieldTitle}}</strong>
                                 <br>
                                 <span ng-bind-html="item.value"></span>

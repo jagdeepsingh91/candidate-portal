@@ -31,11 +31,21 @@
 
         <div class="form-group" ng-form name="applicantForm" my-validation>
             <div class="row">
-                <p class="heading accordion-toggle">Personal Information <span class="icons icon-circle-minus"></span></p>
+                <p class="heading accordion-toggle">Personal Particulars <span class="icons icon-circle-minus"></span></p>
                 <div class="row accordion-content">
                     <div class="well row highlight">
-
-                        <div class="col-xs-12">
+                        <div class="col-xs-4">
+                            <div class="label-select-box">
+                                <!--<label>Salutation</label>-->
+                                <select name="salutation" class="form-control"
+                                        ng-model="userDetailObj.salutation"
+                                        set-model-value="salutationList"
+                                        ng-options="item.value as item.name for item in salutationList">
+                                    <option value="">Salutation</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-20">
                             <div class="label-input-text">
                                 <label>Name</label>
                                 <input name="userName" type="text" ng-model="userDetailObj.applicantName"
@@ -44,7 +54,7 @@
                                        class="form-control"/>
                             </div>
                         </div>
-                        <div class="col-xs-12">
+                        <div class="col-xs-24">
                             <div class="label-input-text">
                                 <label>Email</label>
                                 <input name="userEmail" type="text" ng-model="userDetailObj.applicantEmail1"
@@ -55,7 +65,7 @@
                         </div>
                         <div class="col-xs-12">
                             <div class="label-input-text">
-                                <label>Phone</label>
+                                <label>Mobile Number</label>
                                 <input name="userPhone" type="text"
                                        pattern="[\d+\s]*"
                                        ng-model="userDetailObj.applicantCellPhone"
@@ -74,49 +84,8 @@
                                        err-msg-pattern="Invalid Format. Should be (DD-MM-YYYY)"
                                        class="form-control datepicker-dob" placeholder=""  required/>
                                 <span class="icon-calendar"></span>
-                                <!--<div class="label-select-box dateBox floatLeft">-->
-                                    <!--&lt;!&ndash; <label>Year</label> &ndash;&gt;-->
-                                    <!--<select name="" class="form-control dateArrow"-->
-                                            <!--ng-model=""-->
-                                            <!--set-model-value=""-->
-                                            <!--ng-options="item for item in yearsList">-->
-                                        <!--<option value="">DD</option>-->
-                                    <!--</select>-->
-                                <!--</div>-->
-                                <!--<div class="label-select-box monthBox">-->
-                                    <!--&lt;!&ndash; <label>Year</label> &ndash;&gt;-->
-                                    <!--<select name="" class="form-control dateArrow"-->
-                                            <!--ng-model=""-->
-                                            <!--set-model-value=""-->
-                                            <!--ng-options="item for item in yearsList">-->
-                                        <!--<option value="">MM</option>-->
-                                    <!--</select>-->
-                                <!--</div>-->
-                                <!--<div class="label-select-box yearBox">-->
-                                    <!--&lt;!&ndash; <label>Year</label> &ndash;&gt;-->
-                                    <!--<select name="" class="form-control dateArrow"-->
-                                            <!--ng-model=""-->
-                                            <!--set-model-value=""-->
-                                            <!--ng-options="item for item in yearsList">-->
-                                        <!--<option value="">YY</option>-->
-                                    <!--</select>-->
-                                <!--</div>-->
                             </div>
                         </div>
-
-                       <!-- <div class="col-xs-12">
-                            <div class="label-input-text" ng-class="{'focused' : userDetailObj.applicantCellPhone ? true : true}">
-                                <label>Phone</label>
-                                <input name="userPhone" type="text"
-                                       pattern="[\d+\s]*"
-                                       ng-model="userDetailObj.applicantCellPhone"
-                                       err-msg-required="Please enter your mobile no"
-                                       err-msg-pattern="Only digits are allowed"
-                                       err-msg-number="Only digits are allowed"
-                                       placeholder="" class="form-control" required/>
-                            </div>
-                        </div>-->
-
                     </div>
                     <div class="col-xs-12">
                         <div class="label-input-text">
@@ -141,6 +110,7 @@
                             <label>Application ID</label>
                             <input name="userApplicationId" type="text"
                                    ng-model="userDetailObj.applicantId"
+                                   ng-disabled="true"
                                    err-msg-required="Please enter your application ID"
                                    placeholder="" class="form-control"/>
                         </div>
@@ -383,10 +353,10 @@
                 <div class="globalSeparator"></div>
             <!--Educational Information-->
                 <div class="row">
-                    <p class="heading accordion-toggle">Education <span class="icons icon-circle-minus"></span></p>
+                    <p class="heading accordion-toggle">Education Qualification <span class="icons icon-circle-minus"></span></p>
                     <div>
                         <div ng-repeat="item in userDetailObj.educationDetails">
-                            <div class="col-xs-24">
+                            <div class="col-xs-12">
                                 <div class="label-input-text">
                                     <label>Institute Name</label>
                                     <input name="institute{{$index}}" type="text" class="form-control"
@@ -394,25 +364,37 @@
                                            placeholder="" />
                                 </div>
                             </div>
-                            <div class="col-xs-8">
-                                <div class="label-select-box">
-                                    <!-- <label>Year</label> -->
-                                    <select name="yearOfPassing{{$index}}" class="form-control"
-                                            ng-model="item.yearOfPassing"
-                                            set-model-value="yearsList"
-                                            ng-options="item for item in yearsList">
-                                        <option value="">Select Year</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xs-8">
+                            <div class="col-xs-12">
                                 <div class="label-select-box">
                                     <!-- <label>Degree</label> -->
                                     <select name="degree{{$index}}" class="form-control"
                                             ng-model="item.degree"
                                             set-model-value="degreeList"
                                             ng-options="item as item.name for item in degreeList">
-                                        <option value="">Select Degree</option>
+                                        <option value="">Select Highest Qualification attended</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="label-select-box">
+                                    <!-- <label>Year</label> -->
+                                    <select name="edufromYear{{$index}}" class="form-control"
+                                            ng-model="item.fromYear"
+                                            set-model-value="yearsList"
+                                            ng-options="item for item in yearsList">
+                                        <option value="">From Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="label-select-box">
+                                    <!-- <label>Year</label> -->
+                                    <select name="edutoYear{{$index}}" class="form-control"
+                                            ng-model="item.yearOfPassing"
+                                            date-greater-than="item.fromYear"
+                                            err-msg-dategreaterthan="year can't be less than from year"
+                                            ng-options="item for item in yearsList">
+                                        <option value="">To Year</option>
                                     </select>
                                 </div>
                             </div>
@@ -423,8 +405,15 @@
                                             ng-model="item.branch"
                                             set-model-value="branchList"
                                             ng-options="item as item.name for item in branchList">
-                                        <option value="">Select Branch</option>
+                                        <option value="">Select Subject Major</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-24">
+                                <div class="label-input-text">
+                                    <label>Remarks</label>
+                                    <input type="text" name="remarks{{$index}}" class="form-control"
+                                           ng-model="item.remarks" />
                                 </div>
                             </div>
                             <div class="col-xs-24">
@@ -548,8 +537,51 @@
                 <div class="globalSeparator"></div>
             <!--Employment Information-->
             <div class="row">
-                <p class="heading accordion-toggle">Employment Experience <span class="icons icon-circle-minus"></span></p>
-                <div>
+                <p class="heading accordion-toggle">Employment Experience
+                    &nbsp;&nbsp;<span class="color-a">(Enter current employment information first)</span>
+                    <span class="icons icon-circle-minus"></span></p>
+                <div class="col-xs-12">
+                    <!--<div class="">-->
+                    <!--<label>-->
+                        <!--<input type="checkbox" name="fresher"-->
+                               <!--ng-model="userDetailObj.fresher"/>-->
+                        <!--Are you a fresh graduate-->
+                    <!--</label>-->
+                    <!--</div>-->
+                    <div class="floatLeft">
+                        <p class="questionGradu">Are you a fresh graduate?</p>
+                        <div class="radio floatLeft graduationRadio">
+                            <input id="graduateYes" type="radio" ng-model="userDetailObj.fresher" name="graduate" value="true">
+                            <label for="graduateYes">Yes</label>
+                            <input id="graduateNo" type="radio" ng-model="userDetailObj.fresher" name="graduate" value="false">
+                            <label for="graduateNo" class="noRadio">No</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-24 timePeriod grayBox">
+                        <label class="floatLeft dateLabel col-xs-6">Total Experience</label>
+                        <div class="col-xs-18">
+                            <div class="label-select-box eduPeriod mar-left-18">
+                                <!-- <label>Year</label> -->
+                                <select name="experienceYear" class="form-control dateArrow"
+                                    ng-model="userDetailObj.applicantWorkingSinceYear"
+                                    set-model-value="experienceList"
+                                    ng-options="item for item in experienceList">
+                                    <option value="">Year</option>
+                                </select>
+                            </div>
+                            <div class="label-select-box eduPeriod mar-left-18">
+                                <!-- <label>Year</label> -->
+                                <select name="experienceMonth" class="form-control dateArrow"
+                                    ng-model="userDetailObj.applicantWorkingSinceMonth"
+                                    set-model-value="monthsList"
+                                    ng-options="item for item in monthsList">
+                                    <option value="">Month</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="userDetailObj.fresher != 'true'">
                     <!--<div class="detailsNo">-->
                         <!--<span class="numberBlk">1</span>-->
                         <!--<span class="deleteIcon icon-trash-can"></span>-->
@@ -565,7 +597,7 @@
                         </div>
                         <div class="col-xs-8">
                             <div class="label-input-text">
-                                <label>Designation</label>
+                                <label>Position</label>
                                 <input name="designation{{$index}}" type="text"
                                        ng-model="item.designationName"
                                        class="form-control" placeholder="" />
@@ -590,6 +622,46 @@
                                        ng-model="item.employerToDate"
                                        placeholder=""/>
                                 <span class="icon-calendar"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="label-input-text">
+                                <label>Gross Salary (in SGD)</label>
+                                <input name="grossSalary{{$index}}" type="text"
+                                       ng-model="item.grossSalary"
+                                       pattern="^([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
+                                       err-msg-required="Please enter your gross salary"
+                                       err-msg-pattern="Only Digits are allowed"
+                                       class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="label-input-text">
+                                <label>Allowance (in SGD)</label>
+                                <input name="allowance{{$index}}" type="text"
+                                       ng-model="item.allowance"
+                                       pattern="^([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
+                                       err-msg-required="Please enter your allowance"
+                                       err-msg-pattern="Only Digits are allowed"
+                                       class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>Reason for leaving</p>
+                            <div class="label-input-text">
+                                <textarea name="reasonForLeaving{{$index}}" cols="10" rows="5"
+                                       ng-model="item.reasonForLeaving"
+                                       class="form-control" placeholder="" >
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>Duties Involved</p>
+                            <div class="label-input-text">
+                                <textarea name="dutiesInvolved{{$index}}" cols="10" rows="5"
+                                       ng-model="item.dutiesInvolved"
+                                       class="form-control" placeholder="" >
+                                </textarea>
                             </div>
                         </div>
                         <div class="col-xs-24">
@@ -1030,11 +1102,11 @@
                             </div>
                         </div>
                         <div class="col-xs-13">
-                            <label class="floatLeft dateLabel">Expected Monthly Salary (in SGD)</label>
+                            <!--<label class="floatLeft dateLabel">Expected Monthly Salary (in SGD)</label>-->
                             <div class="label-input-text">
-                                <label>Current CTC (in SGD)</label>
+                                <label>Expected Monthly Salary (in SGD)</label>
                                 <input name="currentCtc" type="text"
-                                       ng-model="userDetailObj.currentCTC"
+                                       ng-model="userDetailObj.expectedCTC"
                                        pattern="^([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
                                        err-msg-required="Please enter your current ctc"
                                        err-msg-pattern="Only Digits are allowed"
@@ -1083,7 +1155,7 @@
                         <div ng-repeat="item in userDetailObj.table1">
                             <div class="col-xs-12">
                                 <div class="label-input-text">
-                                    <label>Subject</label>
+                                    <label>Teaching Subject</label>
                                     <input name="teachingSubject{{$index}}" type="text" class="form-control"
                                            ng-model="item.teachingSubject"
                                            placeholder="" />
@@ -1091,7 +1163,7 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="label-input-text">
-                                    <label>Level</label>
+                                    <label>Teaching Level</label>
                                     <input name="teachingLevel{{$index}}" type="text" class="form-control"
                                            ng-model="item.teachingLevel"
                                            placeholder="" />
@@ -1255,7 +1327,7 @@
                 minViewMode: 1
 			});
             $('.datepicker-dob').datepicker({
-                endDate:'-5y'
+                endDate: new Date()
             });
             $('.datepicker').datepicker({
 

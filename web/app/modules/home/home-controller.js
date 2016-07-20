@@ -120,6 +120,16 @@
                 });
             };
             getApplicantSourceList();
+
+            var getSalutationList = function () {
+                var url = apiUrlConfig.getMastersDropdownList("customField16");
+                apiMethods.apiGETReq(url, null, false).then(function (response) {
+                    $scope.salutationList = response.data.response.content;
+                }, function (response) {
+                    console.log("Error in fetching applicant source list. reason :", response);
+                });
+            };
+            getSalutationList();
         }
     ]);
 })();

@@ -12,7 +12,8 @@
                     skillsList : '=?',
                     branchList : '=?',
                     degreeList : '=?',
-                    applicantSourceList : '=?'
+                    applicantSourceList : '=?',
+                    salutationList : '=?'
                 },
                 templateUrl : "app/directives/user-info-form/user-form.tpl.html",
                 link: function(scope, element, attrs) {
@@ -22,15 +23,16 @@
                         scope.userDetailObj = applicantModel.digestApplicantApiObj({});
                     }
                     scope.yearsList = [];
-                    //scope.datesList = [];
-                    //scope.monthsList = [];
+
                     var currentYear = new Date().getFullYear();
                     for(var i= 1960; i <= currentYear; i++){
                         scope.yearsList.push(i.toString());
                     }
-                    //for(var i= 1960; i <= currentYear; i++){
-                    //    scope.yearsList.push(i.toString());
-                    //}
+                    scope.experienceList = [];
+                    for(var j=0; j<40; j++){
+                        scope.experienceList.push(j);
+                    }
+                    scope.monthsList = [0,1,2,3,4,5,6,7,8,9,10,11];
 
                     scope.isFormValid = function () {
                         var isValid = true;
