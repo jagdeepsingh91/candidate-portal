@@ -60,76 +60,76 @@
             };
             getPositionFields();
 
-            var getDepartmentList = function () {
-                var url = apiUrlConfig.getProfileMasterList("departments");
-                apiMethods.apiGETReq(url, null, false).then(function (response) {
-                    $scope.departmentsList = response.data.response;
-                }, function (response) {
-                    console.log("Error in fetching employer list. reason :", response);
-                });
-            };
-            getDepartmentList();
+            //var getDepartmentList = function () {
+            //    var url = apiUrlConfig.getProfileMasterList("departments");
+            //    apiMethods.apiGETReq(url, null, false).then(function (response) {
+            //        $scope.departmentsList = response.data.response;
+            //    }, function (response) {
+            //        console.log("Error in fetching employer list. reason :", response);
+            //    });
+            //};
+            //getDepartmentList();
+            //
+            //var getLocationsList = function () {
+            //    var url = apiUrlConfig.getProfileMasterList("location");
+            //    apiMethods.apiGETReq(url, null, false).then(function (response) {
+            //        $scope.locationsList = response.data.response;
+            //    }, function (response) {
+            //        console.log("Error in fetching employer list. reason :", response);
+            //    });
+            //};
+            //getLocationsList();
+            //
+            //var getSkillsList = function () {
+            //    var url = apiUrlConfig.getProfileMasterList("skills");
+            //    apiMethods.apiGETReq(url, null, false).then(function (response) {
+            //        $scope.skillsList = response.data.response;
+            //    }, function (response) {
+            //        console.log("Error in fetching employer list. reason :", response);
+            //    });
+            //};
+            //getSkillsList();
+            //
+            //var getBranchList = function () {
+            //    var url = apiUrlConfig.getProfileMasterList("branches");
+            //    apiMethods.apiGETReq(url, null, false).then(function (response) {
+            //        $scope.branchList = response.data.response;
+            //    }, function (response) {
+            //        console.log("Error in fetching employer list. reason :", response);
+            //    });
+            //};
+            //getBranchList();
+            //
+            //var getDegreeList = function () {
+            //    var url = apiUrlConfig.getProfileMasterList("degrees");
+            //    apiMethods.apiGETReq(url, null, false).then(function (response) {
+            //        $scope.degreeList = response.data.response;
+            //    }, function (response) {
+            //        console.log("Error in fetching employer list. reason :", response);
+            //    });
+            //};
+            //getDegreeList();
 
-            var getLocationsList = function () {
-                var url = apiUrlConfig.getProfileMasterList("location");
-                apiMethods.apiGETReq(url, null, false).then(function (response) {
-                    $scope.locationsList = response.data.response;
-                }, function (response) {
-                    console.log("Error in fetching employer list. reason :", response);
-                });
-            };
-            getLocationsList();
-
-            var getSkillsList = function () {
-                var url = apiUrlConfig.getProfileMasterList("skills");
-                apiMethods.apiGETReq(url, null, false).then(function (response) {
-                    $scope.skillsList = response.data.response;
-                }, function (response) {
-                    console.log("Error in fetching employer list. reason :", response);
-                });
-            };
-            getSkillsList();
-
-            var getBranchList = function () {
-                var url = apiUrlConfig.getProfileMasterList("branches");
-                apiMethods.apiGETReq(url, null, false).then(function (response) {
-                    $scope.branchList = response.data.response;
-                }, function (response) {
-                    console.log("Error in fetching employer list. reason :", response);
-                });
-            };
-            getBranchList();
-
-            var getDegreeList = function () {
-                var url = apiUrlConfig.getProfileMasterList("degrees");
-                apiMethods.apiGETReq(url, null, false).then(function (response) {
-                    $scope.degreeList = response.data.response;
-                }, function (response) {
-                    console.log("Error in fetching employer list. reason :", response);
-                });
-            };
-            getDegreeList();
-
-            var getApplicantSourceList = function () {
-                var url = apiUrlConfig.getMastersDropdownList("customField3");
-                apiMethods.apiGETReq(url, null, false).then(function (response) {
-                    $scope.applicantSourceList = response.data.response.content;
-                    console.log($scope.applicantSourceList);
-                }, function (response) {
-                    console.log("Error in fetching applicant source list. reason :", response);
-                });
-            };
-            getApplicantSourceList();
-
-            var getSalutationList = function () {
-                var url = apiUrlConfig.getMastersDropdownList("customField16");
-                apiMethods.apiGETReq(url, null, false).then(function (response) {
-                    $scope.salutationList = response.data.response.content;
-                }, function (response) {
-                    console.log("Error in fetching applicant source list. reason :", response);
-                });
-            };
-            getSalutationList();
+            //var getApplicantSourceList = function () {
+            //    var url = apiUrlConfig.getMastersDropdownList("customField3");
+            //    apiMethods.apiGETReq(url, null, false).then(function (response) {
+            //        $scope.applicantSourceList = response.data.response.content;
+            //        console.log($scope.applicantSourceList);
+            //    }, function (response) {
+            //        console.log("Error in fetching applicant source list. reason :", response);
+            //    });
+            //};
+            //getApplicantSourceList();
+            //
+            //var getSalutationList = function () {
+            //    var url = apiUrlConfig.getMastersDropdownList("customField16");
+            //    apiMethods.apiGETReq(url, null, false).then(function (response) {
+            //        $scope.salutationList = response.data.response.content;
+            //    }, function (response) {
+            //        console.log("Error in fetching applicant source list. reason :", response);
+            //    });
+            //};
+            //getSalutationList();
         }
     ]);
 })();
