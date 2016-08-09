@@ -101,8 +101,7 @@ gulp.task('start-server', function() {
 				"/static": "static",
 				"/web": "web"
 			}
-		},
-		port : 3003,
+		},port : 3003,
 		ghostMode: false
 	});
 });

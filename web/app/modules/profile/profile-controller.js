@@ -17,7 +17,7 @@
             var getProfileObj = function () {
                 var url = apiUrlConfig.getApplicantProfile;
                 apiMethods.apiGETReq(url).then(function (response) {
-                    $scope.profileObj.applicantDetailObj = applicantModel.digestApplicantApiObj(response.data.response);
+                    $scope.profileObj.applicantDetailObj = applicantModel.digestApplicantDynamicApiObj(response.data.response);
                 }, function (response) {
                     commonService.onApiResponseError(response);
                 });
@@ -81,9 +81,9 @@
 
             var createApplicantForUpdateResume = function (response) {
                 var url = apiUrlConfig.createApplicantProfile;
-                var req = applicantModel.convertUIObj2ApiObj($scope.profileObj.applicantDetailObj);
-                req.applicantOriginalResumePath = response.applicantOriginalResumePath;
-                req.applicantOriginalDocPath = response.applicantOriginalDocPath;
+                var req = response;
+                //req.applicantOriginalResumePath = response.applicantOriginalResumePath;
+                //req.applicantOriginalDocPath = response.applicantOriginalDocPath;
                 apiMethods.apiPOSTReq(url, req).then(function (response) {
                     getProfileObj();
                     commonService.showSuccessMsg("Resume Updated successfully");

@@ -1,0 +1,27 @@
+<ng-form my-validation name="innerForm">
+    <div class="clearfix">
+        <label ng-init="item.selectedCheckboxValue = []">{{item.displayName}}
+            <span class="asterisk" ng-if="item.required">*</span>
+        </label>
+        <p class="pull-right text-danger" ng-if="duplicateName">Duplicate record(s) found</p>
+        <!--<input type="text" id="tags" name="{{item.propertyName}}"-->
+               <!--class="form-control {{item.cssClassName}}"-->
+               <!--ng-model="item.selectedValue"-->
+               <!--placeholder="{{item.watermarkText}}"-->
+               <!--ng-required="item.required"-->
+               <!--ng-pattern="item.regex"-->
+               <!--err-msg-required="This field is required."-->
+               <!--err-msg-pattern="{{item.regexMessage}}">-->
+        <div ng-repeat="fields in item.optionList">
+            <input type="checkbox" name="{{item.propertyName}}" class="{{item.cssClassName}}"
+                   ng-model="item.selectedCheckboxValue[$index]"
+                   ng-true-value="'{{fields}}'"
+                   ng-false-value="null"
+                   ng-required="item.required && item.selectedCheckboxValue.length == 0"
+                   ng-pattern="item.regex"
+                   err-msg-required="This field is required."
+                   err-msg-pattern="{{item.regexMessage}}">
+            {{fields}}
+        </div>
+    </div>
+</ng-form>

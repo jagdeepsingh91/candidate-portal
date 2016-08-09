@@ -289,59 +289,58 @@ input[type=checkbox]:checked + label:before{content: '';
 
 /**************** Elements with Label ****************/
 div.label-input-text {
-	border: 1px solid $grey-13;
-	display: table;
+  border: 1px solid $grey-13;
+  display: table;
+  width: 100%;
+  height: $btn-social-height;
+  padding: 0 5px;
+  margin-bottom: 20px;
+  background: #FFF;
+  position: relative;
+  input, textarea {
+	border: none;
+	box-shadow: none;
+	color: $grey-14;
+	display: table-cell;
 	width: 100%;
-	height: $btn-social-height;
-	padding: 0 5px;
-	margin-bottom: 20px;
-	background: #FFF;
-	position: relative;
-	input,textarea {
-		border: none;
-		box-shadow: none;
-		color: $grey-14;
-		display: table-cell;
-		width: 100%;
-		vertical-align: middle;
-		padding: 0 10px;
-		height: inherit;
-		font-size: $med-font-size;
-		font-weight: 100;
-	}
-  textarea:focus{
-    overflow: auto;
-    outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    background-color: transparent;
-    resize: none;
-    outline: none;
-    -webkit-appearance: none;
-    outline-color: transparent;
-    outline-style: none;
+	vertical-align: middle;
+	padding: 0 10px;
+	height: inherit;
+	font-size: $med-font-size;
+	font-weight: 100;
   }
+  textarea:focus {
+	overflow: auto;
+	outline: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	background-color: transparent;
+	resize: none;
+	outline: none;
+	-webkit-appearance: none;
+	outline-color: transparent;
+	outline-style: none;
+  }
+  label {
+	font-size: $med-font-size;
+	font-weight: 100;
+	color: $grey-11;
+	margin-left: 10px;
+	position: absolute;
+	top: 15px;
+	transition: 0.5s ease all;
+  }
+  &.focused {
 	label {
-		font-size: $med-font-size;
-		font-weight: 100;
-		color: $grey-11;
-		margin-left: 10px;
-		position: absolute;
-		top: 15px;
-		transition: 0.5s ease all;
+	  top: 5px;
+	  font-size: $xs-font-size;
 	}
-	&.focused {
-		label {
-			top: 5px;
-			font-size: $xs-font-size;
-		}
-		input {
-			height: $base-height;
-			margin-top: 15px;
-		}
+	input, textarea {
+	  height: $base-height;
+	  margin-top: 15px;
 	}
+  }
 }
-
 /******************* Input File *********************/
 .label-input-file {
 	border: 1px solid $grey-13;

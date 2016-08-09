@@ -1,0 +1,10 @@
+<div oc-lazy-load="['myValidation', 'multipleAutocomplete', 'setModelValue', 'datetimepicker']">
+    <div ng-repeat="item in fieldsObj">
+        <!-- Main cover Template-->
+        <div ng-class="{'row col-sm-5' : item.cssClassName == 'left' || item.cssClassName == 'right'}">
+            <div ng-include="'app/directives/create-dynamic-fields/dynamic-field-templates/main-cover-tpl.html'"></div>
+        </div>
+        <div ng-if="item.cssClassName == 'left'" class="col-sm-1"></div>
+        <div ng-if="item.cssClassName == 'right'" class="row"></div>
+    </div>
+</div>

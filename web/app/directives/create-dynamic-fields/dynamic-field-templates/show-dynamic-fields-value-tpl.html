@@ -1,0 +1,42 @@
+<div>
+    <dl class="dl-horizontal">
+        <span ng-repeat="item in dynamicFieldsObj | filterDynamicFields : filterFields">
+            <span ng-if="item.fieldType != dynamicFieldTypes.group">
+                <dt>{{item.displayName}}</dt>
+                <dd>
+                    <span ng-if="item.selectedValue != null">{{item.selectedValue}}</span>
+                    <span ng-if="item.selectedUser != null">
+                        <span ng-repeat="itemValue in item.selectedUser">
+                            {{itemValue.displayName}}
+                            <span ng-if="$index != item.selectedUser.length-1">,</span>
+                        </span>
+                    </span>
+                    <span ng-if="item.selectedObject != null">
+                        <span ng-repeat="itemValue in item.selectedObject">
+                            {{itemValue.name}}
+                            <span ng-if="$index != item.selectedObject.length-1">,</span>
+                        </span>
+                    </span>
+                </dd>
+            </span>
+            <span ng-if="item.fieldType == dynamicFieldTypes.group">
+                <dt>{{item.displayName}}</dt>
+                <dd ng-repeat="item in item.subFields">
+                    <span ng-repeat="obj in item">
+                        <span ng-if="obj.selectedValue != null">
+                            {{obj.selectedValue}}
+                            <span ng-if="$index != item.length-1">,</span>
+                        </span>
+                        <span ng-if="obj.selectedObject.length != 0">
+                            <span ng-repeat="itemValue in obj.selectedObject">
+                                {{itemValue.name}}
+                                <span ng-if="$index != obj.selectedObject.length-1">,</span>
+                            </span>
+                            <span ng-if="$index != item.length-1">,</span>
+                        </span>
+                    </span>
+                </dd>
+            </span>
+        </span>
+    </dl>
+</div>

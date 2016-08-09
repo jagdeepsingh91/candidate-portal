@@ -1,0 +1,18 @@
+<ng-form my-validation name="innerForm">
+<div class="label-input-text multiple-select" ng-if="item.fieldType == dynamicFieldTypes.userMultiSelect">
+    <!--<label>{{item.displayName}}
+        <span class="asterisk" ng-if="item.required">*</span>
+    </label>-->
+    <br/>
+    <multiple-autocomplete title="{{item.displayName}}"
+                           ng-model="item.selectedObject" 
+                           object-property="{{item.propertyValue}}"
+                           name="{{item.propertyName}}" api-url="item.apiURL"
+                           dto-type="user"
+                           required-attr="item.required"
+                           ng-pattern="item.regex"
+                           err-msg-required="This field is required."
+                           err-msg-pattern="{{item.regexMessage}}">
+    </multiple-autocomplete>
+</div>
+</ng-form>

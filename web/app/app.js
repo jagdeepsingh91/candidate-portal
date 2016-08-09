@@ -89,6 +89,10 @@
                         name: 'positionModel',
                         files: ['app/models/position-model.js']
                     },
+                    {
+                        name: 'candidatePortal.models.dynamicFieldsModel',
+                        files: ['app/directives/create-dynamic-fields/dynamic-fields-model.js']
+                    },
                     // Directives
                     {
                         name: 'myValidation',
@@ -121,6 +125,14 @@
                     {
                         name: 'setModelValue',
                         files: ['app/directives/set-model-value.js']
+                    },
+                    {
+                        name: 'datetimepicker',
+                        files: ['app/directives/datepicker.js']
+                    },
+                    {
+                        name: 'createDynamicFields',
+                        files: ['app/directives/create-dynamic-fields/create-dynamic-fields.js']
                     },
                     // Services
                     {

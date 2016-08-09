@@ -1,0 +1,18 @@
+<ng-form my-validation name="innerForm">
+<div class="label-input-text">
+    <label>{{item.displayName}} (YYYY-MM-DD)
+        <span ng-if="item.required" class="asterisk">*</span>
+    </label>
+    <input type="text" name="{{item.propertyName}}"
+           ng-model="item.selectedValue"
+           ng-required="item.required"
+           ng-pattern="item.regex"
+           err-msg-required="{{item.displayName}} is required."
+           err-msg-pattern="{{item.regexMessage}}"
+           class="form-control {{item.cssClassName}}"
+           datetimepicker>
+    <!--<script>-->
+        <!--angular.element("."+item.propertyName).datepicker();-->
+    <!--</script>-->
+</div>
+</ng-form>
